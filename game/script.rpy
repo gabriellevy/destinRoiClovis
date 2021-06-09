@@ -1,17 +1,57 @@
-﻿# Vous pouvez placer le script de votre jeu dans ce fichier.
+﻿# Persos
+define narrator = Character(color="#fafad8", what_italic=True)
 
-# Déclarez sous cette ligne les images, avec l'instruction 'image'
-# ex: image eileen heureuse = "eileen_heureuse.png"
+init -10 python:
+    from despin.gen_vie import selecteur
+    import random
 
-# Déclarez les personnages utilisés dans le jeu.
-define e = Character('Eileen', color="#c8ffc8")
+    selecteur_ = selecteur.Selecteur()
+    def determinationEvtCourant(situation):
+        global selecteur_
+        return selecteur_.determinationEvtCourant(situation)
 
+init -1 python:
+    from despin.gen_vie import selecteur
+    import random
+
+    # AjouterEvtsPolitiques()
+    # AjouterEvtsAmoureux()
+    # AjouterEvtsAdministration()
+    # AjouterEvtsJustice()
+    # AjouterEvtsReligieux()
+    AjouterEvtsRien()
 
 # Le jeu commence ici
 label start:
+    scene bg priere
+    $ DeterminerPerso() # attention cette fonction lance un jump
 
-    e "Vous venez de créer un nouveau jeu Ren'Py."
+label debut_cycle:
+    show screen valeurs_traits
+    $ prochainEvt = determinationEvtCourant(situation_)
+    $ renpy.jump(prochainEvt)
 
-    e "Après avoir ajouté une histoire, des images et de la musique, vous pourrez le présenter au monde entier !"
+label fin_cycle:
+    # "Fin d'un cycle."
+    # jump decRejChasseur # tmp test
 
+    $ situation_.TourSuivant()
+
+    if situation_["Santé"] != "Mort":
+        jump debut_cycle
+
+label mort:
+    menu:
+        "Fin de vie."
+        "ok":
+            pass
     return
+
+label labelGoTo_pasFait:
+    "Ce sélecteur d'énévement n'a pas de label go to on dirait"
+
+label pas_evt_trouve:
+    " ERREUR : pas d'événement trouvé à ce cycle"
+
+label probaAbsoluesSup100:
+    "Le total des probas absolues dépasse 100%% !"
