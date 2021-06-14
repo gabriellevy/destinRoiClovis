@@ -19,8 +19,12 @@ class Portrait:
         portraits = []
         portraitCourant = situation.GetValCarac(Portrait.C_PORTRAIT)
 
-        # if ageAnnees >= 40: # A FAIRE : décommenter quand j'aurai trouvé des images pour la jeunesse
-        portraits.append("images/portraits/clovis40+.png")
+        if ageAnnees >= 30 and ageAnnees <= 40:
+            portraits.append("images/portraits/clovis30_40.png")
+        elif ageAnnees > 40:
+            portraits.append("images/portraits/clovis40+.png")
+        else:
+            portraits.append("images/portraits/clovis15_30.png")
 
         if len(portraits) == 0:
             portraits = ["images/portraits/inconnu.jpg"]

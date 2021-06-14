@@ -357,13 +357,6 @@ class Situation:
             if nbJoursConvalescence < 0:
                 nbJoursConvalescence = 0
             self.caracs_[pbsante.PbSante.C_JOURS_DHOPITAL] = nbJoursConvalescence
-        # prison
-        nbJoursPrison = self.GetValCaracInt(justice.Justice.C_JOURS_PRISON)
-        if nbJoursPrison > 0:
-            nbJoursPrison = nbJoursPrison - nbJoursPasses
-            if nbJoursPrison < 0:
-                nbJoursPrison = 0
-            self.caracs_[justice.Justice.C_JOURS_PRISON] = nbJoursPrison
 
     def TourSuivant(self):
         """

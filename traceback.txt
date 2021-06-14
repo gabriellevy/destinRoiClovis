@@ -1,39 +1,82 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 1, in script
-    init -5 python:
-  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 1, in script
-    init -5 python:
-  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 11, in <module>
-    from humanite.amour import relationAmoureuse
-IndentationError: unexpected indent (portrait.py, line 23)
+Exception: Could not find font u'CloisterBlack.ttf'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/bootstrap.py", line 326, in bootstrap
-    renpy.main.main()
-  File "renpy/main.py", line 515, in main
-    renpy.game.context().run(node)
-  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 1, in script
-    init -5 python:
-  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 1, in script
-    init -5 python:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
+    python hide:
   File "renpy/ast.py", line 922, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "renpy/python.py", line 2218, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 11, in <module>
-    from humanite.amour import relationAmoureuse
-  File "renpy/loader.py", line 985, in load_module
-    exec(code, mod.__dict__)
-  File "humanite/amour/relationAmoureuse.py", line 2, in <module>
-  File "renpy/loader.py", line 979, in load_module
-    code = compile(source, filename, 'exec', renpy.python.old_compile_flags, 1)
-IndentationError: unexpected indent (portrait.py, line 23)
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
+    python hide:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
+    ui.interact()
+  File "renpy/ui.py", line 298, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3101, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
+  File "renpy/display/core.py", line 3611, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+  File "renpy/display/core.py", line 2441, in draw_screen
+    renpy.config.screen_height,
+  File "render.pyx", line 492, in renpy.display.render.render_screen
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/display/layout.py", line 777, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/display/layout.py", line 777, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/display/layout.py", line 777, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/display/screen.py", line 681, in render
+    child = renpy.display.render.render(self.child, w, h, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/display/layout.py", line 777, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/display/layout.py", line 980, in render
+    surf = render(d, width - x, rh, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/display/behavior.py", line 787, in render
+    rv = super(Button, self).render(width, height, st, at)
+  File "renpy/display/layout.py", line 1154, in render
+    xminimum = max(xminimum, size_groups[size_group].width(width, height, st, at))
+  File "renpy/display/layout.py", line 1096, in width
+    rend = renpy.display.render.render_for_size(i, width, height, st, at)
+  File "render.pyx", line 315, in renpy.display.render.render_for_size
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/display/behavior.py", line 787, in render
+    rv = super(Button, self).render(width, height, st, at)
+  File "renpy/display/layout.py", line 1184, in render
+    st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 263, in renpy.display.render.render
+  File "renpy/text/text.py", line 2034, in render
+    virtual_layout = Layout(self, width, height, renders, drawable_res=False, size_only=True)
+  File "renpy/text/text.py", line 636, in __init__
+    glyphs = ts.glyphs(s, self)
+  File "renpy/text/text.py", line 248, in glyphs
+    fo = font.get_font(self.font, self.size, self.bold, self.italic, 0, self.antialias, self.vertical, self.hinting, layout.oversample)
+  File "renpy/text/font.py", line 699, in get_font
+    face = load_face(fn)
+  File "renpy/text/font.py", line 640, in load_face
+    raise Exception("Could not find font {0!r}.".format(orig_fn))
+Exception: Could not find font u'CloisterBlack.ttf'.
 
 Windows-10-10.0.19041
 Ren'Py 7.4.4.1439
 destinRoiClovis 1.0
-Mon Jun 14 20:27:07 2021
+Mon Jun 14 22:28:23 2021
