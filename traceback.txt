@@ -1,61 +1,39 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/evts_generaux/rien.rpy", line 49, in script
-    with Dissolve(.5)
-  File "game/screens.rpy", line 1531, in execute
-    screen valeurs_traits():
-  File "game/screens.rpy", line 1531, in execute
-    screen valeurs_traits():
-  File "game/screens.rpy", line 1542, in execute
-    $ adressePortrait = situation_.DeterminerPortrait()
-  File "game/screens.rpy", line 1542, in <module>
-    $ adressePortrait = situation_.DeterminerPortrait()
-TypeError: DeterminerPortraitPersoPrincipal() takes exactly 2 arguments (3 given)
+  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 1, in script
+    init -5 python:
+  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 1, in script
+    init -5 python:
+  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 11, in <module>
+    from humanite.amour import relationAmoureuse
+IndentationError: unexpected indent (portrait.py, line 23)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/evts_generaux/rien.rpy", line 49, in script
-    with Dissolve(.5)
-  File "renpy/ast.py", line 1397, in execute
-    renpy.exports.with_statement(trans, paired)
-  File "renpy/exports.py", line 1646, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "renpy/display/core.py", line 2610, in do_with
-    clear=clear)
-  File "renpy/display/core.py", line 3101, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
-  File "renpy/display/core.py", line 3512, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "renpy/display/core.py", line 567, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/core.py", line 567, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/core.py", line 567, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/core.py", line 567, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/screen.py", line 432, in visit_all
-    callback(self)
-  File "renpy/display/core.py", line 3512, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "renpy/display/screen.py", line 443, in per_interact
-    self.update()
-  File "renpy/display/screen.py", line 631, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 1531, in execute
-    screen valeurs_traits():
-  File "game/screens.rpy", line 1531, in execute
-    screen valeurs_traits():
-  File "game/screens.rpy", line 1542, in execute
-    $ adressePortrait = situation_.DeterminerPortrait()
-  File "game/screens.rpy", line 1542, in <module>
-    $ adressePortrait = situation_.DeterminerPortrait()
-  File "despin/gen_vie/situation.py", line 41, in DeterminerPortrait
-TypeError: DeterminerPortraitPersoPrincipal() takes exactly 2 arguments (3 given)
+  File "renpy/bootstrap.py", line 326, in bootstrap
+    renpy.main.main()
+  File "renpy/main.py", line 515, in main
+    renpy.game.context().run(node)
+  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 1, in script
+    init -5 python:
+  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 1, in script
+    init -5 python:
+  File "renpy/ast.py", line 922, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "renpy/python.py", line 2218, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/humanite/amour/evts_rencontresAmoureuses.rpy", line 11, in <module>
+    from humanite.amour import relationAmoureuse
+  File "renpy/loader.py", line 985, in load_module
+    exec(code, mod.__dict__)
+  File "humanite/amour/relationAmoureuse.py", line 2, in <module>
+  File "renpy/loader.py", line 979, in load_module
+    code = compile(source, filename, 'exec', renpy.python.old_compile_flags, 1)
+IndentationError: unexpected indent (portrait.py, line 23)
 
 Windows-10-10.0.19041
 Ren'Py 7.4.4.1439
 destinRoiClovis 1.0
-Wed Jun  9 23:37:01 2021
+Mon Jun 14 20:27:07 2021
