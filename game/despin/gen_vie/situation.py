@@ -23,7 +23,7 @@ class Situation:
         self.caracs_ = dict() # dictionnaire contenant toutes les caracs courantes de la partie
         self.valsMin_ = dict() # facultatif : dictionnaire contenant l'éventuelle valeur min de la carac en clé
         self.valsMax_ = dict() # facultatif : dictionnaire contenant l'éventuelle valeur max de la carac en clé
-        date = temps.Date()
+        date = temps.Date(175000)
         self.caracs_[temps.Date.DATE] = date.nbJours_
         self.caracs_[temps.Date.AGE_ANNEES] = 0
         self.collectionTraits = None
@@ -327,7 +327,7 @@ class Situation:
     def AffichageDate(self):
         nbJours = self.caracs_[temps.Date.DATE]
         dateDuJour = temps.Date(nbJours)
-        dateStr = "{}\n{}".format(dateDuJour.formatConstitution(), dateDuJour.formatGregorien())
+        dateStr = u"{}".format(dateDuJour.formatGregorien())
         return dateStr
 
     def GetDateDuJour(self):

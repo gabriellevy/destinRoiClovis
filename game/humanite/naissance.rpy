@@ -45,7 +45,7 @@ init -5 python:
         situation.SetValCarac(identite.Identite.C_NOM, nomStr)
 
 label naissance:
-    $ genererDateNaissance(situation_, 15)
+    $ genererDateNaissance(situation_, 13)
     $ genererPerso(situation_, traits_)
     $ genererParents(situation_)
     jump intro
