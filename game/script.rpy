@@ -1,6 +1,10 @@
 ﻿# Persos
 define narrator = Character(color="#fafad8", what_italic=True)
 
+# Musiques
+define audio.epique_principale = "musique/epique_principale.ogg"
+define audio.conquetes = "musique/conquetes.ogg"
+
 init -10 python:
     from despin.gen_vie import selecteur
     import random
@@ -24,6 +28,8 @@ init -1 python:
 # Le jeu commence ici
 label start:
     scene bg priere
+    # play music musique_menu
+    queue music [ epique_principale, conquetes ] # pseudo liste de lecture temporaire
     $ DeterminerPerso() # attention cette fonction lance un jump
 
 label debut_cycle:

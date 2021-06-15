@@ -59,13 +59,7 @@ define config.has_voice = True
 # define config.sample_sound = "sample-sound.ogg"
 # define config.sample_voice = "sample-voice.ogg"
 
-
-## Décommentez la ligne suivante pour configurer un fichier audio qui sera
-## diffusé quand le joueur sera sur le menu principal. Ce son se poursuivra dans
-## le jeu, jusqu’à ce qu'il soit stoppé ou qu’un autre fichier soit joué.
-
-# define config.main_menu_music = "main-menu-theme.ogg"
-
+define config.main_menu_music = "musique/menu.ogg"
 
 ## Transitions #################################################################
 ##
