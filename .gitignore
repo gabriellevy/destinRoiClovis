@@ -3,3 +3,7 @@
 *.rpyb
 game/saves/persistent
 log.txt
+*.rpyb
+*.save
+*.save
+game/saves/navigation.json

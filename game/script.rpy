@@ -30,7 +30,7 @@ label start:
     scene bg priere
     # play music musique_menu
     queue music [ epique_principale, conquetes ] # pseudo liste de lecture temporaire
-    $ DeterminerPerso() # attention cette fonction lance un jump
+    jump generationUnivers_Perso
 
 label debut_cycle:
     show screen valeurs_traits

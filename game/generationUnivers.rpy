@@ -72,9 +72,5 @@ init -2 python:
             interfaceMode_ = 0
         print(interfaceMode_)
 
-    def DeterminerPerso():
-        global situation_
-        renpy.jump("generationUnivers_Perso")
-
 label generationUnivers_Perso:
     jump naissance

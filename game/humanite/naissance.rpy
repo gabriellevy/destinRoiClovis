@@ -48,4 +48,4 @@ label naissance:
     $ genererDateNaissance(situation_, 15)
     $ genererPerso(situation_, traits_)
     $ genererParents(situation_)
-    jump debut_cycle
+    jump intro
