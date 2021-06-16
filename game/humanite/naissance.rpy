@@ -16,17 +16,22 @@ init -5 python:
         nbJoursDateNaissance = situation[temps.Date.DATE] - 365*ageActuel
         situation[temps.Date.DATE_NAISSANCE] = nbJoursDateNaissance
 
-    def genererPerso(situation, tousLesTraits):
+    def genererClovis(situation, tousLesTraits):
         """
         création d'un perso qui a de très fortes chances de devenir aventurier, conquistador,
         bandit peut-être
         """
-        situation[trait.Ambition.NOM] = 11
-        situation[trait.Opportunisme.NOM] = 11
-        situation[trait.Cupidite.NOM] = 11
-        situation[trait.Pragmatisme.NOM] = 11
-        situation[trait.Violence.NOM] = 11
-        situation[trait.Altruisme.NOM] = -13
+        situation[trait.Violence.NOM] = trait.Trait.SEUIL_A_EXTREME
+        situation[trait.Opportunisme.NOM] = trait.Trait.SEUIL_A_EXTREME
+        situation[trait.Assurance.NOM] = trait.Trait.SEUIL_A_EXTREME
+        situation[trait.Observation.NOM] = trait.Trait.SEUIL_A
+        situation[trait.Cupidite.NOM] = trait.Trait.SEUIL_A_EXTREME
+        situation[trait.Courage.NOM] = trait.Trait.SEUIL_A
+        situation[trait.Ambition.NOM] = trait.Trait.SEUIL_A
+        situation[trait.Rancune.NOM] = trait.Trait.SEUIL_A_PAS_EXTREME
+        situation[trait.Franchise.NOM] = trait.Trait.SEUIL_A_PAS
+        # situation[trait.Pragmatisme.NOM] = 11
+        # situation[trait.Altruisme.NOM] = -13
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
@@ -46,6 +51,6 @@ init -5 python:
 
 label naissance:
     $ genererDateNaissance(situation_, 13)
-    $ genererPerso(situation_, traits_)
+    $ genererClovis(situation_, traits_)
     $ genererParents(situation_)
     jump intro

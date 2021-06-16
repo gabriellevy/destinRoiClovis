@@ -988,7 +988,8 @@ class Richesse(TraitGraduel):
                 return u"Richissime {}".format(val)
             return u"Aisé {}".format(val)
         else:
-            return u"Classe moyenne {}".format(val)
+            return u""
+            # return u"Classe moyenne {}".format(val)
 
 class CollectionTraits:
 

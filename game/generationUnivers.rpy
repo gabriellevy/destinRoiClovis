@@ -17,8 +17,8 @@ init -2 python:
     situation_.collectionMaladies = maladies_
     # quartiers_ = quartier.CollectionQuartiers()
     # situation_.collectionQuartiers = quartiers_
-    interfaceMode_ = 0
-    nbInterfaceMode_ = 10
+    interfaceMode_ = 1
+    nbInterfaceMode_ = 9
 
     # text fade system
     time_ = 2.0 # seconds of fade

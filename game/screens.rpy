@@ -1550,26 +1550,24 @@ screen valeurs_traits():
         vbox:
             textbutton _("Description suivante"):
                 action Function(InterfaceSuivante)
-            if interfaceMode_ == 0: # résumé, portrait, nom...
+            if interfaceMode_ == 0: # résumé, portrait, nom, age, blessures...
                 add "[adressePortrait]"
                 text _(u"[patronyme]")
                 text _(u"[affAge]")
-            elif interfaceMode_ == 1: # age, blessures, maladies, bioniques
-                text _(u"[affAge]")
                 text _(u"[descriptionBlessures]")
-            elif interfaceMode_ == 2: # traits
+            elif interfaceMode_ == 1: # traits
                 text _(u"[descriptionTrait]")
-            elif interfaceMode_ == 3: # général non personnel (date...)
+            elif interfaceMode_ == 2: # général non personnel (date...)
                 text _(u"[affDate]\n")
-            elif interfaceMode_ == 4: # économie
+            elif interfaceMode_ == 3: # économie
                 text _(u"[strRichesse]")
-            elif interfaceMode_ == 5: # religion
+            elif interfaceMode_ == 4: # religion
                 text _(u"[strReligion]")
             # elif interfaceMode_ == 6: # géographie
             #     text _(u"[strQuartier]")
-            elif interfaceMode_ == 6: # Possessions
+            elif interfaceMode_ == 5: # Possessions
                 text _(u"[strPossessions]")
-            elif interfaceMode_ == 7: # Famille
+            elif interfaceMode_ == 6: # Famille
                 text _(" Père : ")
                 hbox:
                     add "[strAffichagePortraitPere]" size(147, 164)
@@ -1578,7 +1576,7 @@ screen valeurs_traits():
                 hbox:
                     add "[strAffichagePortraitMere]" size(147, 164)
                     text _(u"[strAffichageMere]") yalign 0.5
-            elif interfaceMode_ == 8: # les amoureuses
+            elif interfaceMode_ == 7: # les amoureuses
                 for amoureuse in tableauAffichageAmoureuses:
                     hbox:
                         add "[amoureuse.adresseImgPortrait]" size(99, 110)
