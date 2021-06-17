@@ -4,3 +4,4 @@ log.txt
 *.save
 game/saves/navigation.json
 *.rpyc
+traceback.txt

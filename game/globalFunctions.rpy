@@ -3,6 +3,7 @@ init -2 python:
     from despin.gen_vie import situation
     from humanite import trait
     # from geographie import quartier
+    from humanite import metier
     from univers import temps
     from humanite.sante import pbsante
     import random
@@ -17,8 +18,10 @@ init -2 python:
     situation_.collectionMaladies = maladies_
     # quartiers_ = quartier.CollectionQuartiers()
     # situation_.collectionQuartiers = quartiers_
+    metiers_ = metier.CollectionMetiers()
+    situation_.collectionMetiers = metiers_
     interfaceMode_ = 1
-    nbInterfaceMode_ = 9
+    nbInterfaceMode_ = 10
 
     # text fade system
     time_ = 2.0 # seconds of fade
@@ -71,6 +74,3 @@ init -2 python:
         if interfaceMode_ >= nbInterfaceMode_:
             interfaceMode_ = 0
         print(interfaceMode_)
-
-label generationUnivers_Perso:
-    jump naissance

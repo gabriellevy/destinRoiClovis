@@ -1528,12 +1528,27 @@ style slider_slider:
     variant "small"
     xsize 600
 
+transform fade_move_with_pars(delay, x, y, move_x, move_y):
+    pos (x, y)
+    alpha 1.0
+    parallel:
+        alpha 1.0
+        linear delay alpha 0.3
+    parallel:
+        pos (x, y)
+        linear delay pos (move_x, move_y)
+    pause delay
+
+screen fading_text(text, delay, x, y, move_x, move_y, *args, **kwargs):
+    add Text(text, *args, **kwargs) at fade_move_with_pars(delay, x, y, move_x, move_y)
+
 screen valeurs_traits():
     tag interface_personnage
     $ descriptionTrait = situation_.DescriptionTraits(traits_)
     $ descriptionBlessures = situation_.DescriptionBlessuresEtMaladies(blessures_, maladies_)
     $ affAge = situation_.AffichageAge()
     $ affDate = situation_.AffichageDate()
+    $ strMetier = situation_.AffichageMetier()
     $ strReligion = situation_.AffichageReligion()
     # $ strQuartier = situation_.AffichageQuartier()
     $ patronyme = situation_.AffichagePatronyme()
@@ -1559,8 +1574,9 @@ screen valeurs_traits():
                 text _(u"[descriptionTrait]")
             elif interfaceMode_ == 2: # général non personnel (date...)
                 text _(u"[affDate]\n")
-            elif interfaceMode_ == 3: # économie
+            elif interfaceMode_ == 3: # économie et compétences professionnelles
                 text _(u"[strRichesse]")
+                text _(u"[strMetier]")
             elif interfaceMode_ == 4: # religion
                 text _(u"[strReligion]")
             # elif interfaceMode_ == 6: # géographie

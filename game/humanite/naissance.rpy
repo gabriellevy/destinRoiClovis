@@ -30,8 +30,13 @@ init -5 python:
         situation[trait.Ambition.NOM] = trait.Trait.SEUIL_A
         situation[trait.Rancune.NOM] = trait.Trait.SEUIL_A_PAS_EXTREME
         situation[trait.Franchise.NOM] = trait.Trait.SEUIL_A_PAS
-        # situation[trait.Pragmatisme.NOM] = 11
-        # situation[trait.Altruisme.NOM] = -13
+
+        situation[metier.Metier.C_METIER] = u"Prince de sang"
+        
+        # compétences professionnelles
+        situation[metier.Politique.NOM] = trait.Trait.SEUIL_A
+        situation[metier.Guerrier.NOM] = trait.Trait.SEUIL_A
+        situation[metier.Chasseur.NOM] = trait.Trait.SEUIL_A
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)

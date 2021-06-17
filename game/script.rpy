@@ -18,11 +18,7 @@ init -1 python:
     from despin.gen_vie import selecteur
     import random
 
-    # AjouterEvtsPolitiques()
-    # AjouterEvtsAmoureux()
-    # AjouterEvtsAdministration()
-    # AjouterEvtsJustice()
-    # AjouterEvtsReligieux()
+    AjouterEvtsProfessionnels()
     AjouterEvtsRien()
 
 # Le jeu commence ici
@@ -30,7 +26,7 @@ label start:
     scene bg priere
     # play music musique_menu
     queue music [ epique_principale, conquetes ] # pseudo liste de lecture temporaire
-    jump generationUnivers_Perso
+    jump naissance
 
 label debut_cycle:
     show screen valeurs_traits

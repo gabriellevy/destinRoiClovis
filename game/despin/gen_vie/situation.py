@@ -8,6 +8,7 @@ from humanite import trait
 from humanite import identite
 from affichage import affichagePortrait
 from humanite.amour import relationAmoureuse
+from humanite import metier
 import random
 
 class Situation:
@@ -27,6 +28,7 @@ class Situation:
         self.caracs_[temps.Date.DATE] = date.nbJours_
         self.caracs_[temps.Date.AGE_ANNEES] = 0
         self.collectionTraits = None
+        self.collectionMetiers = None
         self.collectionBlessures = None
         self.collectionMaladies = None
         # self.collectionQuartiers = None
@@ -111,6 +113,12 @@ class Situation:
     def SetValCarac(self, idCarac, valCarac, valeurMin = "", valeurMax = ""):
         self.SetCarac(idCarac, valCarac, valeurMin, valeurMax)
 
+    def GetMetier(self):
+        valMetierStr = self.GetValCarac(metier.Metier.C_METIER)
+        if valMetierStr == "":
+            return None
+        return self.collectionMetiers[valMetierStr]
+
     def AjouterACarac(self, idCarac, valCarac):
         # si la carac n'existe pas encore, la créer
         if not idCarac in self.caracs_:
@@ -193,6 +201,32 @@ class Situation:
                 # str = u"{}{} ({})".format(str, descr, trait.eTrait_) # activer pour plus de détails sur els traits
                 str = u"{}{}".format(str, descr)
         return str
+
+    def AffichageMetier(self):
+        strMetier = u""
+        if ( metier.Metier.C_METIER not in self.caracs_):
+            strMetier = u"Sans emploi"
+            self.caracs_[metier.Metier.C_METIER] = u""
+        strMetier = self.caracs_[metier.Metier.C_METIER]
+        if strMetier == u"":
+            strMetier = u"Sans emploi"
+
+        # afficher les compétences :
+        strComp = u""
+        for metierK in self.collectionMetiers.lMetiers_.keys():
+            valMetier = self.GetValCaracInt(metierK)
+            if valMetier != "" and valMetier != 0:
+                txtDiscipline = self.collectionMetiers.lMetiers_[metierK].GetDiscipline()
+                if txtDiscipline == "":
+                    txtDiscipline = metierK
+
+                txtCompetence = self.collectionMetiers.lMetiers_[metierK].GetTexteCompetence(valMetier)
+                strComp = u"{}\n - {} ({})".format(strComp, txtDiscipline, txtCompetence)
+
+        if strComp != "":
+            strMetier = u"{}\n\nCompétences : {}".format(strMetier, strComp)
+
+        return strMetier
 
     def DescriptionBlessuresEtMaladies(self, blessures, maladies):
         """
@@ -297,10 +331,10 @@ class Situation:
 
     def AffichageRichesse(self):
         if ( trait.Richesse.NOM not in self.caracs_):
-            return u"Classe moyenne"
+            return u"Riche"
         strRichesse = self.collectionTraits[trait.Richesse.NOM].GetDescription(self)
         if strRichesse == "":
-            strRichesse = u"Classe moyenne"
+            strRichesse = u"Riche"
         return strRichesse
 
     def AffichagePossessions(self):
