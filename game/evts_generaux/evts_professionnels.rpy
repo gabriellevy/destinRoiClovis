@@ -11,13 +11,32 @@ init -5 python:
     from humanite import metier
 
     estPasGuerrierNivExtreme = condition.Condition(metier.Guerrier.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
+    estPasPolitiqueNivExtreme = condition.Condition(metier.Politique.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
     # estAgeInferieur40 = condition.Condition(metier.Guerrier.NOM, trait.Trait.A_EXTREME, condition.Condition.INFERIEUR_EGAL)
     def AjouterEvtsProfessionnels():
         global selecteur_
-
+        # entrainement guerrier
         entrainementGuerrier = declencheur.Declencheur(proba.Proba(0.1, True), "entrainementGuerrier")
         entrainementGuerrier.AjouterCondition(estPasGuerrierNivExtreme)
         selecteur_.ajouterDeclencheur(entrainementGuerrier)
+        # entrainement politique
+        entrainementPolitique = declencheur.Declencheur(proba.Proba(0.06, True), "entrainementPolitique")
+        entrainementPolitique.AjouterCondition(estPasPolitiqueNivExtreme)
+        selecteur_.ajouterDeclencheur(entrainementPolitique)
+
+label entrainementPolitique:
+    # s'entraîne à la politique
+    $ niveauExpertise = situation_.GetValCaracInt("entrainementPolitiqueNiv")
+    if niveauExpertise == 0:
+        $ situation_.SetValCarac("entrainementPolitiqueNiv", 1)
+        "Vous entrainez de bons rapports avec les sénateurs romains. Malgré leur molesse ils sont plein de bon sens et leur système de loi romaine devrait faciliter votre domination et la rentrée des impôts."
+    elif niveauExpertise == 1:
+        $ situation_.SetValCarac("entrainementPolitiqueNiv", 2)
+        "Les évèques sont très respectés par le peuple, leurs avis sont révérés. En écoutant leurs conseils vous gagnez en compréhnsion sur la Gaulle et donc en influence."
+    else:
+        "Vous perfectionnez vos talents politiques."
+    $ AjouterACarac(metier.Politique.NOM, 1)
+    jump fin_cycle
 
 label entrainementGuerrier:
     # s'entraîne au combat

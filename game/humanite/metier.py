@@ -370,7 +370,7 @@ class Ouvrier(Metier):
         return u"Manutention"
 
 class Politique(Metier):
-    NOM = u"Homme politique"
+    NOM = u"Politicien"
     def __init__(self):
         self.nom_ = Politique.NOM
 
@@ -501,6 +501,24 @@ class Guerrier(Metier):
         if self.nom_ in coterieObj.GetMetiersCompatibles():
             poids = poids + 0.3
         return poids
+
+    def GetTexteCompetence(self, niveauComp):
+        """
+        renvoie le niveau de compétence dans ce métier du perso rapport à la valeur en paramètre
+        éventuellement surclassable pour être plus précis
+        """
+        txtCompetence = u"Apprenti"
+        if niveauComp > 1:
+            txtCompetence = u"Combattant"
+            if niveauComp > 3:
+                txtCompetence = u"Élite"
+                if niveauComp > 5:
+                    txtCompetence = u"Champion"
+                    if niveauComp > 8:
+                        txtCompetence = u"Maître"
+                        if niveauComp > 10:
+                            txtCompetence = u"Maître légendaire"
+        return txtCompetence
 
 class Chauffeur(Metier):
     """

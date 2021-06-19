@@ -32,7 +32,7 @@ init -5 python:
         situation[trait.Franchise.NOM] = trait.Trait.SEUIL_A_PAS
 
         situation[metier.Metier.C_METIER] = u"Prince de sang"
-        
+
         # compétences professionnelles
         situation[metier.Politique.NOM] = trait.Trait.SEUIL_A
         situation[metier.Guerrier.NOM] = trait.Trait.SEUIL_A
@@ -40,19 +40,23 @@ init -5 python:
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
+        situation[identite.Identite.C_NOM] = "Clovis"
         return
 
     def genererParents(situation):
         pere = pnj.GenererPNJPapa(situation)
+        pere.ageJours = 43 * 12 *30 + 24
+        pere.nom_ = "Childéric"
+        pere.sexeMasculin_ = True
+        pere.portraitStr_ = "images/portraits/childeric.jpg"
         situation.SetValCarac(pnj.Pnj.C_PERE, pere)
+
         mere = pnj.GenererPNJMaman(situation)
+        mere.ageJours = 36 * 12 *30 + 297
+        mere.nom_ = "Basine de Thuringe"
+        mere.sexeMasculin_ = False
+        mere.portraitStr_ = "images/portraits/basine.jpg"
         situation.SetValCarac(pnj.Pnj.C_MERE, mere)
-
-        # genererGenererNomDeDepart du perso principal
-        # nom de son père
-        nomStr = "Clovis"
-
-        situation.SetValCarac(identite.Identite.C_NOM, nomStr)
 
 label naissance:
     $ genererDateNaissance(situation_, 13)

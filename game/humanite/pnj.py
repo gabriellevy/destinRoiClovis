@@ -20,7 +20,8 @@ class Pnj:
     def __format__(self, format):
         # if(format == 'age'):
         #     return '23'
-        return u"PNJ({})".format(self.nom_)
+        # return u"PNJ({})".format(self.nom_)
+        return self.__str__()
 
     def __getattr__(self, nom):
         """Si Python ne trouve pas l'attribut nommé nom, il appelle
