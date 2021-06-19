@@ -168,6 +168,21 @@ class Robotique(Metier):
             poids = poids + 0.2
         return poids
 
+class Roi(Metier):
+    NOM = u"Roi des francs"
+    def __init__(self):
+        self.nom_ = Roi.NOM
+
+    def GetNiveauRichesse(self):
+        return 9
+
+    def GetDiscipline(self):
+        return u"Royauté"
+
+    def GetPoidsDemo(self, masculin, coterieObj):
+        poids = 0.0001
+        return poids
+
 class Danseur(Metier):
     NOM = u"Danseur"
     def __init__(self):
@@ -870,6 +885,9 @@ class CollectionMetiers:
 
         danseur = Danseur()
         self.SetMetier(Danseur.NOM, danseur)
+
+        roi = Roi()
+        self.SetMetier(Roi.NOM, roi)
 
         acteur = Acteur()
         self.SetMetier(Acteur.NOM, acteur)

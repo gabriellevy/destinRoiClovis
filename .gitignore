@@ -5,3 +5,6 @@ log.txt
 game/saves/navigation.json
 *.rpyc
 traceback.txt
+errors.txt
+game/saves/navigation.json
+game/saves/persistent

@@ -6,6 +6,7 @@ class Date:
     """
 
     DATE = u"Date" # date actuelle depuis le début du calendrier (en jours)
+    DATE_ANNEES = u"Date en années" # date actuelle depuis le début du calendrier (en années)
     DATE_NAISSANCE = u"Date de naissance" # date de naissance du perso depuis le début du calendrier (en jours)
     AGE_ANNEES = u"Age" # age du perso (en années)
 

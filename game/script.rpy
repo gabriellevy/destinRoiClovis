@@ -19,6 +19,7 @@ init -1 python:
     import random
 
     AjouterEvtsProfessionnels()
+    AjouterEvtAvenement()
     AjouterEvtsRien()
 
 # Le jeu commence ici
@@ -35,7 +36,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    # jump decRejChasseur # tmp test
+    # jump avenement # tmp test
 
     $ situation_.TourSuivant()
 

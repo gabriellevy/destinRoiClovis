@@ -16,6 +16,10 @@ class Pnj:
         self.traits_ = {} # dico contenant une liste de traits comme clés et leur valeur comme valeur
         self.portraitStr_ = ""
         self.relationAmoureuse_ = None
+        self.vivant_ = True
+
+    def Tuer(self):
+        self.vivant_ = False
 
     def __format__(self, format):
         # if(format == 'age'):
@@ -31,15 +35,21 @@ class Pnj:
     def __str__(self):
         str = u"{}".format(self.nom_)
 
-        nbJoursVecus = self.nbJours_
-        if isinstance(nbJoursVecus, int):
-            nbAnnees = nbJoursVecus/365
-            nbJoursPasses = nbJoursVecus%365
-            nbMois = nbJoursPasses/30
-            if nbMois > 0:
-                str = u"{}\n{} ans, {} mois".format(str, nbAnnees, nbMois)
+        if self.vivant_:
+            nbJoursVecus = self.nbJours_
+            if isinstance(nbJoursVecus, int):
+                nbAnnees = nbJoursVecus/365
+                nbJoursPasses = nbJoursVecus%365
+                nbMois = nbJoursPasses/30
+                if nbMois > 0:
+                    str = u"{}\n{} ans, {} mois".format(str, nbAnnees, nbMois)
+                else:
+                    str = u"{}\n{} ans".format(str, nbAnnees)
+        else:
+            if self.sexeMasculin_:
+                str = u"{}\nDécédé".format(str)
             else:
-                str = u"{}\n{} ans".format(str, nbAnnees)
+                str = u"{}\nDécédée".format(str)
 
         return str
 

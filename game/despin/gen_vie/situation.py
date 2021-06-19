@@ -369,8 +369,9 @@ class Situation:
         return temps.Date(nbJours)
 
     def AvanceDeXJours(self, nbJoursPasses):
-        nouvelleDate = self.caracs_[temps.Date.DATE] + nbJoursPasses
-        self.caracs_[temps.Date.DATE] = nouvelleDate
+        nouvelleDateEnJours = self.caracs_[temps.Date.DATE] + nbJoursPasses
+        self.caracs_[temps.Date.DATE] = nouvelleDateEnJours
+        self.caracs_[temps.Date.DATE_ANNEES] = temps.Date(nouvelleDateEnJours).GetNbAnnees()
         self.caracs_[temps.Date.AGE_ANNEES] = self.AgeEnAnnees()
 
         # application des jours passés aux pnjs :
