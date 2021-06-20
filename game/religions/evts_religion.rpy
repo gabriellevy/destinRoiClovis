@@ -7,6 +7,7 @@ init -5 python:
     from religions import religion
 
     estChretien = condition.Condition(religion.Religion.C_RELIGION, religion.Christianisme.NOM, condition.Condition.EGAL)
+    estPasChretien = condition.Condition(religion.Religion.C_RELIGION, religion.Christianisme.NOM, condition.Condition.DIFFERENT)
     # traits
     estCruel = condition.Condition(trait.Altruisme.NOM, -13, condition.Condition.INFERIEUR_EGAL)
     estEgoiste = condition.Condition(trait.Altruisme.NOM, -3, condition.Condition.INFERIEUR_EGAL)

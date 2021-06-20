@@ -13,6 +13,8 @@ init -5 python:
     estPasGuerrierNivExtreme = condition.Condition(metier.Guerrier.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
     estPasPolitiqueNivExtreme = condition.Condition(metier.Politique.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
     estPasStrategeNivExtreme = condition.Condition(metier.Stratege.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
+    estPasGrandChasseur = condition.Condition(metier.Chasseur.NOM, 5, condition.Condition.INFERIEUR)
+    estPasGrandPretre = condition.Condition(metier.Pretre.NOM, 5, condition.Condition.INFERIEUR)
     # estAgeInferieur40 = condition.Condition(metier.Guerrier.NOM, trait.Trait.A_EXTREME, condition.Condition.INFERIEUR_EGAL)
     def AjouterEvtsProfessionnels():
         global selecteur_
@@ -24,11 +26,32 @@ init -5 python:
         entrainementPolitique = declencheur.Declencheur(proba.Proba(0.06, True), "entrainementPolitique")
         entrainementPolitique.AjouterCondition(estPasPolitiqueNivExtreme)
         selecteur_.ajouterDeclencheur(entrainementPolitique)
+        # entrainement chasse
+        entrainementChasse = declencheur.Declencheur(proba.Proba(0.04, True), "entrainementChasse")
+        entrainementChasse.AjouterCondition(estPasGrandChasseur)
+        selecteur_.ajouterDeclencheur(entrainementChasse)
+        # entrainement prêtre
+        entrainementPretre = declencheur.Declencheur(proba.Proba(0.04, True), "entrainementPretre")
+        entrainementPretre.AjouterCondition(estPasGrandPretre)
+        entrainementPretre.AjouterCondition(estPasChretien)
+        selecteur_.ajouterDeclencheur(entrainementPretre)
         # entrainement stratège/général
         entrainementStratege = declencheur.Declencheur(proba.Proba(0.3, True), "entrainementStratege")
         entrainementStratege.AjouterCondition(estPasStrategeNivExtreme)
         entrainementStratege.AjouterCondition(estPasRoi) # c'est Childéric qui fait la leçon
         selecteur_.ajouterDeclencheur(entrainementStratege)
+
+label entrainementPretre:
+    # entrainement prêtre
+    "En tant que prince de sang divin vous être destiné à devenir un roi prêtre. Vous apprenez les rituels."
+    $ AjouterACarac(metier.Pretre.NOM, 1)
+    jump fin_cycle
+
+label entrainementChasse:
+    # entrainement chasse
+    "Vous chassez aussi souvent que possible."
+    $ AjouterACarac(metier.Chasseur.NOM, 1)
+    jump fin_cycle
 
 label entrainementStratege:
     # entrainement stratège/général
@@ -41,9 +64,12 @@ label entrainementPolitique:
     $ niveauExpertise = situation_.GetValCaracInt("entrainementPolitiqueNiv")
     if niveauExpertise == 0:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 1)
-        "Vous entrainez de bons rapports avec les sénateurs romains. Malgré leur molesse ils sont plein de bon sens et leur système de loi romaine devrait faciliter votre domination et la rentrée des impôts."
+        "Votre père a toujours su contrôler les chefs de clans et vous en a montré tous les rouages. Vous suivez son exemple."
     elif niveauExpertise == 1:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 2)
+        "Vous entrainez de bons rapports avec les sénateurs romains. Malgré leur molesse ils sont plein de bon sens et leur système de loi romaine devrait faciliter votre domination et la rentrée des impôts."
+    elif niveauExpertise == 2:
+        $ situation_.SetValCarac("entrainementPolitiqueNiv", 3)
         "Les évèques sont très respectés par le peuple, leurs avis sont révérés. En écoutant leurs conseils vous gagnez en compréhnsion sur la Gaulle et donc en influence."
     else:
         "Vous perfectionnez vos talents politiques."
