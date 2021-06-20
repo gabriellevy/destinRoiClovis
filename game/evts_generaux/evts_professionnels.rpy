@@ -12,6 +12,7 @@ init -5 python:
 
     estPasGuerrierNivExtreme = condition.Condition(metier.Guerrier.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
     estPasPolitiqueNivExtreme = condition.Condition(metier.Politique.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
+    estPasStrategeNivExtreme = condition.Condition(metier.Stratege.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
     # estAgeInferieur40 = condition.Condition(metier.Guerrier.NOM, trait.Trait.A_EXTREME, condition.Condition.INFERIEUR_EGAL)
     def AjouterEvtsProfessionnels():
         global selecteur_
@@ -23,6 +24,17 @@ init -5 python:
         entrainementPolitique = declencheur.Declencheur(proba.Proba(0.06, True), "entrainementPolitique")
         entrainementPolitique.AjouterCondition(estPasPolitiqueNivExtreme)
         selecteur_.ajouterDeclencheur(entrainementPolitique)
+        # entrainement stratège/général
+        entrainementStratege = declencheur.Declencheur(proba.Proba(0.3, True), "entrainementStratege")
+        entrainementStratege.AjouterCondition(estPasStrategeNivExtreme)
+        entrainementStratege.AjouterCondition(estPasRoi) # c'est Childéric qui fait la leçon
+        selecteur_.ajouterDeclencheur(entrainementStratege)
+
+label entrainementStratege:
+    # entrainement stratège/général
+    "Votre père vous emmène avec lui chaque fois qu'il part en campagne et ne perd pas une occasion de vous apprendre l'art de la guerre."
+    $ AjouterACarac(metier.Stratege.NOM, 2)
+    jump fin_cycle
 
 label entrainementPolitique:
     # s'entraîne à la politique

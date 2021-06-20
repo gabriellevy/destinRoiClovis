@@ -11,6 +11,6 @@ label intro:
     "Ce n'est pas une mauvaise situation. La paie est bonne et les attaques des tribus barbares de Goths et d'Alamans vous donnent de bonnes ocassions de vous enrichir et de rester les meilleurs guerriers qui soient."
     "Cette alliance a vu votre grand-père légendaire Mérovée, aux côtés d'Aetius le dernier grand romain, battre Attila et ses hordes de huns dans les champs cathalauniques en 451."
     "Mérovée a prouvé par cet exploit ce que disent les légendes : il est d'essence divine car sa mère a été fécondée par un Dieu d'Asgard."
-    "Vous êtes donc d'origine divine vous aussi comme le ptrouve votre longue chevelure rousse qu'aucun franc n'a le droit de porter en dehors de votre famille."
+    "Vous êtes donc d'origine divine vous aussi comme le prouve votre longue chevelure rousse qu'aucun franc n'a le droit de porter en dehors de votre famille."
     "Votre dynastie est la plus glorieuse de tous les peuples francs et vous allez y faire honneur."
     jump fin_cycle

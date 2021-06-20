@@ -180,8 +180,21 @@ class Roi(Metier):
         return u"Royauté"
 
     def GetPoidsDemo(self, masculin, coterieObj):
-        poids = 0.0001
-        return poids
+        return 0
+
+class Stratege(Metier):
+    NOM = u"Général"
+    def __init__(self):
+        self.nom_ = Stratege.NOM
+
+    def GetNiveauRichesse(self):
+        return 6
+
+    def GetDiscipline(self):
+        return u"Stratégie"
+
+    def GetPoidsDemo(self, masculin, coterieObj):
+        return 0
 
 class Danseur(Metier):
     NOM = u"Danseur"
@@ -888,6 +901,9 @@ class CollectionMetiers:
 
         roi = Roi()
         self.SetMetier(Roi.NOM, roi)
+
+        stratege = Stratege()
+        self.SetMetier(Stratege.NOM, stratege)
 
         acteur = Acteur()
         self.SetMetier(Acteur.NOM, acteur)
