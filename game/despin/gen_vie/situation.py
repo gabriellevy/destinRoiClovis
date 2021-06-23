@@ -154,6 +154,13 @@ class Situation:
             self.caracs_[idCarac] = 0
         return self.caracs_[idCarac]
 
+    def GetValCaracBool(self, idCarac):
+        if ( idCarac not in self.caracs_):
+            return False
+        elif self.caracs_[idCarac] == 1:
+            return True
+        return False
+
     # get objets tirés des caracs du perso
     # def GetQuartier(self):
     #     valQuartierStr = self.GetValCarac(quartier.Quartier.C_QUARTIER)

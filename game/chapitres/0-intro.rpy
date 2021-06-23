@@ -1,7 +1,7 @@
 
 
 label intro:
-    scene bg priere
+    scene bg francs
     show screen valeurs_traits
     "Nous sommes en 479. Vous êtes Clovis, fils du glorieux roi des francs Chilpéric."
     "Les francs, votre peuple, sont de redoutables guerriers germaniques qui vénèrent le grand dieu des batailles Odin."

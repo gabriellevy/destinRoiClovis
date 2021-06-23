@@ -11,6 +11,7 @@ init -5 python:
     from univers import temps
     # from geographie import quartier
     from humanite import identite
+    from chapitres.classes import clovis
 
     def genererDateNaissance(situation, ageActuel=15):
         nbJoursDateNaissance = situation[temps.Date.DATE] - 365*ageActuel
@@ -37,6 +38,10 @@ init -5 python:
         situation[metier.Politique.NOM] = trait.Trait.SEUIL_A
         situation[metier.Guerrier.NOM] = trait.Trait.SEUIL_A
         situation[metier.Chasseur.NOM] = trait.Trait.SEUIL_A
+
+        # caracs spécifiques
+        situation[clovis.Clovis.C_CHRISTIANISME] = 0
+        situation[clovis.Clovis.C_MILITAIRE] = 0
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)

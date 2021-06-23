@@ -14,9 +14,13 @@ init -5 python:
     from chapitres.classes import syagrius
 
 
+    auMoinsAnnee485 = condition.Condition(temps.Date.DATE_ANNEES, 485, condition.Condition.SUPERIEUR_EGAL)
+    auMoinsAnnee482 = condition.Condition(temps.Date.DATE_ANNEES, 482, condition.Condition.SUPERIEUR_EGAL)
+    # conditions syagrius
     syagriusPasVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.DIFFERENT)
     syagriusVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.EGAL)
-    auMoinsAnnee485 = condition.Condition(temps.Date.DATE_ANNEES, 485, condition.Condition.SUPERIEUR_EGAL)
+    stabiliteSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.INFERIEUR)
+    armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.INFERIEUR)
     def MiseEnPlaceCaracsSyagrius():
         global situation_
         situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 0)
@@ -36,33 +40,58 @@ init -5 python:
         mort_euric.AjouterCondition(syagriusPasVaincu)
         selecteur_.ajouterDeclencheur(mort_euric)
 
+        probaAttaqueRoyaume = proba.Proba(0.0, True)
+        probaAttaqueRoyaume.ajouterModifProbaViaVals(0.25, stabiliteSyagriusFaible)
+        probaAttaqueRoyaume.ajouterModifProbaViaVals(0.25, armeeSyagriusFaible)
+        choixAttaqueDuRoyaume = declencheur.Declencheur(probaAttaqueRoyaume, "choixAttaqueDuRoyaume")
+        choixAttaqueDuRoyaume.AjouterCondition(auMoinsAnnee482)
+        choixAttaqueDuRoyaume.AjouterCondition(syagriusPasVaincu)
+        selecteur_.ajouterDeclencheur(choixAttaqueDuRoyaume)
+
+label choixAttaqueDuRoyaume:
+    menu:
+        "Le royaume de Syagrius est très affaibli."
+        "L'attaquer.":
+            jump attaqueSyagrius
+        "Attendre encore un peu que votre position soit meilleure.":
+            jump fin_cycle
 
 label mort_euric:
     # Mort d'Eulric roi des wisigoths
-    menu:
-        "mort_euric"
-        "ok":
-            pass
-
-    "Excellente nouvelle : Euric le grand des Wisigoths et meilleur allié de Syagrius est mort. Sa position va être très affaiblie."
+    "Excellente nouvelle : Euric le grand des Wisigoths et meilleur allié de Syagrius est mort. Syagrius va être très affaibli et sans soutien étranger face à vous."
     $ RetirerACarac(syagrius.Syagrius.C_STABILITE, 2)
     $ RetirerACarac(syagrius.Syagrius.C_MILITAIRE, 2)
 
 label miner_le_royaume:
     # si Clovis mais ne possède pas encore le royaume de Syagrius
-    menu:
-        "Miner le royaume !"
-        "ok":
-            pass
-
     $ nb_miner_le_royaume = situation_.GetValCaracInt("nb_miner_le_royaume")
+    $ a_corrompu_senateurs = situation_.GetValCaracBool("a_corrompu_senateurs")
     if nb_miner_le_royaume == 0:
         $ situation_.SetValCarac("nb_miner_le_royaume", 1)
-        "Vos francs sont les meilleurs guerriers du monde, vous en êtes sûr. Avant même la mort de votre père vous saviez déjà que grâce à eux vous pouviez franchir la prmeière marche qui mène à la gloir et la richesse :"
+        "Vos francs sont les meilleurs guerriers du monde, vous en êtes sûr. Avant même la mort de votre père vous saviez déjà que grâce à eux vous pourriez franchir la première marche qui mène à la gloire et la richesse :"
         "Conquérir le royaume romain de Syagrius."
-        "Ce royaume est en apparence grand et riche ais vous savez qu'il est désuni et fragile."
+        "Ce royaume est en apparence grand et riche mais vous savez qu'il est désuni et fragile."
         # A FAIRE : afficher carte de l'époque
         "Pour l'instant vous n'êtes pas prêt d'autant plus que Syagrius le romain est allié à Euric le puissant roi des Wisigoths. Mais votre destin est déjà tracé."
     else:
         "Vous vous employez à affaiblir le royaume de Siagrius."
+
+    menu:
+        "Si vous tentez de pactiser avec les sénateurs romains" if not a_corrompu_senateurs:
+            "Les romains semblent avoir peur que vous détruisiez ce qui reste du système romain. Ils préfèrent encore Syagrius à vous et vous n'en tirez rien de bon."
+            $ situation_.SetValCarac("a_corrompu_senateurs", 1)
+            jump fin_cycle
+        "Si vous corrompez ses soldats":
+            "Les romains sont comme les autres. Pour un peu d'or et des promesses de pillage ils vous rejoignent."
+            $ RetirerACarac(syagrius.Syagrius.C_MILITAIRE, 1)
+            $ RetirerACarac(trait.Richesse.NOM, 2)
+            $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+            jump fin_cycle
+        "Si vous tentez de gagner les faveurs des évèques":
+            "À votre grande surprise les évèques vous préfèrent, vous le roi païen, aux autres barbares qui sont des chrétiens ariens hérétiques."
+            "Sans doute pensent-ils pouvoir plus facilement vous convertir, vous et vos hommes. Il est vrai que vous êtes souvent touchés par leurs arguments religieux."
+            "Quoiqu'il en soit, si vous envahissez le royaume ils pousseront le peuple à vous soutenir et à abandonner Syagrius."
+            $ RetirerACarac(syagrius.Syagrius.C_STABILITE, 2)
+            $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+            jump fin_cycle
     jump fin_cycle
