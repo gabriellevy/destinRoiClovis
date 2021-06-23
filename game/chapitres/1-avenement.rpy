@@ -13,6 +13,7 @@ init -5 python:
     from humanite import identite
 
     estPasRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.DIFFERENT)
+    estRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.EGAL)
     auMoinsAnnee481 = condition.Condition(temps.Date.DATE_ANNEES, 481, condition.Condition.SUPERIEUR_EGAL)
     def AjouterEvtAvenement():
         global selecteur_
@@ -23,7 +24,7 @@ init -5 python:
 
 label avenement:
     scene bg priere
-    # A FAIRE : trouver un fond pour el couronnement
+    # A FAIRE : trouver un fond pour le couronnement
     show screen valeurs_traits
     $ childeric = situation_.GetValCarac(pnj.Pnj.C_PERE)
     $ childeric.Tuer()

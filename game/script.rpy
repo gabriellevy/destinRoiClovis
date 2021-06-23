@@ -16,11 +16,15 @@ init -10 python:
 
 init -1 python:
     from despin.gen_vie import selecteur
+    from chapitres.classes import syagrius
     import random
 
     AjouterEvtsProfessionnels()
     AjouterEvtAvenement()
     AjouterEvtsRien()
+    AjouterEvtRenforcement481_485()
+    # mise en place des caracs de bases
+    MiseEnPlaceCaracsSyagrius()
 
 # Le jeu commence ici
 label start:
