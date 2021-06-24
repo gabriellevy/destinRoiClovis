@@ -1559,6 +1559,7 @@ screen valeurs_traits():
     $ strAffichagePere = situation_.AffichagePere()
     $ strAffichagePortraitMere = situation_.AffichagePortraitMere()
     $ strAffichageMere = situation_.AffichageMere()
+    $ strArmee = situation_.AffichageArmee()
     $ tableauAffichageAmoureuses = situation_.AffichageAmoureuses()
     frame:
         xpos 5 ypos 5
@@ -1570,10 +1571,11 @@ screen valeurs_traits():
                 text _(u"[patronyme]")
                 text _(u"[affAge]")
                 text _(u"[descriptionBlessures]")
+                text _(u"[affDate]\n")
             elif interfaceMode_ == 1: # traits
                 text _(u"[descriptionTrait]")
-            elif interfaceMode_ == 2: # général non personnel (date...)
-                text _(u"[affDate]\n")
+            elif interfaceMode_ == 2: # royaume des francs
+                text _(u"[strArmee]")
             elif interfaceMode_ == 3: # économie et compétences professionnelles
                 text _(u"[strRichesse]")
                 text _(u"[strMetier]")

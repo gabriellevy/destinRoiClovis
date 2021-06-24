@@ -1,6 +1,6 @@
 init -2 python:
     from despin.abs import carac
-    from despin.gen_vie import situation
+    from univers import situation_clovis
     from humanite import trait
     # from geographie import quartier
     from humanite import metier
@@ -8,7 +8,7 @@ init -2 python:
     from humanite.sante import pbsante
     import random
 
-    situation_ = situation.Situation() # dictionnaire contenant toutes les caracs courantes de la partie
+    situation_ = situation_clovis.SituationClovis() # dictionnaire contenant toutes les caracs courantes de la partie
     filtre_ = filtres_action.FiltreAction() # objet contenant les préférences du joueur pour les actions à afficher ou cacher en priorité
     traits_ = trait.CollectionTraits()
     situation_.collectionTraits = traits_
@@ -20,7 +20,7 @@ init -2 python:
     # situation_.collectionQuartiers = quartiers_
     metiers_ = metier.CollectionMetiers()
     situation_.collectionMetiers = metiers_
-    interfaceMode_ = 1
+    interfaceMode_ = 2
     nbInterfaceMode_ = 10
 
     # text fade system

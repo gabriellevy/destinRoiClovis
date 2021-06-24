@@ -26,7 +26,7 @@ init -5 python:
         situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 0)
         situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 0)
         situation_.SetValCarac(syagrius.Syagrius.C_STABILITE, 2)
-        situation_.SetValCarac(syagrius.Syagrius.C_MILITAIRE, 7)
+        situation_.SetValCarac(syagrius.Syagrius.C_MILITAIRE, 5)
 
     def AjouterEvtRenforcement481_485():
         global selecteur_
