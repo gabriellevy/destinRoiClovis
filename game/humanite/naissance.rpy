@@ -12,6 +12,7 @@ init -5 python:
     # from geographie import quartier
     from humanite import identite
     from chapitres.classes import clovis
+    from religions import religion
 
     def genererDateNaissance(situation, ageActuel=15):
         nbJoursDateNaissance = situation[temps.Date.DATE] - 365*ageActuel
@@ -42,6 +43,7 @@ init -5 python:
         # caracs spécifiques
         situation[clovis.Clovis.C_CHRISTIANISME] = 0
         situation[clovis.Clovis.C_MILITAIRE] = 0
+        situation.SetValCarac(religion.Religion.C_RELIGION, religion.Paien.NOM)
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)

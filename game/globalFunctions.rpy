@@ -20,8 +20,8 @@ init -2 python:
     # situation_.collectionQuartiers = quartiers_
     metiers_ = metier.CollectionMetiers()
     situation_.collectionMetiers = metiers_
-    interfaceMode_ = 2
-    nbInterfaceMode_ = 10
+    interfaceMode_ = 0
+    nbInterfaceMode_ = 7
 
     # text fade system
     time_ = 2.0 # seconds of fade

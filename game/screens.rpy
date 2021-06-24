@@ -1571,7 +1571,8 @@ screen valeurs_traits():
                 text _(u"[patronyme]")
                 text _(u"[affAge]")
                 text _(u"[descriptionBlessures]")
-                text _(u"[affDate]\n")
+                text _(u"[strReligion]\n")
+                text _(u"[affDate]")
             elif interfaceMode_ == 1: # traits
                 text _(u"[descriptionTrait]")
             elif interfaceMode_ == 2: # royaume des francs
@@ -1579,13 +1580,9 @@ screen valeurs_traits():
             elif interfaceMode_ == 3: # économie et compétences professionnelles
                 text _(u"[strRichesse]")
                 text _(u"[strMetier]")
-            elif interfaceMode_ == 4: # religion
-                text _(u"[strReligion]")
-            # elif interfaceMode_ == 6: # géographie
-            #     text _(u"[strQuartier]")
-            elif interfaceMode_ == 5: # Possessions
+            elif interfaceMode_ == 4: # Possessions
                 text _(u"[strPossessions]")
-            elif interfaceMode_ == 6: # Famille
+            elif interfaceMode_ == 5: # Famille
                 text _(" Père : ")
                 hbox:
                     add "[strAffichagePortraitPere]" size(147, 164)
@@ -1594,7 +1591,7 @@ screen valeurs_traits():
                 hbox:
                     add "[strAffichagePortraitMere]" size(147, 164)
                     text _(u"[strAffichageMere]") yalign 0.5
-            elif interfaceMode_ == 7: # les amoureuses
+            elif interfaceMode_ == 6: # les amoureuses
                 for amoureuse in tableauAffichageAmoureuses:
                     hbox:
                         add "[amoureuse.adresseImgPortrait]" size(99, 110)
