@@ -20,13 +20,13 @@ init -5 python:
     syagriusPasVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.DIFFERENT)
     syagriusVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.EGAL)
     stabiliteSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.INFERIEUR)
-    armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.INFERIEUR)
+    armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 3, condition.Condition.INFERIEUR)
     def MiseEnPlaceCaracsSyagrius():
         global situation_
         situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 0)
         situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 0)
         situation_.SetValCarac(syagrius.Syagrius.C_STABILITE, 2)
-        situation_.SetValCarac(syagrius.Syagrius.C_MILITAIRE, 5)
+        situation_.SetValCarac(syagrius.Syagrius.C_MILITAIRE, 6)
 
     def AjouterEvtRenforcement481_485():
         global selecteur_
@@ -44,6 +44,7 @@ init -5 python:
         probaAttaqueRoyaume.ajouterModifProbaViaVals(0.25, stabiliteSyagriusFaible)
         probaAttaqueRoyaume.ajouterModifProbaViaVals(0.25, armeeSyagriusFaible)
         choixAttaqueDuRoyaume = declencheur.Declencheur(probaAttaqueRoyaume, "choixAttaqueDuRoyaume")
+        choixAttaqueDuRoyaume.AjouterCondition(syagriusPasEnGuerre)
         choixAttaqueDuRoyaume.AjouterCondition(auMoinsAnnee482)
         choixAttaqueDuRoyaume.AjouterCondition(syagriusPasVaincu)
         selecteur_.ajouterDeclencheur(choixAttaqueDuRoyaume)

@@ -9,7 +9,7 @@ class SituationClovis(situation.Situation):
     def AffichageArmee(self):
         # armée de clovis
         str = u""
-        val = self.GetValCarac(clovis.Clovis.C_MILITAIRE)
+        val = self.GetValCaracInt(clovis.Clovis.C_MILITAIRE)
         if val < 0:
             str = u"Armée insignifiante"
         elif val <= 2:

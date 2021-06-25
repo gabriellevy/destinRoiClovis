@@ -23,6 +23,7 @@ init -1 python:
     AjouterEvtAvenement()
     AjouterEvtsRien()
     AjouterEvtRenforcement481_485()
+    AjouterEvtGuerreSyagrius()
     # mise en place des caracs de bases
     MiseEnPlaceCaracsSyagrius()
 
@@ -40,7 +41,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    # jump avenement # tmp test
+    # jump combat_avant_garde # tmp test
 
     $ situation_.TourSuivant()
 

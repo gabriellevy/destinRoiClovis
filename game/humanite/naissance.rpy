@@ -5,6 +5,7 @@ init -5 python:
     from despin.gen_vie import declencheur
     from despin.gen_vie import selecteur
     from despin.gen_vie import proba
+    from despin.gen_vie import testDeCarac
     from despin.abs import condition
     from humanite import trait
     from humanite import pnj
@@ -44,6 +45,7 @@ init -5 python:
         situation[clovis.Clovis.C_CHRISTIANISME] = 0
         situation[clovis.Clovis.C_MILITAIRE] = 0
         situation.SetValCarac(religion.Religion.C_RELIGION, religion.Paien.NOM)
+        situation.SetValCarac(clovis.Clovis.C_GLOIRE, 0)
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
