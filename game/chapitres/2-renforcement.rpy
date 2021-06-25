@@ -32,6 +32,7 @@ init -5 python:
         global selecteur_
         miner_le_royaume = declencheur.Declencheur(proba.Proba(0.2, True), "miner_le_royaume")
         miner_le_royaume.AjouterCondition(estRoi)
+        choixAttaqueDuRoyaume.AjouterCondition(syagriusPasEnGuerre)
         miner_le_royaume.AjouterCondition(syagriusPasVaincu)
         selecteur_.ajouterDeclencheur(miner_le_royaume)
 
