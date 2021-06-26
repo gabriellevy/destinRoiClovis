@@ -20,13 +20,14 @@ init -5 python:
     syagriusPasVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.DIFFERENT)
     syagriusVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.EGAL)
     stabiliteSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.INFERIEUR)
-    armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 3, condition.Condition.INFERIEUR)
+    armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_MILITAIRE, 3, condition.Condition.INFERIEUR)
     def MiseEnPlaceCaracsSyagrius():
         global situation_
         situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 0)
         situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 0)
         situation_.SetValCarac(syagrius.Syagrius.C_STABILITE, 2)
         situation_.SetValCarac(syagrius.Syagrius.C_MILITAIRE, 6)
+        situation_.SetValCarac(syagrius.Syagrius.C_PILLAGE, 0)
 
     def AjouterEvtRenforcement481_485():
         global selecteur_

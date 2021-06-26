@@ -161,7 +161,6 @@ class Situation:
             return True
         return False
 
-    # get objets tirés des caracs du perso
     # def GetQuartier(self):
     #     valQuartierStr = self.GetValCarac(quartier.Quartier.C_QUARTIER)
     #     if valQuartierStr == "":
@@ -199,14 +198,15 @@ class Situation:
         """
         str = u""
         for traitK in traits.lTraits_.keys():
-            # A FAIRE : cacher trait.Richesse.NOM
-            trait = traits[traitK]
-            descr = u"{}".format(trait.GetDescription(self))
-            if descr != "":
-                if str != "":
-                    str = u"{}\n".format(str)
-                # str = u"{}{} ({})".format(str, descr, trait.eTrait_) # activer pour plus de détails sur els traits
-                str = u"{}{}".format(str, descr)
+            # la richesse (et de préférence les autres traits qui ne font pas partie de la personnalité du personnage) devraient être affichés différemment
+            if traitK != trait.Richesse.NOM:
+                traitObj = traits[traitK]
+                descr = u"{}".format(traitObj.GetDescription(self))
+                if descr != "":
+                    if str != "":
+                        str = u"{}\n".format(str)
+                    # str = u"{}{} ({})".format(str, descr, traitObj.eTrait_) # activer pour plus de détails sur els traits
+                    str = u"{}{}".format(str, descr)
         return str
 
     def AffichageMetier(self):
@@ -218,7 +218,7 @@ class Situation:
         if strMetier == u"":
             strMetier = u"Sans emploi"
 
-        # afficher les compétences :
+        # afficher les compétences (en métier) :
         strComp = u""
         for metierK in self.collectionMetiers.lMetiers_.keys():
             valMetier = self.GetValCaracInt(metierK)

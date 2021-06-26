@@ -4,3 +4,6 @@ class Syagrius:
     C_STABILITE = u"Stabilité du royaume de Syagrius"
     C_VAINCU = u"Syagrius est vaincu" # 1 == oui sinon non
     C_GUERRE = u"En guerre avec Syagrius" # 1 == oui sinon non
+
+    # événement liés
+    C_PILLAGE = u"Pillage de Syagrius" # niveau de pillage, incrémental
