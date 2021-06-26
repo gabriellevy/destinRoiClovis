@@ -32,7 +32,7 @@ init -5 python:
         global selecteur_
         miner_le_royaume = declencheur.Declencheur(proba.Proba(0.2, True), "miner_le_royaume")
         miner_le_royaume.AjouterCondition(estRoi)
-        choixAttaqueDuRoyaume.AjouterCondition(syagriusPasEnGuerre)
+        miner_le_royaume.AjouterCondition(syagriusPasEnGuerre)
         miner_le_royaume.AjouterCondition(syagriusPasVaincu)
         selecteur_.ajouterDeclencheur(miner_le_royaume)
 
@@ -68,6 +68,9 @@ label miner_le_royaume:
     # si Clovis mais ne possède pas encore le royaume de Syagrius
     $ nb_miner_le_royaume = situation_.GetValCaracInt("nb_miner_le_royaume")
     $ a_corrompu_senateurs = situation_.GetValCaracBool("a_corrompu_senateurs")
+    $ a_contacte_eveque = situation_.GetValCaracBool("a_contacte_eveque")
+    $ a_convaincu_chararic = situation_.GetValCaracBool("a_convaincu_chararic")
+    $ a_convaincu_ragnacaire = situation_.GetValCaracBool("a_convaincu_ragnacaire")
     if nb_miner_le_royaume == 0:
         $ situation_.SetValCarac("nb_miner_le_royaume", 1)
         "Vos francs sont les meilleurs guerriers du monde, vous en êtes sûr. Avant même la mort de votre père vous saviez déjà que grâce à eux vous pourriez franchir la première marche qui mène à la gloire et la richesse :"
@@ -75,25 +78,37 @@ label miner_le_royaume:
         "Ce royaume est en apparence grand et riche mais vous savez qu'il est désuni et fragile."
         # A FAIRE : afficher carte de l'époque
         "Pour l'instant vous n'êtes pas prêt d'autant plus que Syagrius le romain est allié à Euric le puissant roi des Wisigoths. Mais votre destin est déjà tracé."
-    else:
-        "Vous vous employez à affaiblir le royaume de Siagrius."
 
     menu:
-        "Si vous tentez de pactiser avec les sénateurs romains" if not a_corrompu_senateurs:
+        "Comment allez vous affaiblir Syagrius ?"
+        "Convaincre votre parent, le prince franc Chararic, de vous rejoindre" if not a_convaincu_chararic:
+            "Chararic accept l'alliance mais laisse bien clair qu'il s'agit d'une alliance et pas d'une soumission : vous êtes son égal et ne serez jamaias son supérieur."
+            $ situation_.SetValCarac("a_convaincu_chararic", 1)
+            $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+            jump fin_cycle
+        "Chercher l'appui de Ragnacaire, le roi franc de Cambrai" if not a_convaincu_ragnacaire:
+            "Chararic accept l'alliance mais laisse bien clair qu'il s'agit d'une alliance et pas d'une soumission : vous êtes son égal et ne serez jamaias son supérieur."
+            $ situation_.SetValCarac("a_convaincu_ragnacaire", 1)
+            $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+            jump fin_cycle
+        "Tenter de pactiser avec les sénateurs romains du territoire de Syagrius" if not a_corrompu_senateurs:
             "Les romains semblent avoir peur que vous détruisiez ce qui reste du système romain. Ils préfèrent encore Syagrius à vous et vous n'en tirez rien de bon."
             $ situation_.SetValCarac("a_corrompu_senateurs", 1)
             jump fin_cycle
-        "Si vous corrompez ses soldats":
+        "Corrompre ses soldats":
             "Les romains sont comme les autres. Pour un peu d'or et des promesses de pillage ils vous rejoignent."
             $ RetirerACarac(syagrius.Syagrius.C_MILITAIRE, 1)
             $ RetirerACarac(trait.Richesse.NOM, 2)
             $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
             jump fin_cycle
-        "Si vous tentez de gagner les faveurs des évèques":
+        "Tenter de gagner les faveurs des évèques" if not a_contacte_eveque:
             "À votre grande surprise les évèques vous préfèrent, vous le roi païen, aux autres barbares qui sont des chrétiens ariens hérétiques."
             "Sans doute pensent-ils pouvoir plus facilement vous convertir, vous et vos hommes. Il est vrai que vous êtes souvent touchés par leurs arguments religieux."
             "Quoiqu'il en soit, si vous envahissez le royaume ils pousseront le peuple à vous soutenir et à abandonner Syagrius."
             $ RetirerACarac(syagrius.Syagrius.C_STABILITE, 2)
             $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+            $ situation_.SetValCarac("a_contacte_eveque", 1)
+            jump fin_cycle
+        "Vous contenter d'attendre le moment opportun.":
             jump fin_cycle
     jump fin_cycle
