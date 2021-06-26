@@ -25,6 +25,7 @@ init -5 python:
         selecteur_.ajouterDeclencheur(combat_avant_garde)
 
 label invasion_syagrius:
+    $ MiseEnPlaceGuerreSyagrius()
     "Votre armée est maintenant bien avancée en territoire ennemi et vous savez que Syagrius a fini de lever la sienne."
     menu:
         "Si vous suivez la coutume franque de le défier sur le champs de bataille de son choix.":
@@ -65,9 +66,3 @@ label combat_avant_garde:
                 "Vos cavaliers sont incapables de briser la cohorte romaine et s'enfuient. C'est une défaite cuisante. Sans importance stratégique mais humiliante."
                 $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
             jump fin_cycle
-
-
-label attaqueSyagrius:
-    $ MiseEnPlaceGuerreSyagrius()
-    # lancer un défi ????
-    jump fin_cycle
