@@ -26,6 +26,7 @@ init -5 python:
         global selecteur_
         combat_avant_garde = declencheur.Declencheur(proba.Proba(0.2, True), "combat_avant_garde")
         combat_avant_garde.AjouterCondition(syagriusEnGuerre)
+        combat_avant_garde.AjouterCondition(syagriusPasVaincu)
         selecteur_.ajouterDeclencheur(combat_avant_garde)
 
         vase_de_soissons_le_retour = declencheur.Declencheur(proba.Proba(0.3, True), "vase_de_soissons_le_retour")
@@ -142,7 +143,9 @@ label bataille_soisson_2:
                 $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
     "Pas trace de Syagrius quand vous pénétrez en arme dans sa capitale Soissons sans que personne n'essaye de vous résister. Soit il est mort, soit il a fui. C'est de toute façon une victoire écrasante dont il ne se remettra pas."
     $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+    # fin de la guerre (en théorie)
     $ situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 1)
+    $ situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 0)
     jump vase_de_soissons
 
 label vase_de_soissons:
@@ -159,7 +162,7 @@ label vase_de_soissons:
                 "Par chance le tirage au sort vous donne le vase. Vous le rendez aux prêtres qui vous sont très reconnaissants."
                 jump fin_cycle
             else:
-                "Le tirage au sort ne vous donne pas le vase sacré. Les prêtres repartent els mains vides."
+                "Le tirage au sort ne vous donne pas le vase sacré. Les prêtres repartent les mains vides."
                 $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 1)
                 jump fin_cycle
         "Demander à vos soldats de vous laisser ce vase hors part.":
@@ -221,10 +224,10 @@ label vase_de_soissons_le_retour:
     jump fin_cycle
 
 label combat_avant_garde:
-    "Votre avant-garde se heurte à une petite armée romaine."
     $ puissanceArmeeSyagrius = situation_.GetValCaracInt(syagrius.Syagrius.C_MILITAIRE)
     $ testCombat = testDeCarac.TestDeCarac([clovis.Clovis.C_MILITAIRE], puissanceArmeeSyagrius, situation_)
     menu:
+        "Votre avant-garde se heurte à une petite armée romaine."
         "vos ordres sont d'éviter le combat":
             "Vos cavaliers parviennent facilement à échapper aux romains lourds et malabiles."
             jump fin_cycle
