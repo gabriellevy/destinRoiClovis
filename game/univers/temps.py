@@ -80,7 +80,7 @@ class Date:
         return u"{}".format(switcheurMois.get(numMois, u"Mois introuvable : {} !".format(numMois)))
 
     def GetNbJoursDepuisDebutAnnee(self):
-        return self.nbJours_ % 365
+        return self.nbJours_ % 365 + 1
 
     def CalculerJourEtMoisGregorien(self):
         numJour = self.GetNbJoursDepuisDebutAnnee()

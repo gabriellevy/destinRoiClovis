@@ -16,7 +16,7 @@ init -5 python:
     syagriusPasEnGuerre = condition.Condition(syagrius.Syagrius.C_GUERRE, 1, condition.Condition.DIFFERENT)
     def MiseEnPlaceGuerreSyagrius():
         global situation_
-        situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 1)
+        situation_.SetValCaracInt(syagrius.Syagrius.C_GUERRE, 1)
 
     def AjouterEvtGuerreSyagrius():
         global selecteur_
@@ -36,8 +36,8 @@ label invasion_syagrius:
         "Si vous vous dirigez vers sa capitale Soissons pour l'écraser le plus tôt possible.":
             "Syagrius semble vouloir éviter un siège et vient à votre rencontre. Heureusement pour vous car la prise de ville n'est pas la spécialité de vos guerrier."
         "Si vous avancez lentement et prenez le temps de piller le pays.":
-            "Les terres romaines sont bien plus riches que les vôtres. Vous faites un grand buton de richesse et d'esclaves. Vos hommes sont satisfaits."
-            "Syagrius quitte Soissons pour vnir vous arrêter. Heureusement pour vous car la prise de ville n'est pas la spécialité de vos guerrier."
+            "Les terres romaines sont bien plus riches que les vôtres. Vous faites un grand butin de richesse et d'esclaves. Vos hommes sont satisfaits."
+            "Syagrius quitte Soissons pour venir vous arrêter. Heureusement pour vous car la prise de ville n'est pas la spécialité de vos guerrier."
             $ AjouterACarac(trait.Richesse.NOM, 1)
             $ AjouterACarac(syagrius.Syagrius.C_PILLAGE, 2)
             $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
@@ -47,7 +47,7 @@ label invasion_syagrius:
 label bataille_soisson:
     scene bg francs
     "{b}Bataille de Soissons.{/b}"
-    "Syagrius a rangé son armée de manière ordonnée à la romaine. Mais la discipline apparente ne vous impressionne pas. La plupart des sodats sont des germains qui combatront sans grand entousiasme."
+    "Syagrius a rangé son armée de manière ordonnée à la romaine. Mais la discipline apparente ne vous impressionne pas. La plupart des sodats sont des germains qui combattront sans grand entousiasme."
     menu:
         "D'où allez vous combattre ?"
         "Au premier rang !":
@@ -113,12 +113,77 @@ label bataille_soisson:
 
 label bataille_soisson_2:
     scene bg francs
-    menu:
-        "BAtaille de soissons 2 ème choc"
-        "ok":
-            pass
-    jump fin_cycle
+    $ a_convaincu_chararic = situation_.GetValCaracBool("a_convaincu_chararic")
+    if a_convaincu_chararic:
+        "Voyant que l'armée ennemie faiblit vous constatez que votre parent Chararic, qui devait vous soutenir avec sa cavalerie, n'intervient pas."
+        "Impossible de s'occuper de lui pour l'instant, mais il ne perd rien pour attendre."
+        $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
 
+    $ testCombat = testDeCarac.TestDeCarac([clovis.Clovis.C_MILITAIRE, metier.Stratege.NOM], puissanceArmeeSyagrius, situation_)
+    menu:
+        "Les romains sont prêts à céder."
+        "C'est le moment de faire donner les réserves de cavalerie.[testCombat.affichage_]":
+            $ reussi = testCombat.TesterDifficulte(situation_)
+            if reussi:
+                "Les romains n'avaient plus besoin que de ce choc pour fuir en désordre. Votre cavalerie en massacre un grand nombre durant leur fuite."
+            else:
+                "Les romains s'obstinent à résister et il faut des heures pour que finalement, brisés de fatigue ils succombent."
+                $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
+    "Pas trace de Syagrius quand vous pénétrez en arme dans sa capitale Soissons sans que personne n'essaye de vous résister. Soit il est mort, soit il a fui. C'est de tote façon une victoire écrasante dont il ne se remettra pas."
+    $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+    jump vase_de_soissons
+
+label vase_de_soissons:
+    "La ville de Soissons est pillée de fond en comble et vous en tirez, vous et vos hommes, de grandes richesses. En particulier du palais de Syagrius et des églises."
+    "Une délégation de prêtres catholiques menés par un évèque vient cependant vous demander humblement de leur restituer un grand et magnifique vase sacré."
+    "La règle franques veut qu'un cinquième du butin, tiré au sort, vous revienne. Mais ilo ne s'agit que d'un vase et en roi victorieux vous pouvez vous permettre d'exceptionnellement prendre ce vase."
+    menu:
+        "Que faites vous ?"
+        "Refuser et renvoyer l'évèque":
+            $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+        "Accepter mais seulement si le sort vous accorde le vase.":
+            $ unACinq = random.randint(1,5)
+            if unACinq == 1:
+                "Par chance le tirage au sort vous donne le vase. Vous le rendez aux prêtres qui vous sont très reconnaissants."
+                jump fin_cycle
+            else:
+                "Le tirage au sort ne vous donne pas le vase sacré. Les prêtres repartent els mains vides."
+                $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+                jump fin_cycle
+        "Demander à vos soldats de vous laisser ce vase hors part.":
+            "Arrivant à Soissons où toute la amsse du butin avait été placée au milieu, vous dites : "
+            cl "Je vous prie, ô très valeureux guerriers, de ne pas vous opposer à ce que me soit concédé hors part ce vase."
+            "A ces mots ceux qui avaient l'esprit sain répliquent : "
+            "{i}Tout ce que nous voyons ici, glorieux Roi, est à toi et nous mêmes sommes soumis à ta domination. Fais donc maintenant ce qui convient à ton bon plaisir.{/i}"
+            "Or après qu'ils eurent parlé ainsi, un homme léger, jaloux et frivole, ayant levé sa hache, frappa le vase en criant à voix forte : "
+            "{i}Tu n'auras rien ici que ce que le sort t'attribuera vraiment !{/i}"
+            $ testCombat = testDeCarac.TestDeCarac(metier.Guerrier.NOM, 5, situation_)
+            menu:
+                "C'est ce que dit la loi mais un tel affront vous rend furieux."
+                "le faire exécuter":
+                    "Vos hommes vous obéissent et le misérable est décapité sous vos yeux. Vous voyez bien néanmoins que c'est par peur qu'on vous obéit et que votre mépris des coutumes rend furieux plus d'un homme."
+                    $ AjouterACarac(clovis.Clovis.C_USURPATION, 3)
+                "L'attaquer immédiatement [testCombat.affichage_]":
+                    $ reussi = testCombat.TesterDifficulte(situation_)
+                    if reussi:
+                        "Le combat ne dure qu'un instant. Vous fendez le crâne du misérable à coup de hache et il s'effondre au milieu du butin et de vos hommes ébahis."
+                        $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+                        "Vous voyez bien néanmoins que c'est par peur qu'on vous obéit et que votre mépris des coutumes rend furieux plus d'un homme."
+                        $ AjouterACarac(clovis.Clovis.C_USURPATION, 2)
+                    else:
+                        "Malgré sa surprise le soldat réagit à la vitesse de l'éclair et sous les yeux de vos hommes ébahis il vous poignarde en plein coeur avec sa scramasaxe."
+                        "Mourir de la main de ses propres hommes pour une bête histoire de partage du butin. Quelle fin misérable pour celui qui aurait pu être un grand roi."
+                        jump mort
+                "Accepter de suivre la coutume":
+                    $ situation_.SetValCaracInt(clovis.Clovis.C_VASE_SOISSONS, 1)
+                    "Vous parvenez à contenir votre ressentiment avec une douce patience."
+                    "Au moins, le vase qui est en métal n'a aps été brisé et le tirage au sort vous le donne. Ce qui vous permet de le rendre aux envoyés de l'évèque."
+
+    "En prenant en compte les propriétés que vous avez saisies votre part de butin est colossale. Vous n'avez jamais été aussi riche."
+    $ AjouterACarac(trait.Richesse.NOM, 6)
+    "Vos hommes se sont aussi considérablement enrichis et vous sont plus fidèles que jamais."
+    $ RetirerACarac(clovis.Clovis.C_USURPATION, 2)
+    jump fin_cycle
 
 label combat_avant_garde:
     "Votre avant-garde se heurte à une petite armée romaine."

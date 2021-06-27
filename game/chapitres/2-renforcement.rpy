@@ -34,8 +34,8 @@ init -5 python:
     def AjouterEvtRenforcement481_485():
         global selecteur_
         probaminer_le_royaume = proba.Proba(0.2, True)
-        probaminer_le_royaume.ajouterModifProbaViaVals(-0.1, stabiliteSyagriusPasFaible)
-        probaminer_le_royaume.ajouterModifProbaViaVals(-0.1, armeeSyagriusPasFaible)
+        probaminer_le_royaume.ajouterModifProbaViaVals(-0.1, stabiliteSyagriusFaible)
+        probaminer_le_royaume.ajouterModifProbaViaVals(-0.1, armeeSyagriusFaible)
         miner_le_royaume = declencheur.Declencheur(probaminer_le_royaume, "miner_le_royaume")
         miner_le_royaume.AjouterCondition(estRoi)
         miner_le_royaume.AjouterCondition(syagriusPasEnGuerre)
@@ -77,6 +77,14 @@ label miner_le_royaume:
     $ a_contacte_eveque = situation_.GetValCaracBool("a_contacte_eveque")
     $ a_convaincu_chararic = situation_.GetValCaracBool("a_convaincu_chararic")
     $ a_convaincu_ragnacaire = situation_.GetValCaracBool("a_convaincu_ragnacaire")
+    # tmp
+    $ C_STABILITE = situation_.GetValCaracInt(syagrius.Syagrius.C_STABILITE)
+    $ print("C_STABILITE : {}".format(C_STABILITE))
+    $ C_MILITAIRE = situation_.GetValCaracInt(syagrius.Syagrius.C_MILITAIRE)
+    $ print("C_MILITAIRE : {}".format(C_MILITAIRE))
+    $ C_GUERRE = situation_.GetValCaracInt(syagrius.Syagrius.C_GUERRE)
+    $ print("C_GUERRE : {}".format(C_GUERRE))
+    # fin tmp
     if nb_miner_le_royaume == 0:
         $ situation_.SetValCarac("nb_miner_le_royaume", 1)
         "Vos francs sont les meilleurs guerriers du monde, vous en êtes sûr. Avant même la mort de votre père vous saviez déjà que grâce à eux vous pourriez franchir la première marche qui mène à la gloire et la richesse :"

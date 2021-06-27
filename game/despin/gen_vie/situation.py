@@ -257,8 +257,8 @@ class Situation:
         if nbJoursConvalescence > 0:
             str = u"{}\nJours de convalescence : {}".format(str, nbJoursConvalescence)
 
-        if str == "":
-            str = "Sain"
+        # if str == "":
+        #    str = "Sain"
         return str
 
     def DescriptionBioniques(self, bioniques):
