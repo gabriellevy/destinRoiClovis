@@ -21,6 +21,8 @@ init -5 python:
     syagriusVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.EGAL)
     stabiliteSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.INFERIEUR)
     armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_MILITAIRE, 3, condition.Condition.INFERIEUR)
+    stabiliteSyagriusPasFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.SUPERIEUR)
+    armeeSyagriusPasFaible = condition.Condition(syagrius.Syagrius.C_MILITAIRE, 3, condition.Condition.SUPERIEUR)
     def MiseEnPlaceCaracsSyagrius():
         global situation_
         situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 0)
@@ -31,7 +33,10 @@ init -5 python:
 
     def AjouterEvtRenforcement481_485():
         global selecteur_
-        miner_le_royaume = declencheur.Declencheur(proba.Proba(0.2, True), "miner_le_royaume")
+        probaminer_le_royaume = proba.Proba(0.2, True)
+        probaminer_le_royaume.ajouterModifProbaViaVals(-0.1, stabiliteSyagriusPasFaible)
+        probaminer_le_royaume.ajouterModifProbaViaVals(-0.1, armeeSyagriusPasFaible)
+        miner_le_royaume = declencheur.Declencheur(probaminer_le_royaume, "miner_le_royaume")
         miner_le_royaume.AjouterCondition(estRoi)
         miner_le_royaume.AjouterCondition(syagriusPasEnGuerre)
         miner_le_royaume.AjouterCondition(syagriusPasVaincu)
@@ -55,7 +60,7 @@ label choixAttaqueDuRoyaume:
     menu:
         "Le royaume de Syagrius est très affaibli."
         "L'attaquer.":
-            jump attaqueSyagrius
+            jump invasion_syagrius
         "Attendre encore un peu que votre position soit meilleure.":
             jump fin_cycle
 
