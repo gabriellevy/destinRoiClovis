@@ -2,11 +2,11 @@
 
 init -5 python:
     import random
-    from despin.gen_vie import declencheur
-    from despin.gen_vie import selecteur
-    from despin.gen_vie import proba
-    from despin.abs import condition
-    from humanite import trait
+    from abs import declencheur
+    from abs import selecteur
+    from abs import proba
+    from abs import condition
+    from abs.humanite import trait
     # from religions import religion
     # from geographie import quartier
 

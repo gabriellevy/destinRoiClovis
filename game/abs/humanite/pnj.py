@@ -1,8 +1,8 @@
 import random
-from humanite import portrait
-from univers import temps
-from humanite.amour import relationAmoureuse
-from humanite import identite
+from abs.humanite import portrait
+from abs.univers import temps
+from abs.humanite.amour import relationAmoureuse
+from abs.humanite import identite
 
 class Pnj:
 

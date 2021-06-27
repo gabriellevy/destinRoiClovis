@@ -1,16 +1,16 @@
 
 init -5 python:
     import random
-    from despin.gen_vie import declencheur
-    from despin.gen_vie import selecteur
-    from despin.gen_vie import proba
-    from despin.abs import condition
-    from humanite import trait
-    from humanite import pnj
-    from humanite import metier
-    from univers import temps
+    from abs import declencheur
+    from abs import selecteur
+    from abs import proba
+    from abs import condition
+    from abs.humanite import trait
+    from abs.humanite import pnj
+    from abs.humanite import metier
+    from abs.univers import temps
     # from geographie import quartier
-    from humanite import identite
+    from abs.humanite import identite
     from chapitres.classes import syagrius
     from chapitres.classes import clovis
 
@@ -23,6 +23,8 @@ init -5 python:
     armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_MILITAIRE, 3, condition.Condition.INFERIEUR)
     stabiliteSyagriusPasFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.SUPERIEUR)
     armeeSyagriusPasFaible = condition.Condition(syagrius.Syagrius.C_MILITAIRE, 3, condition.Condition.SUPERIEUR)
+
+    euricVivant = condition.Condition("euricMort", 1, condition.Condition.DIFFERENT)
     def MiseEnPlaceCaracsSyagrius():
         global situation_
         situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 0)
@@ -45,6 +47,7 @@ init -5 python:
         mort_euric = declencheur.Declencheur(proba.Proba(0.5, False), "mort_euric")
         mort_euric.AjouterCondition(auMoinsAnnee485)
         mort_euric.AjouterCondition(syagriusPasVaincu)
+        mort_euric.AjouterCondition(euricVivant)
         selecteur_.ajouterDeclencheur(mort_euric)
 
         probaAttaqueRoyaume = proba.Proba(0.0, True)
@@ -69,6 +72,8 @@ label mort_euric:
     "Excellente nouvelle : Euric le grand des Wisigoths et meilleur allié de Syagrius est mort. Syagrius va être très affaibli et sans soutien étranger face à vous."
     $ RetirerACarac(syagrius.Syagrius.C_STABILITE, 2)
     $ RetirerACarac(syagrius.Syagrius.C_MILITAIRE, 2)
+    $ situation_.SetValCarac("euricMort", 1)
+    jump choixAttaqueDuRoyaume
 
 label miner_le_royaume:
     # si Clovis mais ne possède pas encore le royaume de Syagrius

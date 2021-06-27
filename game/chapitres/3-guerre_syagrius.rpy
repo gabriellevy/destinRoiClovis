@@ -1,14 +1,14 @@
 init -5 python:
     import random
-    from despin.gen_vie import declencheur
-    from despin.gen_vie import selecteur
-    from despin.gen_vie import proba
-    from despin.abs import condition
-    from humanite import trait
-    from humanite import pnj
-    from humanite import metier
-    from univers import temps
-    from humanite import identite
+    from abs import declencheur
+    from abs import selecteur
+    from abs import proba
+    from abs import condition
+    from abs.humanite import trait
+    from abs.humanite import pnj
+    from abs.humanite import metier
+    from abs.univers import temps
+    from abs.humanite import identite
     from chapitres.classes import syagrius
     from chapitres.classes import clovis
 
@@ -140,14 +140,15 @@ label bataille_soisson_2:
             else:
                 "Les romains s'obstinent à résister et il faut des heures pour que finalement, brisés de fatigue ils succombent."
                 $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
-    "Pas trace de Syagrius quand vous pénétrez en arme dans sa capitale Soissons sans que personne n'essaye de vous résister. Soit il est mort, soit il a fui. C'est de tote façon une victoire écrasante dont il ne se remettra pas."
+    "Pas trace de Syagrius quand vous pénétrez en arme dans sa capitale Soissons sans que personne n'essaye de vous résister. Soit il est mort, soit il a fui. C'est de toute façon une victoire écrasante dont il ne se remettra pas."
     $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+    $ situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 1)
     jump vase_de_soissons
 
 label vase_de_soissons:
     "La ville de Soissons est pillée de fond en comble et vous en tirez, vous et vos hommes, de grandes richesses. En particulier du palais de Syagrius et des églises."
     "Une délégation de prêtres catholiques menés par un évèque vient cependant vous demander humblement de leur restituer un grand et magnifique vase sacré."
-    "La règle franques veut qu'un cinquième du butin, tiré au sort, vous revienne. Mais ilo ne s'agit que d'un vase et en roi victorieux vous pouvez vous permettre d'exceptionnellement prendre ce vase."
+    "La règle franques veut qu'un cinquième du butin, tiré au sort, vous revienne. Mais il ne s'agit que d'un vase et en roi victorieux vous pouvez vous permettre d'exceptionnellement prendre ce vase."
     menu:
         "Que faites vous ?"
         "Refuser et renvoyer l'évèque":
@@ -162,7 +163,7 @@ label vase_de_soissons:
                 $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 1)
                 jump fin_cycle
         "Demander à vos soldats de vous laisser ce vase hors part.":
-            "Arrivant à Soissons où toute la amsse du butin avait été placée au milieu, vous dites : "
+            "Arrivant à Soissons où toute la masse du butin avait été placée au milieu, vous dites : "
             cl "Je vous prie, ô très valeureux guerriers, de ne pas vous opposer à ce que me soit concédé hors part ce vase."
             "A ces mots ceux qui avaient l'esprit sain répliquent : "
             "{i}Tout ce que nous voyons ici, glorieux Roi, est à toi et nous mêmes sommes soumis à ta domination. Fais donc maintenant ce qui convient à ton bon plaisir.{/i}"
@@ -188,7 +189,7 @@ label vase_de_soissons:
                 "Accepter de suivre la coutume":
                     $ situation_.SetValCarac(clovis.Clovis.C_VASE_SOISSONS, 1)
                     "Vous parvenez à contenir votre ressentiment avec une douce patience."
-                    "Au moins, le vase qui est en métal n'a aps été brisé et le tirage au sort vous le donne. Ce qui vous permet de le rendre aux envoyés de l'évèque."
+                    "Au moins, le vase qui est en métal n'a pas été brisé et le tirage au sort vous le donne. Ce qui vous permet de le rendre aux envoyés de l'évèque."
 
     "En prenant en compte les propriétés que vous avez saisies votre part de butin est colossale. Vous n'avez jamais été aussi riche."
     $ AjouterACarac(trait.Richesse.NOM, 6)

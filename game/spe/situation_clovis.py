@@ -1,8 +1,8 @@
-from religions import religion
+from abs.religions import religion
 from chapitres.classes import syagrius
 from chapitres.classes import clovis
-from despin.gen_vie import situation
-from humanite import metier
+from abs import situation
+from abs.humanite import metier
 
 class SituationClovis(situation.Situation):
 

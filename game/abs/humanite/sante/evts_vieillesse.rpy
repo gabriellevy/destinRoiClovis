@@ -1,13 +1,13 @@
 init -5 python:
     import random
-    from despin.gen_vie import declencheur
-    from despin.gen_vie import selecteur
-    from despin.gen_vie import proba
-    from despin.abs import condition
-    from despin.reglages import filtres_action
-    from humanite import trait
-    from univers import temps
-    from humanite.sante import pbsante
+    from abs import declencheur
+    from abs import selecteur
+    from abs import proba
+    from abs import condition
+    from abs.reglages import filtres_action
+    from abs.humanite import trait
+    from abs.univers import temps
+    from abs.humanite.sante import pbsante
 
     # condition selon âge
     ageSup30 = condition.Condition(temps.Date.AGE_ANNEES, 30, condition.Condition.SUPERIEUR_EGAL)

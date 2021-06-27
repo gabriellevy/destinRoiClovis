@@ -7,7 +7,7 @@ define audio.epique_principale = "musique/epique_principale.ogg"
 define audio.conquetes = "musique/conquetes.ogg"
 
 init -10 python:
-    from despin.gen_vie import selecteur
+    from abs import selecteur
     import random
 
     selecteur_ = selecteur.Selecteur()
@@ -16,7 +16,7 @@ init -10 python:
         return selecteur_.determinationEvtCourant(situation)
 
 init -1 python:
-    from despin.gen_vie import selecteur
+    from abs import selecteur
     from chapitres.classes import syagrius
     import random
 

@@ -2,18 +2,18 @@
 
 init -5 python:
     import random
-    from despin.gen_vie import declencheur
-    from despin.gen_vie import selecteur
-    from despin.gen_vie import proba
-    from despin.gen_vie import testDeCarac
-    from despin.abs import condition
-    from humanite import trait
-    from humanite import pnj
-    from univers import temps
+    from abs import declencheur
+    from abs import selecteur
+    from abs import proba
+    from abs import testDeCarac
+    from abs import condition
+    from abs.humanite import trait
+    from abs.humanite import pnj
+    from abs.univers import temps
     # from geographie import quartier
-    from humanite import identite
+    from abs.humanite import identite
     from chapitres.classes import clovis
-    from religions import religion
+    from abs.religions import religion
 
     def genererDateNaissance(situation, ageActuel=15):
         nbJoursDateNaissance = situation[temps.Date.DATE] - 365*ageActuel

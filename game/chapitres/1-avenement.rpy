@@ -1,16 +1,16 @@
 
 init -5 python:
     import random
-    from despin.gen_vie import declencheur
-    from despin.gen_vie import selecteur
-    from despin.gen_vie import proba
-    from despin.abs import condition
-    from humanite import trait
-    from humanite import pnj
-    from humanite import metier
-    from univers import temps
+    from abs import declencheur
+    from abs import selecteur
+    from abs import proba
+    from abs import condition
+    from abs.humanite import trait
+    from abs.humanite import pnj
+    from abs.humanite import metier
+    from abs.univers import temps
     # from geographie import quartier
-    from humanite import identite
+    from abs.humanite import identite
 
     estPasRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.DIFFERENT)
     estRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.EGAL)

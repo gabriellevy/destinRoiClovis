@@ -1,5 +1,5 @@
-from humanite import pnj
-from humanite.amour import relationAmoureuse
+from abs.humanite import pnj
+from abs.humanite.amour import relationAmoureuse
 
 class AffichagePortrait:
     """

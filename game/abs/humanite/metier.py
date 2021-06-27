@@ -1,5 +1,5 @@
 import random
-from humanite import trait
+from abs.humanite import trait
 
 class Metier:
     """

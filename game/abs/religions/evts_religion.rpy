@@ -4,7 +4,7 @@ define audio.turexgloriae = "musique/templiers/turexgloriae.mp3"
 
 init -5 python:
     import random
-    from religions import religion
+    from abs.religions import religion
 
     estChretien = condition.Condition(religion.Religion.C_RELIGION, religion.Christianisme.NOM, condition.Condition.EGAL)
     estPasChretien = condition.Condition(religion.Religion.C_RELIGION, religion.Christianisme.NOM, condition.Condition.DIFFERENT)

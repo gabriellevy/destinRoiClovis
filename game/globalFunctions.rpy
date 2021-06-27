@@ -1,11 +1,11 @@
 init -2 python:
-    from despin.abs import carac
-    from univers import situation_clovis
-    from humanite import trait
+    from abs import carac
+    from spe import situation_clovis
+    from abs.humanite import trait
     # from geographie import quartier
-    from humanite import metier
-    from univers import temps
-    from humanite.sante import pbsante
+    from abs.humanite import metier
+    from abs.univers import temps
+    from abs.humanite.sante import pbsante
     import random
 
     situation_ = situation_clovis.SituationClovis() # dictionnaire contenant toutes les caracs courantes de la partie

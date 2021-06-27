@@ -1,6 +1,6 @@
-from despin.gen_vie import proba
-from despin.gen_vie import modifProba
-from despin.abs import condition
+from abs import proba
+from abs import modifProba
+from abs import condition
 
 class Declencheur:
     """
