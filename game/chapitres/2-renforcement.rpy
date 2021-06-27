@@ -12,7 +12,7 @@ init -5 python:
     # from geographie import quartier
     from humanite import identite
     from chapitres.classes import syagrius
-
+    from chapitres.classes import clovis
 
     auMoinsAnnee485 = condition.Condition(temps.Date.DATE_ANNEES, 485, condition.Condition.SUPERIEUR_EGAL)
     auMoinsAnnee482 = condition.Condition(temps.Date.DATE_ANNEES, 482, condition.Condition.SUPERIEUR_EGAL)

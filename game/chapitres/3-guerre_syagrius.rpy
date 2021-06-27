@@ -10,19 +10,28 @@ init -5 python:
     from univers import temps
     from humanite import identite
     from chapitres.classes import syagrius
+    from chapitres.classes import clovis
 
+    auMoinsAnnee486 = condition.Condition(temps.Date.DATE_ANNEES, 486, condition.Condition.SUPERIEUR_EGAL)
     # conditions syagrius
     syagriusEnGuerre = condition.Condition(syagrius.Syagrius.C_GUERRE, 1, condition.Condition.EGAL)
     syagriusPasEnGuerre = condition.Condition(syagrius.Syagrius.C_GUERRE, 1, condition.Condition.DIFFERENT)
+    # vase de soissons:
+    vaseSoissonsVengeance = condition.Condition(clovis.Clovis.C_VASE_SOISSONS, 1, condition.Condition.EGAL)
     def MiseEnPlaceGuerreSyagrius():
         global situation_
-        situation_.SetValCaracInt(syagrius.Syagrius.C_GUERRE, 1)
+        situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 1)
 
     def AjouterEvtGuerreSyagrius():
         global selecteur_
         combat_avant_garde = declencheur.Declencheur(proba.Proba(0.2, True), "combat_avant_garde")
         combat_avant_garde.AjouterCondition(syagriusEnGuerre)
         selecteur_.ajouterDeclencheur(combat_avant_garde)
+
+        vase_de_soissons_le_retour = declencheur.Declencheur(proba.Proba(0.3, True), "vase_de_soissons_le_retour")
+        vase_de_soissons_le_retour.AjouterCondition(auMoinsAnnee486)
+        vase_de_soissons_le_retour.AjouterCondition(vaseSoissonsVengeance)
+        selecteur_.ajouterDeclencheur(vase_de_soissons_le_retour)
 
 label invasion_syagrius:
     $ MiseEnPlaceGuerreSyagrius()
@@ -46,6 +55,7 @@ label invasion_syagrius:
 
 label bataille_soisson:
     scene bg francs
+    $ puissanceArmeeSyagrius = situation_.GetValCaracInt(syagrius.Syagrius.C_MILITAIRE)
     "{b}Bataille de Soissons.{/b}"
     "Syagrius a rangé son armée de manière ordonnée à la romaine. Mais la discipline apparente ne vous impressionne pas. La plupart des sodats sont des germains qui combattront sans grand entousiasme."
     menu:
@@ -113,6 +123,7 @@ label bataille_soisson:
 
 label bataille_soisson_2:
     scene bg francs
+    $ puissanceArmeeSyagrius = situation_.GetValCaracInt(syagrius.Syagrius.C_MILITAIRE)
     $ a_convaincu_chararic = situation_.GetValCaracBool("a_convaincu_chararic")
     if a_convaincu_chararic:
         "Voyant que l'armée ennemie faiblit vous constatez que votre parent Chararic, qui devait vous soutenir avec sa cavalerie, n'intervient pas."
@@ -175,7 +186,7 @@ label vase_de_soissons:
                         "Mourir de la main de ses propres hommes pour une bête histoire de partage du butin. Quelle fin misérable pour celui qui aurait pu être un grand roi."
                         jump mort
                 "Accepter de suivre la coutume":
-                    $ situation_.SetValCaracInt(clovis.Clovis.C_VASE_SOISSONS, 1)
+                    $ situation_.SetValCarac(clovis.Clovis.C_VASE_SOISSONS, 1)
                     "Vous parvenez à contenir votre ressentiment avec une douce patience."
                     "Au moins, le vase qui est en métal n'a aps été brisé et le tirage au sort vous le donne. Ce qui vous permet de le rendre aux envoyés de l'évèque."
 
@@ -183,6 +194,29 @@ label vase_de_soissons:
     $ AjouterACarac(trait.Richesse.NOM, 6)
     "Vos hommes se sont aussi considérablement enrichis et vous sont plus fidèles que jamais."
     $ RetirerACarac(clovis.Clovis.C_USURPATION, 2)
+    jump fin_cycle
+
+label vase_de_soissons_le_retour:
+    "Vous allez bientôt partir en expédition militaire pour éliminer des rebelles et vous passez en revue vos guerriers."
+    "Ils sont responsables de l'achat et de l'entretien de leur équipement et savent qu'en temps de guerre vous avez droit de vie et de mort sur eux, aussi sont-ils d'une discipline à tout épreuve."
+    "Lors de l'inspection de la phalange vous reconnaissez le guerrier qui vous avait insulté lors du partage du butin de Soissons."
+    $ situation_.SetValCarac(clovis.Clovis.C_VASE_SOISSONS, 0)
+    menu:
+        "Vous préférez oublier et ne laissez rien paraître.":
+            jump fin_cycle
+        "Vous en profitez pour vous venger.":
+            "Vous vous adressez à lui :"
+            cl "Personne n'a apporté des armes aussi mal tenues que les tiennes, car ni ta lance, ni ton épée, ni ta hache ne sont en bon état."
+            "Et, saississant la hache de l'homme vous la jetez à terre. Mais alors que celui ci s'était un peu incliné pour la ramasser,"
+            menu:
+                "vous l'humiliez publiquement":
+                    "Vous le bousculez et le jetez au sol. L'homme est furieux mais se soumet en silence."
+                "Vous le tuez":
+                    "levant les mains vous lui envoyez votre propre hache dans la tête."
+                    cl "C'est ainsi que tu as fait à Soissons avec le vase."
+                    "Quand il fut mort vous ordonnâtes aux autres de se retirer. Ainsi vous leur inspirâtes une grande crainte."
+                    $ RetirerACarac(clovis.Clovis.C_USURPATION, 2)
+
     jump fin_cycle
 
 label combat_avant_garde:
