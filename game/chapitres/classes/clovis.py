@@ -4,7 +4,7 @@ class Clovis:
     C_GLOIRE = u"Gloire"
 
     # et de son royaume mises en place en début de partie
-    C_MILITAIRE = u"Armée de Clovis"
+    C_MILITAIRE = u"Puissance de l'Armée de Clovis"
     C_USURPATION = u"Risque d'ursupation" # plus c'est élevé plus Clovis risque d'être chassé du pouvoir
 
     # événements spéciaux

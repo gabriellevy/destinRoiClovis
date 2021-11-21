@@ -101,12 +101,12 @@ label miner_le_royaume:
     menu:
         "Comment allez vous affaiblir Syagrius ?"
         "Convaincre votre parent, le prince franc Chararic, de vous rejoindre" if not a_convaincu_chararic:
-            "Chararic accept l'alliance mais laisse bien clair qu'il s'agit d'une alliance et pas d'une soumission : vous êtes son égal et ne serez jamaias son supérieur."
+            "Chararic accepte l'alliance mais laisse bien clair qu'il s'agit d'une alliance et pas d'une soumission : vous êtes son égal et ne serez jamais son supérieur."
             $ situation_.SetValCarac("a_convaincu_chararic", 1)
             $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
             jump fin_cycle
         "Chercher l'appui de Ragnacaire, le roi franc de Cambrai" if not a_convaincu_ragnacaire:
-            "Chararic accept l'alliance mais laisse bien clair qu'il s'agit d'une alliance et pas d'une soumission : vous êtes son égal et ne serez jamaias son supérieur."
+            "Ragnacaire accepte l'alliance mais laisse bien clair qu'il s'agit d'une alliance et pas d'une soumission : vous êtes son égal et ne serez jamais son supérieur."
             $ situation_.SetValCarac("a_convaincu_ragnacaire", 1)
             $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
             jump fin_cycle
@@ -122,7 +122,7 @@ label miner_le_royaume:
             jump fin_cycle
         "Tenter de gagner les faveurs des évèques" if not a_contacte_eveque:
             "À votre grande surprise les évèques vous préfèrent, vous le roi païen, aux autres barbares qui sont des chrétiens ariens hérétiques."
-            "Sans doute pensent-ils pouvoir plus facilement vous convertir, vous et vos hommes. Il est vrai que vous êtes souvent touchés par leurs arguments religieux."
+            "Sans doute pensent-ils pouvoir plus facilement vous convertir, vous et vos hommes. Il est vrai que vous les écoutez poliment et êtes souvent touché par leurs arguments religieux."
             "Quoiqu'il en soit, si vous envahissez le royaume ils pousseront le peuple à vous soutenir et à abandonner Syagrius."
             $ RetirerACarac(syagrius.Syagrius.C_STABILITE, 2)
             $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 1)

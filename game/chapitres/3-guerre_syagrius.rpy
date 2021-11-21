@@ -58,7 +58,7 @@ label bataille_soisson:
     scene bg francs
     $ puissanceArmeeSyagrius = situation_.GetValCaracInt(syagrius.Syagrius.C_MILITAIRE)
     "{b}Bataille de Soissons.{/b}"
-    "Syagrius a rangé son armée de manière ordonnée à la romaine. Mais la discipline apparente ne vous impressionne pas. La plupart des sodats sont des germains qui combattront sans grand entousiasme."
+    "Syagrius a rangé son armée de manière ordonnée à la romaine. Mais la discipline apparente ne vous impressionne pas. La plupart des soldats sont des germains qui combattront sans grand entousiasme."
     menu:
         "D'où allez vous combattre ?"
         "Au premier rang !":

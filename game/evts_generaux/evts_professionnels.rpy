@@ -91,7 +91,7 @@ label entrainementGuerrier:
         "Vous vous entrainez au maniement de la francisque, la lourde hache de lancer franque. Son maniement est subtil car il faut lui appliquer une forte rotation mais bien utilisée à une douzaine de mètres elle enfonce aisément les armures."
     elif niveauExpertise == 3:
         $ situation_.SetValCarac("entrainementGuerrierNiv", 4)
-        "Vous vous entrainez au maniement de l'angon, la lance à crochet des francs. Son usage particulier est d'être lancée sur l'ennemi à bonne distance et, grâce à son crochet, d'être très difficile à extraire que ce soit d'un membre ou d'n bouclier."
+        "Vous vous entrainez au maniement de l'angon, la lance à crochet des francs. Son usage particulier est d'être lancée sur l'ennemi à bonne distance et, grâce à son crochet, d'être très difficile à extraire que ce soit d'un membre ou d'un bouclier."
     elif niveauExpertise == 4:
         $ situation_.SetValCarac("entrainementGuerrierNiv", 5)
         "Maintenant que vous maîtrisez toutes les armes du guerrier franc il est temps d'apprendre à les manier parfaitement à l'unisson."
