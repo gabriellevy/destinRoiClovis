@@ -8,7 +8,7 @@ init -5 python:
     from abs import testDeCarac
     from abs import condition
     from abs.humanite import trait
-    from abs.humanite import pnj
+    from spe.humanite import pnj_roi_clovis
     from abs.univers import temps
     # from geographie import quartier
     from abs.humanite import identite
@@ -49,20 +49,22 @@ init -5 python:
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
-        situation[identite.Identite.C_NOM] = "Clovis"
+        situation[identite.Identite.C_NOM] = clovis.Clovis.C_NOM_CLOVIS
         return
 
     def genererParents(situation):
-        pere = pnj.GenererPNJPapa(situation)
+        pere = pnj_roi_clovis.GenererPNJPapaClovis(situation)
         pere.ageJours = 43 * 12 *30 + 24
-        pere.nom_ = "Childéric"
+        pere.prenom_ = clovis.Clovis.C_NOM_CHILDERIC
+        pere.nom_ = ""
         pere.sexeMasculin_ = True
         pere.portraitStr_ = "images/portraits/childeric.jpg"
         situation.SetValCarac(pnj.Pnj.C_PERE, pere)
 
-        mere = pnj.GenererPNJMaman(situation)
+        mere = pnj_roi_clovis.GenererPNJMamanClovis(situation)
         mere.ageJours = 36 * 12 *30 + 297
-        mere.nom_ = "Basine de Thuringe"
+        mere.prenom_ = clovis.Clovis.C_NOM_BASINE
+        mere.nom_ = ""
         mere.sexeMasculin_ = False
         mere.portraitStr_ = "images/portraits/basine.jpg"
         situation.SetValCarac(pnj.Pnj.C_MERE, mere)

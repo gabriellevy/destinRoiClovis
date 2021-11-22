@@ -9,3 +9,8 @@ class Clovis:
 
     # événements spéciaux
     C_VASE_SOISSONS = u"Vase de soissons" # 1 si l'histoire réelle est bien suivie
+
+    # personnages
+    C_NOM_CLOVIS = u"Clovis"
+    C_NOM_BASINE = u"Basine de Thuringe"
+    C_NOM_CHILDERIC = u"Childéric"
