@@ -123,7 +123,7 @@ class Celebrite(TraitGraduel):
                 return u"Glorieux"
             return u"Célèbre"
         else:
-            return ""
+            return "Inconnu"
 
     def PeutEtrePrisALaNaissance(self):
         return False
@@ -453,8 +453,8 @@ class Intelligence(TraitGraduel):
             return u"Bête"
         elif val >= Trait.SEUIL_A:
             if val >= Trait.SEUIL_A_EXTREME:
-                return u"Très intelligent"
-            return u"Intelligent"
+                return u"Génial"
+            return u"Malin"
         else:
             return ""
 
@@ -991,10 +991,43 @@ class Richesse(TraitGraduel):
             return u""
             # return u"Classe moyenne {}".format(val)
 
+class Liberte(TraitGraduel):
+
+    NOM = u"Soif de liberté"
+
+    def __init__(self):
+        self.eTrait_ = Liberte.NOM
+
+    def PeutEtrePrisALaNaissance(self):
+        return False
+
+    # tmp : numéro affiché pour raison de débug
+    def GetDescription(self, situation):
+        val = situation[self.eTrait_]
+        if val == "":
+            val = 0
+            situation[self.eTrait_] = val
+        if not isinstance(val, int):
+            assert "Ce trait n'a pas comme valeur un int. Trait : {}. Valeur : {}".format(self.eTrait_, val)
+
+        if val <= Trait.SEUIL_A_PAS:
+            if val <= Trait.SEUIL_A_PAS_EXTREME:
+                return u"Mentalité d'esclave"
+            return u"Aime être soumis"
+        elif val >= Trait.SEUIL_A:
+            if val >= Trait.SEUIL_A_EXTREME:
+                return u"Ne supporte pas l'autorité"
+            return u"Épris de liberté"
+        else:
+            return u""
+            # return u"Classe moyenne {}".format(val)
+
 class CollectionTraits:
 
     def __init__(self):
         self.lTraits_ = dict()
+        liberte = Liberte()
+        self.SetTrait(Liberte.NOM, liberte)
         assurance = Assurance()
         self.SetTrait(Assurance.NOM, assurance)
         richesse = Richesse()

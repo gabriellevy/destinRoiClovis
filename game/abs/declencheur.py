@@ -34,3 +34,10 @@ class Declencheur:
 
     def AjouterCondition(self, condition):
         self.conditions_.append(condition)
+
+    def AjouterConditions(self, conditions):
+        """
+        tableau de conditions ajoutées une à une
+        """
+        for condObj in conditions:
+            self.conditions_.append(condObj)

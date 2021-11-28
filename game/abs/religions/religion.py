@@ -22,7 +22,21 @@ class Paien(Religion):
     def __init__(self):
        self.nom_ = Paien.NOM
 
-class Christianisme(Religion):
+class Polytheiste(Paien):
+
+    NOM = u"Polythéiste"
+
+    def __init__(self):
+       self.nom_ = Polytheiste.NOM
+
+class Monotheiste(Religion):
+
+    NOM = u"Monothéiste"
+
+    def __init__(self):
+       self.nom_ = Monotheiste.NOM
+
+class Christianisme(Monotheiste):
 
     NOM = u"Christianisme"
 
@@ -31,6 +45,18 @@ class Christianisme(Religion):
 
     def __init__(self):
        self.nom_ = Christianisme.NOM
+
+class Animisme(Paien):
+
+    NOM = u"Animisme"
+
+    # valeurs de metier.Metier.C_TITRE quand le perso est prêtre
+    CHAMANE = u"Chamane"
+
+    NOM_TOTEM = u"Nom totem"# animal + adjectif concaténés
+
+    def __init__(self):
+       self.nom_ = Animiste.NOM
 
 #  différent de pas de religion car l'athée a développé une aversion à la religion, il sera plus dur à reconvertir
 class Atheisme(Religion):

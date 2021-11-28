@@ -10,6 +10,9 @@ from abs.humanite import pnj
 
 class SituationClovis(situation.Situation):
 
+    def __init__(self):
+        situation.Situation.__init__(self, 175000)
+
     def AffichageArmee(self):
         # armée de clovis
         str = u""

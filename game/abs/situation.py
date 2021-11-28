@@ -6,10 +6,11 @@ from humanite import portrait
 from humanite import pnj
 from humanite import trait
 from humanite import identite
-from affichage import affichagePortrait
+from abs.affichage import affichagePortrait
 from humanite.amour import relationAmoureuse
 from humanite import metier
 import random
+import logging
 
 class Situation:
     """
@@ -20,11 +21,11 @@ class Situation:
     !!!! cette classe est peut-être à surclasser pour ajouter des effets particuliers à certaines caracs (dans SetCarac par exemple)
     """
 
-    def __init__(self):
+    def __init__(self, nbJoursDate):
         self.caracs_ = dict() # dictionnaire contenant toutes les caracs courantes de la partie
         self.valsMin_ = dict() # facultatif : dictionnaire contenant l'éventuelle valeur min de la carac en clé
         self.valsMax_ = dict() # facultatif : dictionnaire contenant l'éventuelle valeur max de la carac en clé
-        date = temps.Date(175000)
+        date = temps.Date(nbJoursDate)
         self.caracs_[temps.Date.DATE] = date.nbJours_
         self.caracs_[temps.Date.AGE_ANNEES] = 0
         self.collectionTraits = None
@@ -75,7 +76,7 @@ class Situation:
 
     def SetCarac(self, idCarac, valCarac, valeurMin = "", valeurMax = ""):
         # si la carac n'existe pas encore, la créer
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.CreerCarac(idCarac, valCarac, valeurMin, valeurMax)
 
         self.caracs_[idCarac] = valCarac
@@ -88,7 +89,7 @@ class Situation:
         """
         ne modifie la valeur de carac que si elle était précédemment inférieur à la valeur qu'on veut lui donner
         """
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.SetValCarac(idCarac, valCarac, valeurMin, valeurMax)
         else:
             valCourante = self.GetValCaracInt(idCarac)
@@ -101,7 +102,7 @@ class Situation:
         """
         ne modifie la valeur de carac que si elle était précédemment inférieur à la valeur qu'on veut lui donner
         """
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.SetValCarac(idCarac, valCarac, valeurMin, valeurMax)
         else:
             valCourante = self.GetValCaracInt(idCarac)
@@ -121,20 +122,22 @@ class Situation:
 
     def AjouterACarac(self, idCarac, valCarac):
         # si la carac n'existe pas encore, la créer
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.CreerCarac(idCarac, 0)
 
-        finalVal = self.caracs_[idCarac] + valCarac
+        valActuelleF = float(self.caracs_[idCarac])
+        finalVal = valActuelleF + float(valCarac)
         if idCarac in self.valsMax_ and finalVal > self.valsMax_[idCarac]:
             finalVal = self.valsMax_[idCarac]
         self.SetCarac(idCarac, finalVal)
 
     def RetirerACarac(self, idCarac, valCarac):
         # si la carac n'existe pas encore, la créer
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.CreerCarac(idCarac, 0)
 
-        finalVal = self.caracs_[idCarac] - valCarac
+        valActuelleF = float(self.caracs_[idCarac])
+        finalVal = valActuelleF - valCarac
         if idCarac in self.valsMin_ and finalVal < self.valsMin_[idCarac]:
             finalVal = self.valsMin_[idCarac]
         self.SetCarac(idCarac, finalVal)
@@ -152,7 +155,7 @@ class Situation:
             self.caracs_[idCarac] = 0
         elif self.caracs_[idCarac] == "":
             self.caracs_[idCarac] = 0
-        return self.caracs_[idCarac]
+        return int(self.caracs_[idCarac])
 
     def GetValCaracBool(self, idCarac):
         if ( idCarac not in self.caracs_):
@@ -284,7 +287,7 @@ class Situation:
         return "??? nbJoursVecus pas int : {}".format(nbJoursVecus)
 
     def AgeEnAnnees(self):
-        if isinstance(self.caracs_[temps.Date.DATE_NAISSANCE], int):
+        if isinstance(self.GetValCarac(temps.Date.DATE_NAISSANCE), int):
             nbJoursVecus = temps.Date(self.caracs_[temps.Date.DATE]).nbJours_ - temps.Date(self.caracs_[temps.Date.DATE_NAISSANCE]).nbJours_
             nbAnnees = nbJoursVecus/365
             return nbAnnees
@@ -366,20 +369,29 @@ class Situation:
 
     # DATES ET TEMPS QUI PASSE-----------------------------------------------------------------------------------------------------------
     def AffichageDate(self):
-        nbJours = self.caracs_[temps.Date.DATE]
-        dateDuJour = temps.Date(nbJours)
+        dateDuJour = self.GetDateDuJour()
         dateStr = u"{}".format(dateDuJour.formatGregorien())
         return dateStr
 
     def GetDateDuJour(self):
+        """
+        à overrider si la date du jeu destin a été overridée
+        """
         nbJours = self.caracs_[temps.Date.DATE]
         return temps.Date(nbJours)
+
+    def GetDate(self, dateEnJours):
+        """
+        à overrider si la date du jeu destin a été overridée
+        """
+        return temps.Date(dateEnJours)
 
     def AvanceDeXJours(self, nbJoursPasses):
         nouvelleDateEnJours = self.caracs_[temps.Date.DATE] + nbJoursPasses
         self.caracs_[temps.Date.DATE] = nouvelleDateEnJours
-        self.caracs_[temps.Date.DATE_ANNEES] = temps.Date(nouvelleDateEnJours).GetNbAnnees()
-        self.caracs_[temps.Date.AGE_ANNEES] = self.AgeEnAnnees()
+        self.caracs_[temps.Date.DATE_ANNEES] = self.GetDate(nouvelleDateEnJours).GetNbAnnees()
+        if self.GetValCarac(temps.Date.AGE_ANNEES) != "":
+            self.caracs_[temps.Date.AGE_ANNEES] = self.AgeEnAnnees()
 
         # application des jours passés aux pnjs :
         for pnjObj in self.collectionPnjs.values():
