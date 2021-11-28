@@ -25,6 +25,7 @@ init -1 python:
     AjouterEvtsRien()
     AjouterEvtRenforcement481_485()
     AjouterEvtGuerreSyagrius()
+    AjouterEvtGuerreAlamans()
     # mise en place des caracs de bases
     MiseEnPlaceCaracsSyagrius()
 
@@ -42,7 +43,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    # jump combat_avant_garde # tmp test
+    # jump bataille_tolbiac # tmp test
 
     $ situation_.TourSuivant()
 

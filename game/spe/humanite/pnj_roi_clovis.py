@@ -90,12 +90,15 @@ def GenererPNJClovis(sexeMasculin, situation, ageJours):
 def GenererPNJPapaClovis(situation):
     nbJoursVecusPerso = temps.Date(situation.caracs_[temps.Date.DATE]).nbJours_ - temps.Date(situation.caracs_[temps.Date.DATE_NAISSANCE]).nbJours_
     ageJours = (30 + random.randint(0, 35)) * 12 *30 # âge 29 minimum (14 + 15 de l'âge du perso joué)
-    return GenererPNJClovis(True, situation, ageJours)
+    pnj = GenererPNJClovis(True, situation, ageJours)
+    pnj.metier_ = ""
+    return pnj
 
 def GenererPNJMamanClovis(situation):
     nbJoursVecusPerso = temps.Date(situation.caracs_[temps.Date.DATE]).nbJours_ - temps.Date(situation.caracs_[temps.Date.DATE_NAISSANCE]).nbJours_
     ageJours = (30 + random.randint(0, 25)) * 12 *30 # âge 29 minimum (14 + 15 de l'âge du perso joué)
     pnj = GenererPNJClovis(False, situation, ageJours)
+    pnj.metier_ = ""
     return pnj
 
 def GenererRelationAmoureuseDestin(situation):
