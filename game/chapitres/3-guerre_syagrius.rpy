@@ -176,7 +176,7 @@ label vase_de_soissons:
             menu:
                 "C'est ce que dit la loi mais un tel affront vous rend furieux."
                 "le faire exécuter":
-                    "Vos hommes vous obéissent et le misérable est décapité sous vos yeux. Vous voyez bien néanmoins que c'est par peur qu'on vous obéit et que votre mépris des coutumes rend furieux plus d'un homme."
+                    "Vos hommes vous obéissent et le misérable est décapité sous vos yeux. Vous voyez bien néanmoins que c'est par peur qu'on vous obéit et que votre mépris des coutumes rend furieux plus d'un franc."
                     $ AjouterACarac(clovis.Clovis.C_USURPATION, 3)
                 "L'attaquer immédiatement [testCombat.affichage_]":
                     $ reussi = testCombat.TesterDifficulte(situation_)

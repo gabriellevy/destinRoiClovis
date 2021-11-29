@@ -1,5 +1,3 @@
-
-
 init -5 python:
     import random
     from abs.religions import religion
