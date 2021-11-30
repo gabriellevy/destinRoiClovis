@@ -35,6 +35,7 @@ init -5 python:
         selecteur_.ajouterDeclencheur(vase_de_soissons_le_retour)
 
 label invasion_syagrius:
+    play music guerre1 noloop
     $ MiseEnPlaceGuerreSyagrius()
     "Votre armée est maintenant bien avancée en territoire ennemi et vous savez que Syagrius a fini de lever la sienne."
     menu:

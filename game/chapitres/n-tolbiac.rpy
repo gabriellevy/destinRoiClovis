@@ -16,6 +16,7 @@ init -5 python:
     # conditions alamans
     alamansEnGuerre = condition.Condition(germains.Alamans.C_GUERRE, 1, condition.Condition.EGAL)
     alamansPasEnGuerre = condition.Condition(germains.Alamans.C_GUERRE, 1, condition.Condition.DIFFERENT)
+    batailleTolbiacPasFaite = condition.Condition("batailleTolbiac", 1, condition.Condition.DIFFERENT)
 
     def MiseEnPlaceGuerreAlamans():
         global situation_
@@ -26,6 +27,7 @@ init -5 python:
         bataille_tolbiac = declencheur.Declencheur(proba.Proba(0.2, True), "bataille_tolbiac")
         bataille_tolbiac.AjouterCondition(alamansEnGuerre)
         bataille_tolbiac.AjouterCondition(auMoinsAnnee496)
+        bataille_tolbiac.AjouterCondition(batailleTolbiacPasFaite)
         selecteur_.ajouterDeclencheur(bataille_tolbiac)
 
 # label attaque_alamans:
@@ -39,6 +41,8 @@ label bataille_tolbiac:
 
 label appel_divin:
     scene bg tolbiac
+    play music guerre2 noloop
+    $ situation_.SetValCarac("batailleTolbiac", 1)
     "La bataille tourne de plus en plus mal. Plusieurs de vos gardes du corps sont tombés et vous êtes sur le point d'être encerclé."
     "Impossible de trouver une issue pour faire retraite en bon ordre, et vous savez que les alamans seront sans pitié si ils vous atteignent."
     "Dans ce péril extrême vous repensez à l'aide que Wotan devrait vous apporter pour soutenir votre race divine. Vous reviennent aussi les paroles de Clothilde vous assurant qu'un tel moment arriverait tôt ou tard où vous devriez accepter Jésus Christ comme sauveur ou périr."

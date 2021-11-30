@@ -28,9 +28,13 @@ label avenement:
     show screen valeurs_traits
     $ childeric = situation_.GetValCarac(pnj.Pnj.C_PERE)
     $ childeric.Tuer()
-    "Nous sommes en 481. Votre vaillant père Childéric vient de mourir et va être enterré à Tournai."
+    # enterrement de Childéric
+    "Nous sommes en 481. Votre vaillant père Childéric vient de mourir."
+    "Il porte un manteau de pourpre tenu par une fibule d'or, propre au général romain et au doigt son anneau qui lui servait à sceller les actes et porte l'inscription : Childéricus rex."
+    # avènement
     "Vous avez à peine 15 ans mais êtes déjà un adulte digne d'être roi. Vous portez fièrement vos cheveux longs, symbole de votre origine divine."
     "Vous recevez la lance sacrée de votre père, symbole de votre autorité et de votre force. Vous devenez ainsi une vivante figure de Wotan, père et roi des Dieux."
+    "Puis vos guerriers vous hissent sur le grand pavois du chef."
     "Votre prestige est grand car votre père a été un grand roi. Mais vous n'êtes que le roi de Tournai et même si vos guerriers sont redoutables ils ne sont que quelques milliers ce qui est bien peu."
     # A FAIRE : afficher la carte du royaume de Clovis à son avènement
     "Cependant l'empire romain est en ruines, plein de peuples riches qui ne savent pas se battre, c'est la situation idéale pour qui saura saisir les opportunités."

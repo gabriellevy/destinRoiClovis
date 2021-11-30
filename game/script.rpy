@@ -3,8 +3,11 @@ define narrator = Character(color="#fafad8", what_italic=True)
 define cl = Character('Clovis', color="#80002a")
 
 # Musiques
-define audio.epique_principale = "musique/epique_principale.ogg"
-define audio.conquetes = "musique/conquetes.ogg"
+define audio.post_conversation = "musique/journeytoabsolution.ogg"
+define audio.guerre1 = "musique/saladinbesiegejerusalem.ogg"
+define audio.guerre2 = "musique/siegeofkerak.ogg"
+define audio.epique_principale = "musique/hornsofhattinandaftermath.ogg"
+define audio.conquetes = "musique/marchtoholyland.ogg" # march vers la terre sainte (crusader king II)
 
 init -10 python:
     from abs import selecteur
