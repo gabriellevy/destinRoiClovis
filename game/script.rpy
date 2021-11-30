@@ -27,6 +27,7 @@ init -1 python:
     AjouterEvtRenforcement481_485()
     AjouterEvtGuerreSyagrius()
     AjouterEvtGuerreAlamans()
+    AjouterEvtBapteme()
     # mise en place des caracs de bases
     MiseEnPlaceCaracsSyagrius()
 
