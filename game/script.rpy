@@ -29,6 +29,7 @@ init -1 python:
     AjouterEvtsRien()
     AjouterEvtRenforcement481_485()
     AjouterEvtGuerreSyagrius()
+    AjouterEvtBurgondes()
     AjouterEvtGuerreAlamans()
     AjouterEvtBapteme()
     # mise en place des caracs de bases
