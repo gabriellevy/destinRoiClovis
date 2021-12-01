@@ -1,4 +1,4 @@
-﻿# Persos
+# Persos
 define narrator = Character(color="#fafad8", what_italic=True)
 define cl = Character('Clovis', color="#80002a")
 
@@ -48,7 +48,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    # jump bataille_tolbiac # tmp test
+    # jump avenement # tmp test
 
     $ situation_.TourSuivant()
 
