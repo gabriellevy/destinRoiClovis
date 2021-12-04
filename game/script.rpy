@@ -2,6 +2,9 @@
 define narrator = Character(color="#fafad8", what_italic=True)
 define cl = Character('Clovis', color="#80002a")
 
+image clotilde = "perso/clotilde.png"
+define clot = Character('Clotilde', color="#800000")
+
 # Musiques
 define audio.post_conversation = "musique/journeytoabsolution.ogg"
 define audio.guerre1 = "musique/saladinbesiegejerusalem.ogg"
@@ -30,6 +33,7 @@ init -1 python:
     AjouterEvtRenforcement481_485()
     AjouterEvtGuerreSyagrius()
     AjouterEvtBurgondes()
+    AjouterEvtsClothilde()
     AjouterEvtGuerreAlamans()
     AjouterEvtBapteme()
     AjouterEvtsPaganisme()
@@ -50,7 +54,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    # jump avenement # tmp test
+    jump infos_sur_clotilde # tmp test
 
     $ situation_.TourSuivant()
 
