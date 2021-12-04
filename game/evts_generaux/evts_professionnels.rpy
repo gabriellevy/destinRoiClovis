@@ -13,7 +13,7 @@ init -5 python:
     estPasStrategeNivExtreme = condition.Condition(metier.Stratege.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
     estPasGrandChasseur = condition.Condition(metier.Chasseur.NOM, 5, condition.Condition.INFERIEUR)
     estPasGrandPretre = condition.Condition(metier.Pretre.NOM, 5, condition.Condition.INFERIEUR)
-    # estAgeInferieur40 = condition.Condition(metier.Guerrier.NOM, trait.Trait.A_EXTREME, condition.Condition.INFERIEUR_EGAL)
+    
     def AjouterEvtsProfessionnels():
         global selecteur_
         # entrainement guerrier

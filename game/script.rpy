@@ -32,6 +32,7 @@ init -1 python:
     AjouterEvtBurgondes()
     AjouterEvtGuerreAlamans()
     AjouterEvtBapteme()
+    AjouterEvtsPaganisme()
     # mise en place des caracs de bases
     MiseEnPlaceCaracsSyagrius()
 
