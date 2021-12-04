@@ -7,6 +7,7 @@ class Clovis:
     C_MILITAIRE = u"Puissance de l'Armée de Clovis"
     C_USURPATION = u"Risque d'ursupation" # plus c'est élevé plus Clovis risque d'être chassé du pouvoir => cf evts_usurpation.rpy
     # $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
+    # $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
 
     # événements spéciaux
     C_VASE_SOISSONS = u"Vase de soissons" # 1 si l'histoire réelle est bien suivie
@@ -15,3 +16,6 @@ class Clovis:
     C_NOM_CLOVIS = u"Clovis"
     C_NOM_BASINE = u"Basine de Thuringe"
     C_NOM_CHILDERIC = u"Childéric"
+
+    # Famille
+    C_MARIE_CLOTHILDE = u"Marié à CLothilde"

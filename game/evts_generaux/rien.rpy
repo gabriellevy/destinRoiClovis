@@ -26,11 +26,12 @@ init -5 python:
         #     evtsVides_.append("evtRien_saints")
         #     evtsVides_.append("evtRien_Christianisme_1")
 
-        # fond selon quartier
-        # if sceneParDefaut == "":
-        #     quartierCourant = situation.GetQuartier()
-        #     if quartierCourant is not None:
-        #         sceneParDefaut = quartierCourant.imageDeFond_
+        # si gloire faible et pas marie
+        marieAClothilde = situation_.GetValCarac(clovis.Clovis.C_MARIE_CLOTHILDE)
+        if marieAClothilde != 1:
+            evtRien_pasMarie = situation_.GetValCarac("evtRien_pasMarie")
+            if evtRien_pasMarie != 1:
+                evtsVides_.append("evtRien_pasMarie")
 
         if sceneParDefaut == "":
             sceneParDefaut = "bg priere"
@@ -58,4 +59,13 @@ label evtRien2:
 label evtRien3:
     with Dissolve(.5)
     "Un jour c'est sûr quelque chose vous arrivera."
+    jump fin_cycle
+
+label evtRien_pasMarie:
+    with Dissolve(.5)
+    # si pas marié à Clothilde
+    $ situation_.SetValCarac("evtRien_pasMarie", 1)
+    "C'est par la gloire militaire qu'un chef franc devient digne de faire un mariage prestigieux."
+    "C'est parce que votre père Childéric était un grand guerrier que votre mère Basine a préféré abandonner son époux médiocre pour rejoindre votre père et vous donner naissance."
+    "Seule la victoire à la guerre vous rendra digne d'eux."
     jump fin_cycle
