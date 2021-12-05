@@ -281,9 +281,10 @@ class Situation:
         nbJoursVecus = temps.Date(self.caracs_[temps.Date.DATE]).nbJours_ - temps.Date(self.caracs_[temps.Date.DATE_NAISSANCE]).nbJours_
         if isinstance(nbJoursVecus, int):
             nbAnnees = nbJoursVecus/365
-            nbJoursPasses = nbJoursVecus%365
-            nbMois = nbJoursPasses/30
-            return "{} ans, {} mois".format(nbAnnees, nbMois)
+            return "{} ans".format(nbAnnees)
+            # nbJoursPasses = nbJoursVecus%365
+            # nbMois = nbJoursPasses/30
+            # return "{} ans, {} mois".format(nbAnnees, nbMois)
         return "??? nbJoursVecus pas int : {}".format(nbJoursVecus)
 
     def AgeEnAnnees(self):
