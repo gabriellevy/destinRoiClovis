@@ -50,10 +50,41 @@ label mariage:
     # scene bg tolbiac
     # play music guerre2 noloop
     $ situation_.SetValCarac(clovis.Clovis.C_MARIE_CLOTHILDE, 1)
-    "Gondebaud a tenu parol. Clotilde vous est envoyée sous bonne garde dans un char à boeufs avec robe et trousseau."
+    "Gondebaud a tenu parole. Clotilde vous est envoyée sous bonne garde dans un char à boeufs avec robe et trousseau."
     show clotilde at right
     with dissolve
-    clot "A FAIRE Coucou Clovis !"
+    "Vous n'avez pas été trompé. Clotilde est aussi douce que belle et reste humble et plaisante malgré la situation difficile."
+    "Elle pourrait être brisée ou aigrie d'être donnée en mariage à un inconnu par son oncle Gondebaud qui a tué ses parents mais elle fait bonne figure."
+    "Comme le mariage est sensé avoir lieu bientôt elle se décide dès le lendemain de son arrivée à sortir de sa réserve pour vous demander la seule chose qui semble réellement l'inquiéter."
+    clot "Grand roi Clovis je suis très honorée de bientôt devenir votre épouse et je promets d'ors et déjà de vous aimer et honorer fidèlement."
+    clot "Néanmoins je dois confesser qu'une inquiétude me ronge. Je suis fervente catholique et suis très peinée à l'idée d'être marié sans qu'un prêtre du Dieu unique officie."
+    clot "Accepteriez vous que nous nous marions selon les rites cu catholicisme ?"
+    menu:
+        "Hors de question. Vous serez mariés sous le patronage de Freya déesse de la fertilité.":
+            clot "Soit je vous obéirai et trouverai le réconfort dans la prière."
+            $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+            jump mariage_paien
+        "Accepter de faire un mariage privé dans le rite catholique":
+            clot "Merci grand roi de prendre mes sentiments en compte."
+            jump double_mariage
+        "Accepter de vous marier selon les rites catholiques":
+            clot "C'est trop d'honneur grand roi vous faites de moi la plus heureus des femmes."
+            "Bien que satisfaire Clotilde vous réchauffe le coeur, dès que la rumeur de ce mariage catholique se répand, la colère gronde parmi votre peuple."
+            $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 3)
+            $ AjouterACarac(clovis.Clovis.C_USURPATION, 2)
+            jump mariage_catholique
+    jump fin_cycle
+
+label mariage_paien:
+    "PAS FAIT : mariage païen avec Clotilde"
+    jump fin_cycle
+
+label double_mariage:
+    "PAS FAIT : double_mariage avec Clotilde"
+    jump fin_cycle
+
+label mariage_catholique:
+    "PAS FAIT : mariage_catholique avec Clotilde"
     jump fin_cycle
 
 label infos_sur_clotilde:
