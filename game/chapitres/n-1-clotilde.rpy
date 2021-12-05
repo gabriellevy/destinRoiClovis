@@ -45,6 +45,20 @@ init -5 python:
         mariage.AjouterCondition(auMoinsAnnee492)
         mariage.AjouterCondition(pas_marie_a_clotilde)
         selecteur_.ajouterDeclencheur(mariage)
+        # soutien de Clotilde
+        soutienDeClotilde = declencheur.Declencheur(proba.Proba(0.1, True), "soutienDeClotilde")
+        soutienDeClotilde.AjouterCondition(marie_a_clotilde)
+        soutienDeClotilde.AjouterCondition(estPasChretien)
+        selecteur_.ajouterDeclencheur(soutienDeClotilde)
+
+
+label soutienDeClotilde:
+    show clotilde at right
+    with dissolve
+    "Par sa douceur, sa bonté et sa patience Clotilde adoucit vos dures journées de roi."
+    "Ses prières vous sont aussi d'un grand soulagement et plus le temps passe plus vous priez avec elle."
+    $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+    jump fin_cycle
 
 label mariage:
     # scene bg tolbiac
