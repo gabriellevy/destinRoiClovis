@@ -1,7 +1,7 @@
 class Clovis:
     # caracs personnelles spécifiques de Clovis
     C_CHRISTIANISME = u"Foi chrétienne" # (de Clovis)
-    C_GLOIRE = u"Gloire" # plus elle est élevée moins il y a de chances d'usurpation
+    C_GLOIRE = u"Gloire" # plus elle est élevée moins il y a de chances d'usurpation. 5 = digne de Clotilde (pour l'instant)
 
     # et de son royaume mises en place en début de partie
     C_MILITAIRE = u"Puissance de l'Armée de Clovis"
@@ -18,4 +18,5 @@ class Clovis:
     C_NOM_CHILDERIC = u"Childéric"
 
     # Famille
+    C_FIANCE_CLOTHILDE = u"Fiancé à CLothilde"
     C_MARIE_CLOTHILDE = u"Marié à CLothilde"
