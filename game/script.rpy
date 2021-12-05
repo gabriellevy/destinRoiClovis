@@ -27,6 +27,7 @@ init -1 python:
     import random
 
     AjouterEvtsProfessionnels()
+    AjouterEvtsRoi()
     AjouterEvtsUsurpation()
     AjouterEvtAvenement()
     AjouterEvtsRien()

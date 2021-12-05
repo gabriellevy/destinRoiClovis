@@ -8,6 +8,7 @@ class Clovis:
     C_USURPATION = u"Risque d'ursupation" # plus c'est élevé plus Clovis risque d'être chassé du pouvoir => cf evts_usurpation.rpy
     # $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
     # $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
+    C_FIDELITE_GAULE = u"Fidélité des galloromains" # plus c'est élevé plus les galloromains sont fidèles à Clovis
 
     # événements spéciaux
     C_VASE_SOISSONS = u"Vase de soissons" # 1 si l'histoire réelle est bien suivie
