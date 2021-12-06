@@ -55,7 +55,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    jump comtCritique # tmp test
+    # jump comtCritique # tmp test
 
     $ situation_.TourSuivant()
 

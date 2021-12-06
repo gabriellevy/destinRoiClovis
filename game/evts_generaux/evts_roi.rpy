@@ -37,8 +37,12 @@ label gestionPillage:
             $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
             $ AjouterACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
             jump fin_cycle
-        "Le renvoyer sèchement. Vae Victis !"
+        "Le renvoyer sèchement. Vae Victis !":
             $ RetirerACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
+            jump fin_cycle
+        "L'exécuter pour son insolence":
+            $ RetirerACarac(clovis.Clovis.C_FIDELITE_GAULE, 2)
+            jump fin_cycle
 
     jump fin_cycle
 

@@ -2,6 +2,7 @@ init -2 python:
     from abs import carac
     from spe import situation_clovis
     from spe.cultures import francs
+    from spe.cultures import gaulois
     from abs.humanite import trait
     # from geographie import quartier
     from abs.humanite import metier
@@ -25,6 +26,7 @@ init -2 python:
     nbInterfaceMode_ = 7
     # cultures
     francs_ = francs.Francs()
+    gaulois_ = gaulois.Gaulois()
 
     # text fade system
     time_ = 2.0 # seconds of fade
