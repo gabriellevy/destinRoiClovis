@@ -20,7 +20,7 @@ init -5 python:
         selecteur_.ajouterDeclencheur(nommageComte)
 
 label comtCritique:
-    $ nomComte = "nom de comte temporaire"
+    $ nomComte = francs_.CreerPrenom(True)
     "Le comte [nomComte] à votre service se comporte paraît-til comme un brigand. Il vole et frappe ses sujets et les plaintes s'accumulent."
     "Il est par contre d'une fidélité à toute épreuve envers vous et fait rentrer les impôts très efficacement."
     menu:
