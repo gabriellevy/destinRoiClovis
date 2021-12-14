@@ -10,6 +10,7 @@ init -5 python:
 
     estPaien = condition.Condition(metier.Guerrier.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
     noyagePourAdulterePasFait = condition.Condition("noyagePourAdultereFait", 1, condition.Condition.DIFFERENT)
+    prieresPaiennesChretiennesPasFait = condition.Condition("prieresPaiennesChretiennes", 1, condition.Condition.DIFFERENT)
 
     def AjouterEvtsPaganisme():
         global selecteur_
@@ -17,6 +18,38 @@ init -5 python:
         noyagePourAdultere = declencheur.Declencheur(proba.Proba(0.05, True), "noyagePourAdultere")
         noyagePourAdultere.AjouterCondition(noyagePourAdulterePasFait)
         selecteur_.ajouterDeclencheur(noyagePourAdultere)
+        # victoire et prières des païens et des chrétiens
+        prieresPaiennesChretiennes = declencheur.Declencheur(proba.Proba(1, True), "prieresPaiennesChretiennes")
+        prieresPaiennesChretiennes.AjouterCondition(prieresPaiennesChretiennesPasFait)
+        prieresPaiennesChretiennes.AjouterCondition(estPasRoi)
+        selecteur_.ajouterDeclencheur(prieresPaiennesChretiennes)
+
+label prieresPaiennesChretiennes:
+    # victoire et prières des païens et des chrétiens
+    $ situation_.SetValCarac("prieresPaiennesChretiennes", 1)
+    "Aujourd'hui vous avez remporté une grande victoire aux côté de votre père Chilpéric."
+    $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+    "Avec vos leudes, vos suivants, vous glorifiez Wotan dieu des batailles et priez pour que les Walkyries mènent vos guerriers tombés au combat jusqu'au Valhalla."
+    "Vous remarquez alors un groupe de gaulois qui a combattu à vos côtés et qui semble prier à genoux à la manières des catholiques."
+    menu:
+        "Vous vous moquez de leur dieu faible et crucifié":
+            "Vous raillez les chrétiens aussi faibles que leurs dieu. Ils n'osent pas répliquer au descendant des dieux que vous êtes et vont se cacher dans leur tente sans doute pour pleurnicher auprès de Jésus."
+            "Vos guerriers rient de bon coeur. Ils sont fiers de vous avoir pour chef."
+            $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
+            $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+            "Quand il en a vent votre père critique votre attitude : vous aurez besoin de l'appui des gaulois pour régner. Les insulter quand ils sont en plus de votre côté est une imprudence."
+            $ RetirerACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
+            jump fin_cycle
+        "Vous vous intéressez à leurs prières.":
+            "Vos guerriers apprécient peu votre attitude. Après tout pourquoi un descendant des dieux tels que vous s'intéresse-t'il à un dieu tout juste bon à se faire maltraiter."
+            $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
+            "Sans pour autant vous joindre à eux -vous ne parlez de toute façon pas leur langue- vous êtes néanmoins ébranlé par la feveur tranquille des catholiques gaulois."
+            $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+            jump fin_cycle
+        "Vous les ignorez.":
+            jump fin_cycle
+
+    jump fin_cycle
 
 label noyagePourAdultere:
     # intervention lors d'une noyade de femme adultère
