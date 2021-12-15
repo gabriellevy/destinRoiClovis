@@ -1,5 +1,9 @@
+define config.menu_include_disabled = True
+define gui.choice_button_text_insensitive_color = "#555"
+
 # Persos
 define narrator = Character(color="#fafad8", what_italic=True)
+define std = Character('Perso standard...', color="#B22222") # personnage standard remplacé selon les situations. (son nom est mis à jour)
 define cl = Character('Clovis', color="#80002a")
 
 image clotilde = "perso/clotilde.png"
@@ -38,6 +42,7 @@ init -1 python:
     AjouterEvtGuerreAlamans()
     AjouterEvtBapteme()
     AjouterEvtsPaganisme()
+    AjouterEvtThuringie()
     # mise en place des caracs de bases
     MiseEnPlaceCaracsSyagrius()
 

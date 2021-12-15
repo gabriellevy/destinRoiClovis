@@ -21,3 +21,10 @@ class Clovis:
     # Famille
     C_FIANCE_CLOTHILDE = u"Fiancé à CLothilde"
     C_MARIE_CLOTHILDE = u"Marié à CLothilde"
+
+    # Chararic
+    C_STATUT_CHARARIC = u"Statut Chararic"
+    CHARARIC_ROI = u"Roi de Thuringie"
+    CHARARIC_VASSAL = u"Vassal de Clovis"
+    CHARARIC_MORT = u"Mort"
+    CHARARIC_TONSURE = u"Tonsuré"
