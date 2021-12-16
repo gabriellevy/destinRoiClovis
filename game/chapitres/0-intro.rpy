@@ -9,6 +9,7 @@ label intro:
     "Aujourd'hui les francs sont une fois encore en Gaulle mais ils ont négocié leur entrée et leur installation avec les romains."
     "En réalité ces romains sont devenus trop faibles pour vous empêcher d'entrer et préfèrent vous payer pour éviter le pillage et vous utiliser comme mercenaire."
     "Ce n'est pas une mauvaise situation. La paie est bonne et les attaques des tribus barbares de Goths et d'Alamans vous donnent de bonnes ocassions de vous enrichir et de rester les meilleurs guerriers qui soient."
+    scene bg huns
     "Cette alliance a vu votre grand-père légendaire Mérovée, aux côtés d'Aetius le dernier grand romain, battre Attila et ses hordes de huns dans les champs cathalauniques en 451."
     "Mérovée a prouvé par cet exploit ce que disent les légendes : il est d'essence divine car sa mère a été fécondée par un Dieu d'Asgard."
     "Vous êtes donc d'origine divine vous aussi comme le prouve votre longue chevelure rousse qu'aucun franc n'a le droit de porter en dehors de votre famille."

@@ -21,10 +21,11 @@ init -5 python:
         evtsVides_ = ["evtRien1", "evtRien2", "evtRien3" ] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
 
         # selon religion
-        # religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
-        # if religionActuelle == religion.Christianisme.NOM:
-        #     evtsVides_.append("evtRien_saints")
-        #     evtsVides_.append("evtRien_Christianisme_1")
+        religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
+        if religionActuelle == religion.Christianisme.NOM:
+            evtsVides_.append("evtRien_saints")
+            evtsVides_.append("evtRien_Christianisme_1")
+            sceneParDefaut = "bg priere"
 
         # si gloire faible et pas marie
         marieAClothilde = situation_.GetValCarac(clovis.Clovis.C_MARIE_CLOTHILDE)
@@ -34,7 +35,7 @@ init -5 python:
                 evtsVides_.append("evtRien_pasMarie")
 
         if sceneParDefaut == "":
-            sceneParDefaut = "bg priere"
+            sceneParDefaut = "bg cours_merovingienne"
 
         # fond
         if sceneParDefaut != "":
