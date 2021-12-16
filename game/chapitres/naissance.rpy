@@ -49,6 +49,9 @@ init -5 python:
         situation.SetValCarac(religion.Religion.C_RELIGION, religion.Paien.NOM)
         situation.SetValCarac(clovis.Clovis.C_GLOIRE, 0)
 
+        #famille
+        situation.SetValCarac(clovis.Clovis.C_ALBOFLEDE, 1)
+
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
         situation[identite.Identite.C_NOM] = clovis.Clovis.C_NOM_CLOVIS

@@ -9,6 +9,9 @@ define cl = Character('Clovis', color="#80002a")
 image clotilde = "perso/clotilde.png"
 define clot = Character('Clotilde', color="#800000")
 
+image alboflede = "perso/alboflede.png"
+define albo = Character('Alboflède', color="#33cc33")
+
 # Musiques
 define audio.post_conversation = "musique/journeytoabsolution.ogg"
 define audio.guerre1 = "musique/saladinbesiegejerusalem.ogg"

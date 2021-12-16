@@ -21,6 +21,7 @@ class Clovis:
     # Famille
     C_FIANCE_CLOTHILDE = u"Fiancé à CLothilde"
     C_MARIE_CLOTHILDE = u"Marié à CLothilde"
+    C_ALBOFLEDE = u"Alboflède" # 1 => vivante
 
     # Chararic
     C_STATUT_CHARARIC = u"Statut Chararic"

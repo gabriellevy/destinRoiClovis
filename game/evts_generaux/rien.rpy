@@ -18,7 +18,7 @@ init -5 python:
     def LancerEvtVide(situation):
         sceneParDefaut = ""
         # régénère les événements compatibles avec la situation
-        evtsVides_ = ["evtRien1", "evtRien2", "evtRien3" ] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
+        evtsVides_ = [] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
 
         # selon religion
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
@@ -34,6 +34,13 @@ init -5 python:
             if evtRien_pasMarie != 1:
                 evtsVides_.append("evtRien_pasMarie")
 
+        # alboflède
+        if situation_.GetValCarac(clovis.Clovis.C_ALBOFLEDE) == 1:
+            evtsVides_.append("evtRien_alboflede")
+
+        if len(evtsVides_) == 0:
+            evtsVides_ = ["evtRien1", "evtRien2", "evtRien3" ]
+
         if sceneParDefaut == "":
             sceneParDefaut = "bg cours_merovingienne"
 
@@ -46,6 +53,15 @@ init -5 python:
 
 label selecteurDEvenementVide:
     $ LancerEvtVide(situation_)
+
+label evtRien_alboflede:
+    show alboflede at right
+    with moveinright
+    albo "Pas trop de soucis aujourd'hui mon frère ?"
+    cl "Non, un jour calme et un temps trop mauvais pour la chasse. Mais par contre idéal pour passer la journée au coin du feu en famille."
+    albo "Nous ne sommes donc que votre troisième choix. C'est déjà plutôt honorable je peux m'en contenter."
+    "Sa finesse d'esprit et sa douceur font de votre grande soeur Alboflède le meilleur moyen d'illuminer une journée pluvieuse. Vous passez finalement une très bonne journée."
+    jump fin_cycle
 
 label evtRien1:
     with Dissolve(.5)
