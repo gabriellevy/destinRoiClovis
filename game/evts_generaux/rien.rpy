@@ -7,6 +7,7 @@ init -5 python:
     from abs import proba
     from abs import condition
     from abs.humanite import trait
+    from abs.univers import temps
     # from religions import religion
     # from geographie import quartier
 
@@ -18,7 +19,7 @@ init -5 python:
     def LancerEvtVide(situation):
         sceneParDefaut = ""
         # régénère les événements compatibles avec la situation
-        evtsVides_ = ["evtRien1"] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
+        evtsVides_ = ["evtRien1", "evtRien2"] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
 
         # selon religion
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
@@ -38,9 +39,16 @@ init -5 python:
         if situation_.GetValCarac(clovis.Clovis.C_ALBOFLEDE) == 1:
             evtsVides_.append("evtRien_alboflede")
 
+        saison = situation.GetDateDuJour().GetSaison()
+        if saison == temps.Date.PRINTEMPS:
+            evtsVides_.append("evtRien1_printemps")
+        if saison == temps.Date.AUTOMNE:
+            evtsVides_.append("evtRien1_automne")
+            evtsVides_.append("evtRien2_automne")
+            evtsVides_.append("evtRien3_automne")
 
         if len(evtsVides_) == 0:
-            evtsVides_ = ["evtRien1", "evtRien2", "evtRien3" ]
+            evtsVides_ = ["evtRien1", "evtRien2" ]
 
         if sceneParDefaut == "":
             sceneParDefaut = "bg cours_merovingienne"
@@ -51,6 +59,22 @@ init -5 python:
             renpy.show(sceneParDefaut)
         # en lance un au hasard
         renpy.jump(random.choice(evtsVides_))
+
+label evtRien1_automne:
+    "C'est l'époque des semailles d'orge."
+    jump fin_cycle
+
+label evtRien2_automne:
+    "C'est l'époque des semailles de froment."
+    jump fin_cycle
+
+label evtRien3_automne:
+    "C'est l'époque des semailles de seigle."
+    jump fin_cycle
+
+label evtRien1_printemps:
+    "C'est l'époque des semailles d'avoine."
+    jump fin_cycle
 
 label selecteurDEvenementVide:
     $ LancerEvtVide(situation_)
@@ -77,12 +101,7 @@ label evtRien1:
 
 label evtRien2:
     with Dissolve(.5)
-    "Les jours se suivent et se ressemblent."
-    jump fin_cycle
-
-label evtRien3:
-    with Dissolve(.5)
-    "Un jour c'est sûr quelque chose vous arrivera."
+    "La production de cervoise est en plein essor."
     jump fin_cycle
 
 label evtRien_pasMarie:
