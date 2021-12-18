@@ -19,7 +19,9 @@ init -5 python:
     def LancerEvtVide(situation):
         sceneParDefaut = ""
         # régénère les événements compatibles avec la situation
-        evtsVides_ = ["evtRien1", "evtRien2"] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
+        evtsVides_ = [
+        "evtRien1", "evtRien2", "evtRien3", "evtRien4", "evtRien5"
+        ] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
 
         # selon religion
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
@@ -102,6 +104,21 @@ label evtRien1:
 label evtRien2:
     with Dissolve(.5)
     "La production de cervoise est en plein essor."
+    jump fin_cycle
+
+label evtRien3:
+    with Dissolve(.5)
+    "Aujourd'hui le cuisinier vous a préparé un plat exotique méditerrannéen à base de fruits et qu'on appelle dattes."
+    jump fin_cycle
+
+label evtRien4:
+    with Dissolve(.5)
+    "Votre cuisinier prépare le mouton à merveille. Mais le sommet du repas reste le fromage avec le vin."
+    jump fin_cycle
+
+label evtRien5:
+    with Dissolve(.5)
+    "Aujourd'hui vous avez dû rédiger une importante lettre de votre main. Vous scellez la lettre de votre sceau grâce à votre anneau sigillaire."
     jump fin_cycle
 
 label evtRien_pasMarie:
