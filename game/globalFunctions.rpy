@@ -3,6 +3,7 @@ init -2 python:
     from spe import situation_clovis
     from spe.cultures import francs
     from spe.cultures import gaulois
+    from spe.cultures import romains
     from abs.humanite import trait
     # from geographie import quartier
     from abs.humanite import metier
@@ -27,6 +28,7 @@ init -2 python:
     # cultures
     francs_ = francs.Francs()
     gaulois_ = gaulois.Gaulois()
+    romains_ = romains.Romains()
 
     # text fade system
     time_ = 2.0 # seconds of fade

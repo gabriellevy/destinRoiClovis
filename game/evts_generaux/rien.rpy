@@ -18,7 +18,7 @@ init -5 python:
     def LancerEvtVide(situation):
         sceneParDefaut = ""
         # régénère les événements compatibles avec la situation
-        evtsVides_ = [] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
+        evtsVides_ = ["evtRien1"] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
 
         # selon religion
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
@@ -37,6 +37,7 @@ init -5 python:
         # alboflède
         if situation_.GetValCarac(clovis.Clovis.C_ALBOFLEDE) == 1:
             evtsVides_.append("evtRien_alboflede")
+
 
         if len(evtsVides_) == 0:
             evtsVides_ = ["evtRien1", "evtRien2", "evtRien3" ]
@@ -65,7 +66,13 @@ label evtRien_alboflede:
 
 label evtRien1:
     with Dissolve(.5)
-    "Et encore une journée de plus."
+    $ romain = random.randint(0,1)
+    $ nomPerso = gaulois_.CreerPrenom(True)
+    $ nomFaction = "gaulois"
+    if romain == 0:
+        $ nomPerso = romains_.CreerPrenom(True)
+        $ nomFaction = "romain"
+    "[nomPerso], un riche [nomFaction] vient de mourir. Très pieux, il fait don de l'essentiel de sa fortune à l'église. Il a aussi affranchi une grande partie de ses esclaves."
     jump fin_cycle
 
 label evtRien2:
