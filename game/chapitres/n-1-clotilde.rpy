@@ -105,7 +105,7 @@ label enfant1:
     cl "Si l'enfant avait été voué à mes dieux, il aurait vécu de toute façon ; mais maintenant il n'a pas pu vivre du tout, baptisé au nom de votre Dieu."
     clot "Je rends grâce à Dieu tout puissant, créateur de toutes choses, qui ne m'a pas jugée complètement indigne puisqu'il a daigné accueillir dans son royaume celui qui a été conçu dans mon sein."
     clot "Mon coeur n'est pas frappé de douleur pour cette cause, parce que je sais qu'il a été rappelé de ce monde alors qu'il était dans des vêtements blancs pour être nourri sous le regarde de Dieu."
-
+    $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 1)
     jump fin_cycle
 
 label enfant2:
