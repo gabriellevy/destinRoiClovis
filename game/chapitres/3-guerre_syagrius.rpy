@@ -199,6 +199,8 @@ label vase_de_soissons:
     $ AjouterACarac(trait.Richesse.NOM, 6)
     "Vos hommes se sont aussi considérablement enrichis et vous sont plus fidèles que jamais."
     $ RetirerACarac(clovis.Clovis.C_USURPATION, 2)
+    scene bg carte486
+    "Votre royaume est agrandi sans compter que sans Syagrius les terres vers l'ouest seront sans doute très peu défendues."
     jump fin_cycle
 
 label vase_de_soissons_le_retour:

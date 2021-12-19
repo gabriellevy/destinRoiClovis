@@ -93,9 +93,9 @@ label miner_le_royaume:
     if nb_miner_le_royaume == 0:
         $ situation_.SetValCarac("nb_miner_le_royaume", 1)
         "Vos francs sont les meilleurs guerriers du monde, vous en êtes sûr. Avant même la mort de votre père vous saviez déjà que grâce à eux vous pourriez franchir la première marche qui mène à la gloire et la richesse :"
+        scene bg carte481
         "Conquérir le royaume romain de Syagrius."
         "Ce royaume est en apparence grand et riche mais vous savez qu'il est désuni et fragile."
-        # A FAIRE : afficher carte de l'époque
         "Pour l'instant vous n'êtes pas prêt d'autant plus que Syagrius le romain est allié à Euric le puissant roi des Wisigoths. Mais votre destin est déjà tracé."
 
     menu:
