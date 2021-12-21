@@ -17,8 +17,9 @@ init -5 python:
     auMoinsAnnee485 = condition.Condition(temps.Date.DATE_ANNEES, 485, condition.Condition.SUPERIEUR_EGAL)
     auMoinsAnnee482 = condition.Condition(temps.Date.DATE_ANNEES, 482, condition.Condition.SUPERIEUR_EGAL)
     # conditions syagrius
-    syagriusPasVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.DIFFERENT)
-    syagriusVaincu = condition.Condition(syagrius.Syagrius.C_VAINCU, 1, condition.Condition.EGAL)
+    syagriusPasVaincu = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.INDEMNE, condition.Condition.EGAL)
+    syagriusVaincu = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.INDEMNE, condition.Condition.DIFFERENT)
+
     stabiliteSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.INFERIEUR)
     armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_MILITAIRE, 3, condition.Condition.INFERIEUR)
     stabiliteSyagriusPasFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.SUPERIEUR)
@@ -27,8 +28,7 @@ init -5 python:
     euricVivant = condition.Condition("euricMort", 1, condition.Condition.DIFFERENT)
     def MiseEnPlaceCaracsSyagrius():
         global situation_
-        situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 0)
-        situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 0)
+        situation_.SetValCarac(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.INDEMNE)
         situation_.SetValCarac(syagrius.Syagrius.C_STABILITE, 2)
         situation_.SetValCarac(syagrius.Syagrius.C_MILITAIRE, 6)
         situation_.SetValCarac(syagrius.Syagrius.C_PILLAGE, 0)
@@ -87,8 +87,8 @@ label miner_le_royaume:
     $ print("C_STABILITE : {}".format(C_STABILITE))
     $ C_MILITAIRE = situation_.GetValCaracInt(syagrius.Syagrius.C_MILITAIRE)
     $ print("C_MILITAIRE : {}".format(C_MILITAIRE))
-    $ C_GUERRE = situation_.GetValCaracInt(syagrius.Syagrius.C_GUERRE)
-    $ print("C_GUERRE : {}".format(C_GUERRE))
+    $ etatSyag = situation_.GetValCarac(syagrius.Syagrius.C_ETAT)
+    $ print("etat Syagrius : {}".format(etatSyag))
     # fin tmp
     if nb_miner_le_royaume == 0:
         $ situation_.SetValCarac("nb_miner_le_royaume", 1)

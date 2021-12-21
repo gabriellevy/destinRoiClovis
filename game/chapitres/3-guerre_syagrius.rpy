@@ -13,14 +13,17 @@ init -5 python:
     from chapitres.classes import clovis
 
     auMoinsAnnee486 = condition.Condition(temps.Date.DATE_ANNEES, 486, condition.Condition.SUPERIEUR_EGAL)
+    auMoinsAnnee492 = condition.Condition(temps.Date.DATE_ANNEES, 492, condition.Condition.SUPERIEUR_EGAL)
     # conditions syagrius
-    syagriusEnGuerre = condition.Condition(syagrius.Syagrius.C_GUERRE, 1, condition.Condition.EGAL)
-    syagriusPasEnGuerre = condition.Condition(syagrius.Syagrius.C_GUERRE, 1, condition.Condition.DIFFERENT)
+    syagriusEnGuerre = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.GUERRE, condition.Condition.EGAL)
+    syagriusPasEnGuerre = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.GUERRE, condition.Condition.DIFFERENT)
+    syagriusPasMort = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.MORT, condition.Condition.DIFFERENT)
+    syagriusPasCapture = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.CAPTURE, condition.Condition.DIFFERENT)
     # vase de soissons:
     vaseSoissonsVengeance = condition.Condition(clovis.Clovis.C_VASE_SOISSONS, 1, condition.Condition.EGAL)
     def MiseEnPlaceGuerreSyagrius():
         global situation_
-        situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 1)
+        situation_.SetValCarac(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.GUERRE)
 
     def AjouterEvtGuerreSyagrius():
         global selecteur_
@@ -33,6 +36,17 @@ init -5 python:
         vase_de_soissons_le_retour.AjouterCondition(auMoinsAnnee486)
         vase_de_soissons_le_retour.AjouterCondition(vaseSoissonsVengeance)
         selecteur_.ajouterDeclencheur(vase_de_soissons_le_retour)
+
+        consolidation_syagrius = declencheur.Declencheur(proba.Proba(0.3, True), "consolidation_syagrius")
+        consolidation_syagrius.AjouterCondition(auMoinsAnnee492)
+        consolidation_syagrius.AjouterCondition(syagriusVaincu)
+        consolidation_syagrius.AjouterCondition(syagriusPasMort)
+        consolidation_syagrius.AjouterCondition(syagriusPasCapture)
+        selecteur_.ajouterDeclencheur(consolidation_syagrius)
+
+label consolidation_syagrius:
+
+    jump fin_cycle
 
 label invasion_syagrius:
     play music guerre1 noloop
@@ -52,7 +66,7 @@ label invasion_syagrius:
             $ AjouterACarac(trait.Richesse.NOM, 1)
             $ AjouterACarac(syagrius.Syagrius.C_PILLAGE, 2)
             $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
-
+    $ situation_.TourSuivant()
     jump bataille_soisson
 
 label bataille_soisson:
@@ -145,8 +159,7 @@ label bataille_soisson_2:
     "Pas trace de Syagrius quand vous pénétrez en arme dans sa capitale Soissons sans que personne n'essaye de vous résister. Soit il est mort, soit il a fui. C'est de toute façon une victoire écrasante dont il ne se remettra pas."
     $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
     # fin de la guerre (en théorie)
-    $ situation_.SetValCarac(syagrius.Syagrius.C_VAINCU, 1)
-    $ situation_.SetValCarac(syagrius.Syagrius.C_GUERRE, 0)
+    $ situation_.SetValCarac(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.VAINCU)
     jump vase_de_soissons
 
 label vase_de_soissons:
