@@ -21,17 +21,18 @@ init -5 python:
         # régénère les événements compatibles avec la situation
         evtsVides_ = [
         "evtRien1", "evtRien2", "evtRien3", "evtRien4", "evtRien5"
-        ] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
+        ]
+        scenesParDefaut = []
 
         # selon religion
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
         if religionActuelle == religion.Christianisme.NOM:
             evtsVides_.append("evtRien_saints")
             evtsVides_.append("evtRien_Christianisme_1")
-            sceneParDefaut = "bg priere"
+            scenesParDefaut.append("bg priere")
         if religionActuelle == religion.Paien.NOM:
             evtsVides_.append("evtRien_paien1")
-            sceneParDefaut = "bg chevauchee_paienne"
+            scenesParDefaut.append("bg chevauchee_paienne")
 
         # si gloire faible et pas marie
         marieAClothilde = situation_.GetValCarac(clovis.Clovis.C_MARIE_CLOTHILDE)
@@ -55,17 +56,18 @@ init -5 python:
         if len(evtsVides_) == 0:
             evtsVides_ = ["evtRien1", "evtRien2" ]
 
-        if sceneParDefaut == "":
+        if len(scenesParDefaut) == 0:
             sceneParDefaut = "bg cours_merovingienne"
 
         # fond
         if sceneParDefaut != "":
             renpy.scene()
-            renpy.show(sceneParDefaut)
+            renpy.show(random.choice(scenesParDefaut))
         # en lance un au hasard
         renpy.jump(random.choice(evtsVides_))
 
 label evtRien_paien1:
+    scene bg chevauchee_paienne
     "Parfois vous vous demandez pourquoi l'empire romain qui battit autrefois les francs et même tous les peuples germains, subit maintenant tant de défaites."
     "Certains disent que depuis que les romains sont devenus chrétiens et ont supprimé les autels de la déesse de la victoire au sénat, leurs dieux les ont abandonnés."
     "Mais si cela est vrai, pourquoi les goths, qui ont abandonné Wotan et sont devenus chrétiens ariens, sont pourtant aujourd'hui les plus puissants de vos rivaux ?"
@@ -91,6 +93,7 @@ label selecteurDEvenementVide:
     $ LancerEvtVide(situation_)
 
 label evtRien_alboflede:
+    scene bg cours_merovingienne
     show alboflede at right
     with moveinright
     albo "Pas trop de soucis aujourd'hui mon frère ?"
