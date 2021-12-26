@@ -30,3 +30,6 @@ class Clovis:
     CHARARIC_VASSAL = u"Vassal de Clovis"
     CHARARIC_MORT = u"Mort"
     CHARARIC_TONSURE = u"Tonsuré"
+
+    # MONDE
+    CARTE_ACTUELLE = u"Carte actuelle" # adresse de l'image de la carte représentant le royaume actuelle de Clovis (mise à jour selon les conquêtes)

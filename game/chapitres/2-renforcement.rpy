@@ -60,7 +60,7 @@ init -5 python:
         selecteur_.ajouterDeclencheur(choixAttaqueDuRoyaume)
 
 label choixAttaqueDuRoyaume:
-    scene bg carte481
+    $ AfficherCarteActuelle()
     with dissolve
     menu:
         "Le royaume de Syagrius est très affaibli."
@@ -71,7 +71,7 @@ label choixAttaqueDuRoyaume:
 
 label mort_euric:
     # Mort d'Eulric roi des wisigoths
-    scene bg carte481
+    $ AfficherCarteActuelle()
     with dissolve
     "Excellente nouvelle : Euric le grand des Wisigoths et meilleur allié de Syagrius est mort. Syagrius va être très affaibli et sans soutien étranger face à vous."
     $ RetirerACarac(syagrius.Syagrius.C_STABILITE, 2)
@@ -80,7 +80,7 @@ label mort_euric:
     jump choixAttaqueDuRoyaume
 
 label miner_le_royaume:
-    scene bg carte481
+    $ AfficherCarteActuelle()
     with dissolve
     # si Clovis mais ne possède pas encore le royaume de Syagrius
     $ nb_miner_le_royaume = situation_.GetValCaracInt("nb_miner_le_royaume")
@@ -99,7 +99,7 @@ label miner_le_royaume:
     if nb_miner_le_royaume == 0:
         $ situation_.SetValCarac("nb_miner_le_royaume", 1)
         "Vos francs sont les meilleurs guerriers du monde, vous en êtes sûr. Avant même la mort de votre père vous saviez déjà que grâce à eux vous pourriez franchir la première marche qui mène à la gloire et la richesse :"
-        scene bg carte481
+        $ AfficherCarteActuelle()
         "Conquérir le royaume romain de Syagrius."
         "Ce royaume est en apparence grand et riche mais vous savez qu'il est désuni et fragile."
         "Pour l'instant vous n'êtes pas prêt d'autant plus que Syagrius le romain est allié à Euric le puissant roi des Wisigoths. Mais votre destin est déjà tracé."

@@ -27,7 +27,7 @@ label gestionPillage:
     scene bg cours_merovingienne
     with dissolve
     $ nomSenateur = gaulois_.CreerPrenom(True)
-    "Le sénateur galle-romain [nomSenateur] vient à vous se plaindre humblement des pillages causés par vos guerriers et vous demande d'y mettre un terme."
+    "Le sénateur gallo-romain [nomSenateur] vient à vous se plaindre humblement des pillages causés par vos guerriers et vous demande d'y mettre un terme."
     menu:
         "Interdire le pillage sous peine de mort":
             "Les guerriers prennent très mal cet affront à la coutume. Ils doivent acheter et entretenir leur propre matériel. À quoi bon si ils ne peuvent pas se payer sur les vaincus ?"

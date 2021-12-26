@@ -29,6 +29,13 @@ class Trait:
             assert "Ce trait n'a pas comme valeur un int. Trait : {}. Valeur : {}".format(self.eTrait_, val)
         return "Valeur de description non trouvée pour : Trait : {}. Valeur : {}".format(self.eTrait_, val)
 
+    def GetVal(self, situation):
+        val = situation[self.eTrait_]
+        if val == "":
+            val = 0
+            situation[self.eTrait_] = val
+        return val
+
     def PeutEtrePrisALaNaissance(self):
         """
         Renvoie true si il s'agit d'un trait qui peut être choisi dès la création du personnage

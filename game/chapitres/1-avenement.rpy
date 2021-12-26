@@ -58,7 +58,7 @@ label avenement:
     "Vous recevez la lance sacrée de votre père, symbole de votre autorité et de votre force. Vous devenez ainsi une vivante figure de Wotan, père et roi des Dieux."
     "Puis vos guerriers vous hissent sur le grand pavois du chef."
     # royaume de Clovis à son avènement
-    scene bg carte481
+    $ AfficherCarteActuelle()
     with dissolve
     "Votre prestige est grand car votre père a été un grand roi invaincu à la guerre et fidèle à l'empire romain. Mais vous n'êtes que le roi des francs saliens de Tournai."
     "Et même si vos guerriers sont redoutables ils ne sont que quelques milliers ce qui est bien peu."

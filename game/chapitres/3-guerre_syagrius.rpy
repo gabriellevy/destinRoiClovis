@@ -167,7 +167,8 @@ label bataille_soisson_2:
 label vase_de_soissons:
     "La ville de Soissons est pillée de fond en comble et vous en tirez, vous et vos hommes, de grandes richesses. En particulier du palais de Syagrius et des églises."
     "Une délégation de prêtres catholiques menés par un évèque vient cependant vous demander humblement de leur restituer un grand et magnifique vase sacré."
-    "La règle franques veut qu'un cinquième du butin, tiré au sort, vous revienne. Mais il ne s'agit que d'un vase et en roi victorieux vous pouvez vous permettre d'exceptionnellement prendre ce vase."
+    "La règle franque veut que la distribution du butin soit tirée au sort. En tant que roi un cinquième doit vous revenir."
+    "Vous n'êtes donc aps sûr de recevoir le vase. Mais il ne s'agit que d'un vase et, en roi victorieux, vous pouvez vous permettre d'exceptionnellement prendre ce vase malgré la règle."
     menu:
         "Que faites vous ?"
         "Refuser et renvoyer l'évèque":
@@ -214,8 +215,8 @@ label vase_de_soissons:
     $ AjouterACarac(trait.Richesse.NOM, 6)
     "Vos hommes se sont aussi considérablement enrichis et vous sont plus fidèles que jamais."
     $ RetirerACarac(clovis.Clovis.C_USURPATION, 2)
-    scene bg carte486
-    with dissolve
+    $ situation_.SetValCarac(clovis.Clovis.CARTE_ACTUELLE, "bg carte481")
+    $ AfficherCarteActuelle()
     "Votre royaume est agrandi sans compter que sans Syagrius les terres vers l'ouest seront sans doute très peu défendues."
     jump fin_cycle
 

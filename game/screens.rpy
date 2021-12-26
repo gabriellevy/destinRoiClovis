@@ -1553,6 +1553,8 @@ screen valeurs_traits():
     # $ strQuartier = situation_.AffichageQuartier()
     $ patronyme = situation_.AffichagePatronyme()
     $ strRichesse = situation_.AffichageRichesse()
+    $ strUsurp = situation_.AffichageUsurpation()
+    $ strGloire = situation_.AffichageGloire()
     $ strPossessions = situation_.AffichagePossessions()
     $ adressePortrait = situation_.DeterminerPortrait()
     $ strAffichagePortraitPere = situation_.AffichagePortraitPere()
@@ -1568,21 +1570,25 @@ screen valeurs_traits():
                 action Function(InterfaceSuivante)
             if interfaceMode_ == 0: # résumé, portrait, nom, age, blessures...
                 add "[adressePortrait]"
-                text _(u"[patronyme]")
+                # text _(u"[patronyme]")
                 text _(u"[affAge]")
                 text _(u"[descriptionBlessures]")
+                text _(u"[strGloire]")
+                text _(u"[strRichesse]")
+                text _(u"[strArmee]")
+                text _(u"[strUsurp]")
                 text _(u"[strReligion]\n")
                 text _(u"[affDate]")
-            elif interfaceMode_ == 1: # traits
-                text _(u"[descriptionTrait]")
-            elif interfaceMode_ == 2: # royaume des francs
-                text _(u"[strArmee]")
-            elif interfaceMode_ == 3: # économie et compétences professionnelles
-                text _(u"[strRichesse]")
-                text _(u"[strMetier]")
-            elif interfaceMode_ == 4: # Possessions
-                text _(u"[strPossessions]")
-            elif interfaceMode_ == 5: # Famille
+            #elif interfaceMode_ == 1: # traits
+            #    text _(u"[descriptionTrait]")
+            #elif interfaceMode_ == 2: # royaume des francs
+            #    text _(u"[strArmee]")
+            #elif interfaceMode_ == 3: # économie et compétences professionnelles
+            #    text _(u"[strRichesse]")
+            #    text _(u"[strMetier]")
+            #elif interfaceMode_ == 4: # Possessions
+            #    text _(u"[strPossessions]")
+            elif interfaceMode_ == 1: # Famille
                 text _(" Père : ")
                 hbox:
                     add "[strAffichagePortraitPere]" size(147, 164)
@@ -1591,10 +1597,10 @@ screen valeurs_traits():
                 hbox:
                     add "[strAffichagePortraitMere]" size(147, 164)
                     text _(u"[strAffichageMere]") yalign 0.5
-            elif interfaceMode_ == 6: # les amoureuses
-                for amoureuse in tableauAffichageAmoureuses:
-                    hbox:
-                        add "[amoureuse.adresseImgPortrait]" size(99, 110)
-                        vbox yalign 0.5:
-                            text _(u"{size=-4}{b}[amoureuse.nom_]{/b}{/size}")
-                            text _(u"{size=-8}[amoureuse.description_]{/size}")
+            #elif interfaceMode_ == 6: # les amoureuses
+            #    for amoureuse in tableauAffichageAmoureuses:
+            #        hbox:
+            #            add "[amoureuse.adresseImgPortrait]" size(99, 110)
+            #            vbox yalign 0.5:
+            #                text _(u"{size=-4}{b}[amoureuse.nom_]{/b}{/size}")
+            #                text _(u"{size=-8}[amoureuse.description_]{/size}")

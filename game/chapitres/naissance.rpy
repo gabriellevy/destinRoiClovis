@@ -55,6 +55,8 @@ init -5 python:
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
         situation[identite.Identite.C_NOM] = clovis.Clovis.C_NOM_CLOVIS
+
+        situation[clovis.Clovis.CARTE_ACTUELLE] = "bg carte481"
         return
 
     def genererParents(situation):

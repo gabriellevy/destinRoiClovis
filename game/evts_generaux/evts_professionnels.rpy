@@ -68,10 +68,10 @@ label entrainementPolitique:
     $ niveauExpertise = situation_.GetValCaracInt("entrainementPolitiqueNiv")
     if niveauExpertise == 0:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 1)
-        "Votre père a toujours su contrôler les chefs de clans et vous en a montré tous les rouages. Vous suivez son exemple."
+        "Votre père a toujours su contrôler les chefs de clans par un mélange de force et de diplomatie? Il vous a montré toutes ses astuces et manoeuvres. Vous suivez son exemple."
     elif niveauExpertise == 1:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 2)
-        "Vous entrainez de bons rapports avec les sénateurs romains. Malgré leur molesse ils sont plein de bon sens et leur système de loi romaine devrait faciliter votre domination et la rentrée des impôts."
+        "Vous entretenez de bons rapports avec les sénateurs romains. Malgré leur molesse ils sont plein de bon sens et leur système de loi romaine devrait faciliter votre domination et la rentrée des impôts."
     elif niveauExpertise == 2:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 3)
         "Les évèques sont très respectés par le peuple, leurs avis sont révérés. En écoutant leurs conseils vous gagnez en compréhnsion sur la Gaulle et donc en influence."

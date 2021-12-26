@@ -15,6 +15,7 @@ init -5 python:
         # entrainement guerrier
         usurpation = declencheur.Declencheur(proba.Proba(0.07, True), "usurpation")
         usurpation.AjouterCondition(ilYARisqueDUsurpation)
+        usurpation.AjouterCondition(estRoi)
         selecteur_.ajouterDeclencheur(usurpation)
 
 label usurpation:
@@ -29,7 +30,7 @@ label usurpation:
     else:
         if niveauUsurpation == 0:
             $ situation_.SetValCarac("niveauUsurpation", 1)
-            "Vos guerriers, surtout l'aristocratie, apprécient peu votre habitude. Dans votre dos on vous traite de traître aux coutumes franques et de lâche."
+            "Vos guerriers, surtout l'aristocratie, apprécient peu votre attitude. Dans votre dos on vous traite de traître aux coutumes franques et de lâche."
             "Vous parvenez à garder le contrôle par un mélange de répression et de corruption et ils en restent aux grognements."
             "Mais que ce soit par la gloire ou la purge des indésirables, il va vous falloir relever votre autorité."
             jump fin_cycle

@@ -9,6 +9,7 @@ init -2 python:
     from abs.humanite import metier
     from abs.univers import temps
     from abs.humanite.sante import pbsante
+    from chapitres.classes import clovis
     import random
 
     situation_ = situation_clovis.SituationClovis() # dictionnaire contenant toutes les caracs courantes de la partie
@@ -24,11 +25,14 @@ init -2 python:
     metiers_ = metier.CollectionMetiers()
     situation_.collectionMetiers = metiers_
     interfaceMode_ = 0
-    nbInterfaceMode_ = 7
+    nbInterfaceMode_ = 2
     # cultures
     francs_ = francs.Francs()
     gaulois_ = gaulois.Gaulois()
     romains_ = romains.Romains()
+
+    debug_ = True
+    situation_.debug_ = debug_
 
     # text fade system
     time_ = 2.0 # seconds of fade
@@ -81,3 +85,9 @@ init -2 python:
         if interfaceMode_ >= nbInterfaceMode_:
             interfaceMode_ = 0
         print(interfaceMode_)
+
+    def AfficherCarteActuelle():
+        global situation_
+        derniereCarte = situation_.GetValCarac(clovis.Clovis.CARTE_ACTUELLE)
+        renpy.scene()
+        renpy.show(derniereCarte)

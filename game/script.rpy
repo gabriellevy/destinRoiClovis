@@ -63,7 +63,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    # jump comtCritique # tmp test
+    # jump guerre_burgonde490 # tmp test
 
     $ situation_.TourSuivant()
 
