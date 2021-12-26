@@ -68,6 +68,7 @@ init -5 python:
 
 label evtRien_paien1:
     scene bg chevauchee_paienne
+    with dissolve
     "Parfois vous vous demandez pourquoi l'empire romain qui battit autrefois les francs et même tous les peuples germains, subit maintenant tant de défaites."
     "Certains disent que depuis que les romains sont devenus chrétiens et ont supprimé les autels de la déesse de la victoire au sénat, leurs dieux les ont abandonnés."
     "Mais si cela est vrai, pourquoi les goths, qui ont abandonné Wotan et sont devenus chrétiens ariens, sont pourtant aujourd'hui les plus puissants de vos rivaux ?"
@@ -94,6 +95,7 @@ label selecteurDEvenementVide:
 
 label evtRien_alboflede:
     scene bg cours_merovingienne
+    with dissolve
     show alboflede at right
     with moveinright
     albo "Pas trop de soucis aujourd'hui mon frère ?"

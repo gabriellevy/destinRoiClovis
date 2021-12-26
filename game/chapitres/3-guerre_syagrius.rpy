@@ -71,6 +71,7 @@ label invasion_syagrius:
 
 label bataille_soisson:
     scene bg francs
+    with dissolve
     $ puissanceArmeeSyagrius = situation_.GetValCaracInt(syagrius.Syagrius.C_MILITAIRE)
     "{b}Bataille de Soissons.{/b}"
     "Syagrius a rangé son armée de manière ordonnée à la romaine. Mais la discipline apparente ne vous impressionne pas. La plupart des soldats sont des germains qui combattront sans grand entousiasme."
@@ -139,6 +140,7 @@ label bataille_soisson:
 
 label bataille_soisson_2:
     scene bg francs
+    with dissolve
     $ puissanceArmeeSyagrius = situation_.GetValCaracInt(syagrius.Syagrius.C_MILITAIRE)
     $ a_convaincu_chararic = situation_.GetValCaracBool("a_convaincu_chararic")
     if a_convaincu_chararic:
@@ -213,6 +215,7 @@ label vase_de_soissons:
     "Vos hommes se sont aussi considérablement enrichis et vous sont plus fidèles que jamais."
     $ RetirerACarac(clovis.Clovis.C_USURPATION, 2)
     scene bg carte486
+    with dissolve
     "Votre royaume est agrandi sans compter que sans Syagrius les terres vers l'ouest seront sans doute très peu défendues."
     jump fin_cycle
 

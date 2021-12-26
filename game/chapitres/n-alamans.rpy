@@ -19,6 +19,7 @@ init -5 python:
 
 label invasion_alamans:
     scene bg tolbiac
+    with dissolve
     "Ce que vous craigniez depuis des années a fini par vous arriver : les tribus germaniques de l'Est qu'on appelle Alamans se sont décidées à envahir les territoires francs avec une armée particulièrement nombreuse."
     "Pour l'instant c'est le territoire de vos voisins et alliés les francs du Rhin qui est touché."
     play music guerre2 noloop
@@ -38,6 +39,7 @@ label invasion_alamans:
 
 label bataille_tolbiac:
     scene bg tolbiac
+    with dissolve
     "Cette bataille s'engage de la pire manière possible : avec votre allié en fuite, face à des alamans supérieurs en nombre, et en étant séparé de vos terres par l'ennemi."
     "Le combat commence en escarmouches entre archer et lanceurs de javelot des deux camps."
     "Mais les alamans se savent supérieurs et ne perdent pas de temps : ils engagent le corps à corps, qui dégénère rapidement en un sanglant massacre."

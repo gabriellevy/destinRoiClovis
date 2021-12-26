@@ -27,6 +27,7 @@ init -5 python:
 
 label bapteme:
     scene bg bapteme
+    with dissolve
     play music post_conversation noloop
     "Ainsi, à Reims dans la nuit de Noël 497, Saint-Rémi baptisa Clovis avec 3 000 de ses soldats."
     "Les populations gallo-romaines accueillirent les Francs non plus comme des envahisseurs mais comme des libérateurs."

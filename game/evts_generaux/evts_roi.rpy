@@ -24,6 +24,8 @@ init -5 python:
         selecteur_.ajouterDeclencheur(gestionPillage)
 
 label gestionPillage:
+    scene bg cours_merovingienne
+    with dissolve
     $ nomSenateur = gaulois_.CreerPrenom(True)
     "Le sénateur galle-romain [nomSenateur] vient à vous se plaindre humblement des pillages causés par vos guerriers et vous demande d'y mettre un terme."
     menu:
@@ -47,6 +49,8 @@ label gestionPillage:
     jump fin_cycle
 
 label comtCritique:
+    scene bg cours_merovingienne
+    with dissolve
     $ nomComte = gaulois_.CreerPrenom(True)
     "Le comte [nomComte] à votre service se comporte paraît-til comme un brigand. Il vole et frappe ses sujets et les plaintes s'accumulent."
     "Il est par contre d'une fidélité à toute épreuve envers vous et fait rentrer les impôts très efficacement."

@@ -42,6 +42,7 @@ init -5 python:
 label entrainementPretre:
     # entrainement prêtre
     scene bg chevauchee_paienne
+    with dissolve
     "En tant que prince de sang divin vous être destiné à devenir un roi prêtre. Vous apprenez les rituels."
     $ AjouterACarac(metier.Pretre.NOM, 1)
     jump fin_cycle
@@ -55,6 +56,7 @@ label entrainementChasse:
 label entrainementStratege:
     # entrainement stratège/général
     scene bg tolbiac
+    with dissolve
     "Votre père vous emmène avec lui chaque fois qu'il part en campagne et ne perd pas une occasion de vous apprendre l'art de la guerre."
     $ AjouterACarac(metier.Stratege.NOM, 2)
     jump fin_cycle
@@ -62,6 +64,7 @@ label entrainementStratege:
 label entrainementPolitique:
     # s'entraîne à la politique
     scene bg cours_merovingienne
+    with dissolve
     $ niveauExpertise = situation_.GetValCaracInt("entrainementPolitiqueNiv")
     if niveauExpertise == 0:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 1)
@@ -80,6 +83,7 @@ label entrainementPolitique:
 label entrainementGuerrier:
     # s'entraîne au combat
     scene bg francs
+    with dissolve
     $ niveauExpertise = situation_.GetValCaracInt("entrainementGuerrierNiv")
     if niveauExpertise == 0:
         $ situation_.SetValCarac("entrainementGuerrierNiv", 1)
