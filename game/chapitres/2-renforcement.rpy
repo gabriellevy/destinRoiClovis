@@ -60,6 +60,8 @@ init -5 python:
         selecteur_.ajouterDeclencheur(choixAttaqueDuRoyaume)
 
 label choixAttaqueDuRoyaume:
+    scene bg carte481
+    with dissolve
     menu:
         "Le royaume de Syagrius est très affaibli."
         "L'attaquer.":
@@ -69,6 +71,8 @@ label choixAttaqueDuRoyaume:
 
 label mort_euric:
     # Mort d'Eulric roi des wisigoths
+    scene bg carte481
+    with dissolve
     "Excellente nouvelle : Euric le grand des Wisigoths et meilleur allié de Syagrius est mort. Syagrius va être très affaibli et sans soutien étranger face à vous."
     $ RetirerACarac(syagrius.Syagrius.C_STABILITE, 2)
     $ RetirerACarac(syagrius.Syagrius.C_MILITAIRE, 2)
@@ -76,6 +80,8 @@ label mort_euric:
     jump choixAttaqueDuRoyaume
 
 label miner_le_royaume:
+    scene bg carte481
+    with dissolve
     # si Clovis mais ne possède pas encore le royaume de Syagrius
     $ nb_miner_le_royaume = situation_.GetValCaracInt("nb_miner_le_royaume")
     $ a_corrompu_senateurs = situation_.GetValCaracBool("a_corrompu_senateurs")

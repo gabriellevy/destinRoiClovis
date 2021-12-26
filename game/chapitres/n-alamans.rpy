@@ -53,13 +53,13 @@ label bataille_tolbiac:
         menu:
             "Qu'allez-vous faire ?"
             "Invoquer l'aide de Wotan pour détruire l'ennemi de vos propres mains.":
-                $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 5)
+                $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 2)
                 "A FAIRE"
                 jump fin_cycle
             "Promettre au Dieu de Clothilde que vous vous convertirez si il vous apporte la victoire.":
                 $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 5)
                 "A FAIRE"
-                jump fin_cycle
+                jump serment_tolbiac
             "Prier Dieu de vous pardonner vos péchés et accepter votre mort prochaine.":
                 $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 5)
                 "A FAIRE"
@@ -73,6 +73,18 @@ label bataille_tolbiac:
                     $ peut_se_debrouiller = 0
                     jump appel_divin_choix
 
+    label serment_tolbiac:
+        cl "Ô Jésus-Christ que Clothilde proclame fils du Dieu vivant, toi qui, dit-on, donnes une aide à ceux qui peinent et qui attribues la victoire à ceux qui espèrent en toi, je sollicite dévotement la gloire de ton assistance."
+        cl "Si tu m'accordes la victoire sur ces ennemis et si j'expérimente la vertu miraculeuse que le peuple voué à ton nom déclare avoir mis à l'épreuve je croirai en toi et je me baptiserai en ton nom."
+        cl "J'ai en effet invoqué mes dieux mais comme j'en fais l'expérience ils se sont abstenus de m'aider."
+        cl "Je crois qu'ils ne sont doués d'aucun pouvoir eux qui ne viennent pas au secours de ceux qui leur obéissent."
+        cl "C'est toi que maintenant j'invoque, c'est en toi que je désire croire pourvu que je sois arraché à mes adversaires."
+        jump victoire_bataille_tolbiac
+
     label appel_divin_seul:
         "A FAIRE : se débrouille tout seul et a une chance de s'en sortir"
+        jump fin_cycle
+
+    label victoire_bataille_tolbiac:
+        "A FAIRE : fin de la bataille de Tolbiac plus effet divin."
         jump fin_cycle
