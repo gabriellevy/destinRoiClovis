@@ -55,7 +55,7 @@ label invasion_syagrius:
     menu:
         "Si vous suivez la coutume franque de le défier sur le champs de bataille de son choix.":
             "Syagrius accepte le défi et choisit un champs près de sa capitale Soissons."
-            "Vos hommes sont pressés d'en venir aux mains et sont heureux que vous ayez respecté les lois d'Odin. Thor et les walkyrie vous soutiendront."
+            "Vos hommes sont pressés d'en venir aux mains et sont heureux que vous ayez respecté les lois de Wotan. Thor et les walkyrie vous soutiendront."
             $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
             $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
         "Si vous vous dirigez vers sa capitale Soissons pour l'écraser le plus tôt possible.":
@@ -125,7 +125,7 @@ label bataille_soisson:
                     $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
                     $ testCombat = testDeCarac.TestDeCarac(metier.Guerrier.NOM, 7, situation_)
                     menu:
-                        "Enhardi vous vous jetez en avant en chantant à la gloire d'Odin.[testCombat.affichage_]":
+                        "Enhardi vous vous jetez en avant en chantant à la gloire de Wotan.[testCombat.affichage_]":
                             $ reussi = testCombat.TesterDifficulte(situation_)
                             if reussi:
                                 "Vous empoignez votre francisque et faites un grand massacre des romains terrifiés et désordonnés."

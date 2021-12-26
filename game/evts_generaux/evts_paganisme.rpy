@@ -43,7 +43,7 @@ label prieresPaiennesChretiennes:
         "Vous vous intéressez à leurs prières.":
             "Vos guerriers apprécient peu votre attitude. Après tout pourquoi un descendant des dieux tels que vous s'intéresse-t'il à un dieu tout juste bon à se faire maltraiter."
             $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
-            "Sans pour autant vous joindre à eux -vous ne parlez de toute façon pas leur langue- vous êtes néanmoins ébranlé par la feveur tranquille des catholiques gaulois."
+            "Sans pour autant vous joindre à eux -vous ne parlez de toute façon pas leur langue- vous êtes néanmoins ébranlé par la ferveur tranquille des catholiques gaulois."
             $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 1)
             jump fin_cycle
         "Vous les ignorez.":
