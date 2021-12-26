@@ -13,7 +13,7 @@ init -5 python:
     estPasStrategeNivExtreme = condition.Condition(metier.Stratege.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
     estPasGrandChasseur = condition.Condition(metier.Chasseur.NOM, 5, condition.Condition.INFERIEUR)
     estPasGrandPretre = condition.Condition(metier.Pretre.NOM, 5, condition.Condition.INFERIEUR)
-    
+
     def AjouterEvtsProfessionnels():
         global selecteur_
         # entrainement guerrier
@@ -41,6 +41,7 @@ init -5 python:
 
 label entrainementPretre:
     # entrainement prêtre
+    scene bg chevauchee_paienne
     "En tant que prince de sang divin vous être destiné à devenir un roi prêtre. Vous apprenez les rituels."
     $ AjouterACarac(metier.Pretre.NOM, 1)
     jump fin_cycle
@@ -53,12 +54,14 @@ label entrainementChasse:
 
 label entrainementStratege:
     # entrainement stratège/général
+    scene bg tolbiac
     "Votre père vous emmène avec lui chaque fois qu'il part en campagne et ne perd pas une occasion de vous apprendre l'art de la guerre."
     $ AjouterACarac(metier.Stratege.NOM, 2)
     jump fin_cycle
 
 label entrainementPolitique:
     # s'entraîne à la politique
+    scene bg cours_merovingienne
     $ niveauExpertise = situation_.GetValCaracInt("entrainementPolitiqueNiv")
     if niveauExpertise == 0:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 1)
@@ -76,6 +79,7 @@ label entrainementPolitique:
 
 label entrainementGuerrier:
     # s'entraîne au combat
+    scene bg francs
     $ niveauExpertise = situation_.GetValCaracInt("entrainementGuerrierNiv")
     if niveauExpertise == 0:
         $ situation_.SetValCarac("entrainementGuerrierNiv", 1)
