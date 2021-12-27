@@ -1,5 +1,7 @@
 from abs import declencheur
 from abs.univers import temps
+from abs import proba
+from abs import modifProba
 from abs import condition
 
 class DecClovis(declencheur.Declencheur):
@@ -16,7 +18,7 @@ class DecClovis(declencheur.Declencheur):
 
 class DecClovisU(DecClovis):
     """
-    U means 'Unique'
+    U signifie 'Unique' => l'événement auquel on applique ce déclencheur ne peut s'exécuter qu'une fois maximum
     """
 
     def __init__(self, aproba, labelGoTo, dateMin):

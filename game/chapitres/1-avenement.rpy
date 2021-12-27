@@ -11,12 +11,12 @@ init -5 python:
     from abs.univers import temps
     # from geographie import quartier
     from abs.humanite import identite
+    from spe import dec_clo
 
     estPasRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.DIFFERENT)
     estRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.EGAL)
     auMoinsAnnee481 = condition.Condition(temps.Date.DATE_ANNEES, 481, condition.Condition.SUPERIEUR_EGAL)
-
-    visionChildericPasFaite = condition.Condition("visionChilderic", 1, condition.Condition.DIFFERENT)
+    
     def AjouterEvtAvenement():
         global selecteur_
         avenement = declencheur.Declencheur(proba.Proba(0.6, False), "avenement")
@@ -24,14 +24,11 @@ init -5 python:
         avenement.AjouterCondition(auMoinsAnnee481)
         selecteur_.ajouterDeclencheur(avenement)
         # vision de Childéric
-        visionChilderic = declencheur.Declencheur(proba.Proba(0.4, False), "visionChilderic")
+        visionChilderic = dec_clo.DecClovisU(proba.Proba(0.4, False), "visionChilderic", 481)
         visionChilderic.AjouterCondition(estRoi)
-        visionChilderic.AjouterCondition(auMoinsAnnee481)
-        visionChilderic.AjouterCondition(visionChildericPasFaite)
         selecteur_.ajouterDeclencheur(visionChilderic)
 
 label visionChilderic:
-    $ situation_.SetValCarac("visionChilderic", 1)
     "Votre père Childéric a toujours été l'allié de l'empire romain dont il admirait la grandeur et la sophistication, même si de son temps il était déjà affaibli."
     "Après tout les romains ont par le passé durement vaincus les francs à plusieurs reprises. Et surtout ils ont combattu et vaincu le terrible Attila aux côté de votre grand-père Mérovée."
     "Votre père vous a donc tout naturellement poussé vers la même voie politique, vous a vêtu de la pourpre romaine, et vous a toujours souhaité d'obtenir la reconnaissance de l'empereur romain d'Orient."
