@@ -42,11 +42,14 @@ label bataille_tolbiac:
     with dissolve
     "Cette bataille s'engage de la pire manière possible : avec votre allié en fuite, face à des alamans supérieurs en nombre, et en étant séparé de vos terres par l'ennemi."
     "Le combat commence en escarmouches entre archer et lanceurs de javelot des deux camps."
+    $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
     "Mais les alamans se savent supérieurs et ne perdent pas de temps : ils engagent le corps à corps, qui dégénère rapidement en un sanglant massacre."
 
     "Lentement mais surement votre armée perdu du terrain et semble sur le point d'être exterminée. Plusieurs de vos gardes du corps sont tombés et vous êtes sur le point d'être encerclé."
+    $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
     "Impossible de trouver une issue pour faire retraite en bon ordre, et vous savez que les alamans seront sans pitié si ils vous atteignent."
     "Dans ce péril extrême vous repensez à l'aide que Wotan devrait vous apporter pour soutenir votre race divine. Vous reviennent aussi les paroles de Clothilde vous assurant qu'un tel moment arriverait tôt ou tard où vous devriez accepter Jésus Christ comme sauveur."
+    $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
     $ peut_se_debrouiller = 1
     label appel_divin_choix:
         $ testCourage = testDeCarac.TestDeCarac(trait.Courage.NOM, 8, situation_)
@@ -86,5 +89,30 @@ label bataille_tolbiac:
         jump fin_cycle
 
     label victoire_bataille_tolbiac:
-        "A FAIRE : fin de la bataille de Tolbiac plus effet divin."
+        $ nomChefAlaman = francs_.CreerPrenom(True)
+        "[nomChefAlaman], le chef des alamans, se battait bravement à découvert sur son cheval blanc. Il semblait invincible, possédé par la puissance de Wotan en personne."
+        "Soudain, il fut frappé d'une hache de lancer en pleine poitrine et tomba de cheval. Pour tous les alamans comme pour les francs, cela signifiait qu'il avait perdu la faveur de Wotan."
+        "Ils commencèrent à s'apeurer, perdirent leur avantage, puis se débandèrent. Finalement pour arrêter le massacre, ils firent leur soumission et jetèrent leurs armes."
+        $ AjouterACarac(clovis.Clovis.C_GLOIRE, 2)
+        menu:
+            "Victoire ! Ils sont à votre merci !"
+            "Si vous les exterminez":
+                "Après les pertes qu'ils ont subies vos guerriers sont satisfaits de votre ordre et égorgent les alamans qui s'étaient rendus dans un grand massacre."
+                jump victoire_alamans
+            "Si vous leur ordonnez de quitter la Gaulle à tout jamais":
+                "Difficile de dire si ils tiendront parole mais ils obéissent et vous laissent tout leur territoire jusqu'aux frontières de la Gaulle."
+                jump victoire_alamans
+            "Si vous recrutez parmi eux pour remplacer vos pertes.":
+                "Beaucoup acceptent votre offre. Ces renforts sont bienvenus mais ils seront moins fiables que vos guerriers francs."
+                $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 2)
+                $ AjouterACarac(clovis.Clovis.C_USURPATION, 2)
+                "Les autres quittent la Gaulle et vous laissent ce territoire comme prix du vainqueur."
+                jump victoire_alamans
+
+        jump fin_cycle
+
+    label victoire_alamans:
+        "A FAIRE : insérer carte conquêtes alamans (et mise à jour de la carte ctuelle)"
+        "Cette victoire vous apporte un gain de territoire mais elle a surtout l'avantage de sécuriser l'Est en neutralisant des voisins très turbulents."
+        "Votre royaume n'a jamais été plus puissant et stable."
         jump fin_cycle
