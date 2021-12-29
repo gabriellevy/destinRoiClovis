@@ -37,11 +37,27 @@ init -5 python:
 
         consolidation_syagrius = dec_clo.DecClovisU(proba.Proba(0.3, True), "consolidation_syagrius", 492)
         consolidation_syagrius.AjouterCondition(syagriusVaincu)
-        consolidation_syagrius.AjouterCondition(syagriusPasMort)
-        consolidation_syagrius.AjouterCondition(syagriusPasCapture)
         selecteur_.ajouterDeclencheur(consolidation_syagrius)
 
 label consolidation_syagrius:
+    "Votre royaume est pacifié. Il est temps de le consolider en soumettant les territoires de l'ouest livrés à eux-mêmes depuis la défaite de Syagrius."
+    $ testCombat = testDeCarac.TestDeCarac(clovis.Clovis.C_MILITAIRE, 2, situation_)
+    menu:
+        "L'opposition est faible ce devrait être facile. [testCombat.affichage_]":
+            $ reussi = testCombat.TesterDifficulte(situation_)
+            if reussi:
+                "Vous écrasez facilement les dernières poches de résistance. Votre royaume s'atend maintenant jusqu'à la Loire, jusqu'aux wisigoths."
+                $ situation_.SetValCarac(clovis.Clovis.CARTE_ACTUELLE, "bg carte493")
+                $ AfficherCarteActuelle()
+                $ AjouterACarac(trait.Richesse.NOM, 1)
+                $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+                jump invasion_armorique
+            else:
+                !! attention échec signifie que cette action doit être relancée
+                jump fin_cycle
+    jump fin_cycle
+
+label invasion_armorique:
 
     jump fin_cycle
 
