@@ -12,19 +12,13 @@ init -5 python:
     from chapitres.classes import syagrius
     from chapitres.classes import clovis
 
-    auMoinsAnnee490 = condition.Condition(temps.Date.DATE_ANNEES, 491, condition.Condition.SUPERIEUR_EGAL)
-    guerre_thuringie491PasFaite = condition.Condition("guerre_thuringie491", 1, condition.Condition.DIFFERENT)
-
     def AjouterEvtThuringie():
         global selecteur_
-        guerre_thuringie491 = declencheur.Declencheur(proba.Proba(0.5, True), "guerre_thuringie491")
-        guerre_thuringie491.AjouterCondition(auMoinsAnnee490)
-        guerre_thuringie491.AjouterCondition(guerre_thuringie491PasFaite)
+        guerre_thuringie491 = dec_clo.DecClovisU(proba.Proba(0.5, True), "guerre_thuringie491", 490)
         selecteur_.ajouterDeclencheur(guerre_thuringie491)
 
 label guerre_thuringie491:
     play music guerre1 noloop
-    $ situation_.SetValCarac("guerre_thuringie491", 1)
     $ situation_.SetValCarac(clovis.Clovis.C_STATUT_CHARARIC, clovis.Clovis.CHARARIC_ROI)
     $ puissanceArmeeChararic = 4
     "La Thuringie est une nuisance certes faible mais dangereuse car sur vos arrières."

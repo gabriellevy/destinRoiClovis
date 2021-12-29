@@ -1,5 +1,6 @@
 init -5 python:
     import random
+    from spe import dec_clo
     from abs import declencheur
     from abs import selecteur
     from abs import proba
@@ -12,8 +13,6 @@ init -5 python:
     from chapitres.classes import syagrius
     from chapitres.classes import clovis
 
-    auMoinsAnnee486 = condition.Condition(temps.Date.DATE_ANNEES, 486, condition.Condition.SUPERIEUR_EGAL)
-    auMoinsAnnee492 = condition.Condition(temps.Date.DATE_ANNEES, 492, condition.Condition.SUPERIEUR_EGAL)
     # conditions syagrius
     syagriusEnGuerre = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.GUERRE, condition.Condition.EGAL)
     syagriusPasEnGuerre = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.GUERRE, condition.Condition.DIFFERENT)
@@ -32,13 +31,11 @@ init -5 python:
         combat_avant_garde.AjouterCondition(syagriusPasVaincu)
         selecteur_.ajouterDeclencheur(combat_avant_garde)
 
-        vase_de_soissons_le_retour = declencheur.Declencheur(proba.Proba(0.3, True), "vase_de_soissons_le_retour")
-        vase_de_soissons_le_retour.AjouterCondition(auMoinsAnnee486)
+        vase_de_soissons_le_retour = dec_clo.DecClovisU(proba.Proba(0.3, True), "vase_de_soissons_le_retour", 486)
         vase_de_soissons_le_retour.AjouterCondition(vaseSoissonsVengeance)
         selecteur_.ajouterDeclencheur(vase_de_soissons_le_retour)
 
-        consolidation_syagrius = declencheur.Declencheur(proba.Proba(0.3, True), "consolidation_syagrius")
-        consolidation_syagrius.AjouterCondition(auMoinsAnnee492)
+        consolidation_syagrius = dec_clo.DecClovisU(proba.Proba(0.3, True), "consolidation_syagrius", 492)
         consolidation_syagrius.AjouterCondition(syagriusVaincu)
         consolidation_syagrius.AjouterCondition(syagriusPasMort)
         consolidation_syagrius.AjouterCondition(syagriusPasCapture)
