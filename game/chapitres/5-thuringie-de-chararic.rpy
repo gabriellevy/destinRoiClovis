@@ -52,7 +52,7 @@ label guerre_thuringie491:
             $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
             $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
             $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
-            $ situation_.TourSuivant()
+            $ situation_.AvanceDeXMois(1)
             jump guerre_thuringie491_decision
 
     label guerre_thuringie491_ruse:
@@ -62,7 +62,7 @@ label guerre_thuringie491:
             jump guerre_thuringie491_sort_chararic
         else:
             "Chararic se doute de quelque chose et parvient à déjouer les pièges et éliminer vos espions."
-            $ situation_.TourSuivant()
+            $ situation_.AvanceDeXMois(2)
             jump guerre_thuringie491_decision
 
     label guerre_thuringie491_sort_chararic:

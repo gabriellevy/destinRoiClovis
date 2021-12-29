@@ -8,12 +8,14 @@ from abs import situation
 from abs.humanite import metier
 from abs.humanite import pnj
 from abs.humanite import trait
+import random
 
 class SituationClovis(situation.Situation):
 
     def __init__(self):
         situation.Situation.__init__(self, 175000)
 
+    # ------------------------------------------------AFFICHAGE---------------------------------------
     def AffichageArmee(self):
         global debug_
         # armée de clovis
@@ -85,7 +87,7 @@ class SituationClovis(situation.Situation):
         self.SetCarac(portrait.Portrait.C_PORTRAIT, portraitStr)
         return self.GetValCarac(portrait.Portrait.C_PORTRAIT)
 
-    # PNJ
+    # ------------------------------------------------- PNJ ---------------------------------------------------
 
     def AffichagePortraitPere(self):
         # père
@@ -118,3 +120,12 @@ class SituationClovis(situation.Situation):
         if isinstance(mere, pnj_roi_clovis.PnjRoiClovis) :
             str = u"{}".format(mere)
         return str
+
+    # -------------------------------------------------- temps -------------------------------------------------
+
+    def TourSuivant(self):
+        """
+        Passage au "tour" suivant c'est à dire grosso modo à un mois et demi un peu randomisé
+        """
+        nbJoursPasses = 38 + random.randint(0, 20)
+        self.AvanceDeXJours(nbJoursPasses)

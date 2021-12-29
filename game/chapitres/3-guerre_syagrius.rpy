@@ -66,7 +66,7 @@ label invasion_syagrius:
             $ AjouterACarac(trait.Richesse.NOM, 1)
             $ AjouterACarac(syagrius.Syagrius.C_PILLAGE, 2)
             $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
-    $ situation_.TourSuivant()
+    $ situation_.AvanceDeXMois(2)
     jump bataille_soisson
 
 label bataille_soisson:
