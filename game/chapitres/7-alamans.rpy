@@ -12,16 +12,67 @@ init -5 python:
     from chapitres.classes import germains
     from chapitres.classes import clovis
 
+    alamansVaincus = condition.Condition(germains.Alamans.C_VAINCU, 1, condition.Condition.EGAL)
     def AjouterEvtGuerreAlamans():
         global selecteur_
         invasion_alamans = dec_clo.DecClovisU(proba.Proba(0.4, True), "bataille_tolbiac", 495)
         selecteur_.ajouterDeclencheur(invasion_alamans)
+
+        # 1ère invasion des wisigoths
+        invasion_wisigoths1 = dec_clo.DecClovisU(proba.Proba(0.4, True), "invasion_wisigoths1", 496)
+        invasion_wisigoths1.AjouterCondition(alamansVaincus)
+        selecteur_.ajouterDeclencheur(invasion_wisigoths1)
+
+label invasion_wisigoths1:
+    scene bg tolbiac
+    with dissolve
+    "Ragaillardi par la victoire inespérée de Tolbiac et ayant toute votre armée levée et avide de pillage vous êtes tenté d'envahier le territoire d'Alaric, roi des wisigoths."
+    "Alaric n'a pas levé son armée et ses frontières sont sans défense mais c'est un ennemi riche et puissant."
+    $ valArmee = situation_.GetValCaracInt(clovis.Clovis.C_MILITAIRE)
+    if valArmee < 2:
+        "Et votre propre armée est très affaiblie."
+    menu:
+        "Envahir les wisigoths":
+            jump invasion_wisigoths1_ok
+        "Renoncer":
+            jump fin_cycle
+
+    label invasion_wisigoths1_ok:
+        "En suivant la voie romaine à grand pas vous parvenez à vous emparer sans trop de pertes de Tours, Poitiers, puis Saintes."
+        $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+        $ AjouterACarac(trait.Richesse.NOM, 1)
+        "Malheureusement Alaric finit par réorganiser son armée et acourir."
+        "Puis il déploie astucieusement ses wisigoths, en particulier sa redoutable cavalerie lourde, et vous met en très mauvaise posture."
+        $ testCombat = testDeCarac.TestDeCarac([clovis.Clovis.C_MILITAIRE, metier.Stratege.NOM], 8, situation_)
+        menu:
+            "Si vous faites face [testCombat.affichage_]":
+                $ reussi = testCombat.TesterDifficulte(situation_)
+                if reussi:
+                    "Contre toute attente vous parvenez à repousser les wisigoths et leur tuer suffisament de monde pour qu'ils fuient et se retranchent dans Saintes."
+                    "Vous n'avez cependant pas les moyens de les assiéger car la maladie décime votre armée mal approvisionnée."
+                    "Vous devez rentrer à Paris mais votre force a gandement impressionné les wisigoths et les galloromains qui répandent les rumeurs de vos exploits."
+                    $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
+                    $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+                    jump fin_cycle
+                else:
+                    "La cavalerie lourde des Wisigoths fracasse vos lignes sous les sabots de ses destriers. Vous êtes obligé d'abandonner le terrain avec de lourdes pertes."
+                    $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 2)
+                    $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
+                    jump fin_cycle
+            "Si vous vous repliez.":
+                "Alaric ne vous force pas à combattre. Il préfère vous harceler en douceur sans prendre de risque."
+                "Vous parvenez à rentrer à Paris sain et sauf mais avec une armée épuisée et sans grand honneur."
+                $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
+                $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
+                jump fin_cycle
+    jump fin_cycle
 
 label invasion_alamans:
     scene bg tolbiac
     with dissolve
     "Ce que vous craigniez depuis des années a fini par vous arriver : les tribus germaniques de l'Est qu'on appelle Alamans se sont décidées à envahir les territoires francs avec une armée particulièrement nombreuse."
     "Pour l'instant c'est le territoire de vos voisins et alliés les francs du Rhin qui est touché."
+    $ SetValCarac(germains.Alamans.C_GUERRE, 1)
     play music guerre2 noloop
     "Vous levez immédiatement l'armée pour les secourir. De toute façon si vous ne le faites pas ils seront vaincus et vous serez le suivant."
 
@@ -112,7 +163,9 @@ label bataille_tolbiac:
         jump fin_cycle
 
     label victoire_alamans:
-        "A FAIRE : insérer carte conquêtes alamans (et mise à jour de la carte ctuelle)"
+        "A FAIRE : insérer carte conquêtes alamans (et mise à jour de la carte actuelle)"
         "Cette victoire vous apporte un gain de territoire mais elle a surtout l'avantage de sécuriser l'Est en neutralisant des voisins très turbulents."
         "Votre royaume n'a jamais été plus puissant et stable."
+        $ SetValCarac(germains.Alamans.C_VAINCU, 1)
+        $ SetValCarac(germains.Alamans.C_GUERRE, "")
         jump fin_cycle
