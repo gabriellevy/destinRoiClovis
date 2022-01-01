@@ -72,7 +72,7 @@ label invasion_alamans:
     with dissolve
     "Ce que vous craigniez depuis des années a fini par vous arriver : les tribus germaniques de l'Est qu'on appelle Alamans se sont décidées à envahir les territoires francs avec une armée particulièrement nombreuse."
     "Pour l'instant c'est le territoire de vos voisins et alliés les francs du Rhin qui est touché."
-    $ SetValCarac(germains.Alamans.C_GUERRE, 1)
+    $ situation_.SetValCarac(germains.Alamans.C_GUERRE, 1)
     play music guerre2 noloop
     "Vous levez immédiatement l'armée pour les secourir. De toute façon si vous ne le faites pas ils seront vaincus et vous serez le suivant."
 
@@ -166,6 +166,6 @@ label bataille_tolbiac:
         "A FAIRE : insérer carte conquêtes alamans (et mise à jour de la carte actuelle)"
         "Cette victoire vous apporte un gain de territoire mais elle a surtout l'avantage de sécuriser l'Est en neutralisant des voisins très turbulents."
         "Votre royaume n'a jamais été plus puissant et stable."
-        $ SetValCarac(germains.Alamans.C_VAINCU, 1)
-        $ SetValCarac(germains.Alamans.C_GUERRE, "")
+        $ situation_.SetValCarac(germains.Alamans.C_VAINCU, 1)
+        $ situation_.SetValCarac(germains.Alamans.C_GUERRE, "")
         jump fin_cycle

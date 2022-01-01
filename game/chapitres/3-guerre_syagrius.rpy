@@ -19,6 +19,7 @@ init -5 python:
     syagriusPasMort = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.MORT, condition.Condition.DIFFERENT)
     syagriusPasCapture = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.CAPTURE, condition.Condition.DIFFERENT)
     syagriusPasConsolide = condition.Condition("syagrius_consolide", 1, condition.Condition.DIFFERENT)
+    syagriusConsolide = condition.Condition("syagrius_consolide", 1, condition.Condition.EGAL) # ancien territoire de syagrius bien contrôlé
     # vase de soissons:
     vaseSoissonsVengeance = condition.Condition(clovis.Clovis.C_VASE_SOISSONS, 1, condition.Condition.EGAL)
     def MiseEnPlaceGuerreSyagrius():
@@ -36,10 +37,19 @@ init -5 python:
         vase_de_soissons_le_retour.AjouterCondition(vaseSoissonsVengeance)
         selecteur_.ajouterDeclencheur(vase_de_soissons_le_retour)
 
-        consolidation_syagrius = dec_clo.DecClovisU(proba.Proba(0.3, True), "consolidation_syagrius", 492)
+        consolidation_syagrius = dec_clo.DecClovis(proba.Proba(0.3, True), "consolidation_syagrius", 492)
         consolidation_syagrius.AjouterCondition(syagriusVaincu)
         consolidation_syagrius.AjouterCondition(syagriusPasConsolide)
         selecteur_.ajouterDeclencheur(consolidation_syagrius)
+
+        invasion_armorique = dec_clo.DecClovisU(proba.Proba(0.4, True), "invasion_armorique", 492)
+        invasion_armorique.AjouterCondition(syagriusVaincu)
+        invasion_armorique.AjouterCondition(syagriusConsolide)
+        selecteur_.ajouterDeclencheur(invasion_armorique)
+
+label invasion_armorique:
+    "youpi armorique"
+    jump fin_cycle
 
 label consolidation_syagrius:
     "Votre royaume est pacifié. Il est temps de le consolider en soumettant les territoires de l'ouest livrés à eux-mêmes depuis la défaite de Syagrius."
@@ -62,10 +72,6 @@ label consolidation_syagrius:
                 $ AjouterACarac(trait.Richesse.NOM, 1)
                 $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
                 jump fin_cycle
-    jump fin_cycle
-
-label invasion_armorique:
-
     jump fin_cycle
 
 label invasion_syagrius:

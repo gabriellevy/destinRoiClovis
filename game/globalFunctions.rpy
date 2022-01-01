@@ -41,7 +41,7 @@ init -2 python:
     x_fin = 650
     y_fin = 10
 
-    def SetValCarac(caracId, num):
+    def SetValCaracInt(caracId, num):
         global situation_
         valCourant = situation_.GetValCaracInt(caracId)
         if num > valCourant:
