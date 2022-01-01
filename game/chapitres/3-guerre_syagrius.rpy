@@ -18,6 +18,7 @@ init -5 python:
     syagriusPasEnGuerre = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.GUERRE, condition.Condition.DIFFERENT)
     syagriusPasMort = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.MORT, condition.Condition.DIFFERENT)
     syagriusPasCapture = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.CAPTURE, condition.Condition.DIFFERENT)
+    syagriusPasConsolide = condition.Condition("syagrius_consolide", 1, condition.Condition.DIFFERENT)
     # vase de soissons:
     vaseSoissonsVengeance = condition.Condition(clovis.Clovis.C_VASE_SOISSONS, 1, condition.Condition.EGAL)
     def MiseEnPlaceGuerreSyagrius():
@@ -37,6 +38,7 @@ init -5 python:
 
         consolidation_syagrius = dec_clo.DecClovisU(proba.Proba(0.3, True), "consolidation_syagrius", 492)
         consolidation_syagrius.AjouterCondition(syagriusVaincu)
+        consolidation_syagrius.AjouterCondition(syagriusPasConsolide)
         selecteur_.ajouterDeclencheur(consolidation_syagrius)
 
 label consolidation_syagrius:
@@ -47,13 +49,18 @@ label consolidation_syagrius:
             $ reussi = testCombat.TesterDifficulte(situation_)
             if reussi:
                 "Vous écrasez facilement les dernières poches de résistance. Votre royaume s'atend maintenant jusqu'à la Loire, jusqu'aux wisigoths."
+                $ situation_.SetValCarac("syagrius_consolide", 1)
                 $ situation_.SetValCarac(clovis.Clovis.CARTE_ACTUELLE, "bg carte493")
                 $ AfficherCarteActuelle()
                 $ AjouterACarac(trait.Richesse.NOM, 1)
                 $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
                 jump invasion_armorique
             else:
-                !! attention échec signifie que cette action doit être relancée
+                $ AfficherCarteActuelle()
+                "Cette expédition aurait du être une promenade de santé mais des romains déterminés parviennent, à force de harcèlement, à vous obliger à vous replier."
+                "Le pillage de quelques villes est une consolation mais cela reste un échec qui entame votre prestige."
+                $ AjouterACarac(trait.Richesse.NOM, 1)
+                $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
                 jump fin_cycle
     jump fin_cycle
 
