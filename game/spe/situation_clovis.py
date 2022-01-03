@@ -16,6 +16,26 @@ class SituationClovis(situation.Situation):
         situation.Situation.__init__(self, 175000)
 
     # ------------------------------------------------AFFICHAGE---------------------------------------
+    def AffichageFideliteGaule(self):
+        global debug_
+        str = u""
+        val = self.GetValCaracInt(clovis.Clovis.C_FIDELITE_GAULE)
+        if val < 0:
+            str = u"Détesté par les gaulois"
+        elif val <= 2:
+            str = u"Connu des gaulois"
+        elif val <= 4:
+            str = u"Accepté par les gaulois"
+        elif val <= 7:
+            str = u"Apprécié par les gaulois"
+        elif val <= 10:
+            str = u"Adoré par les gaulois"
+        else:
+            str = u"Vénéré par les gaulois"
+        if self.debug_:
+            return u"{} ({})".format(str, val)
+        return str
+
     def AffichageArmee(self):
         global debug_
         # armée de clovis

@@ -1550,6 +1550,7 @@ screen valeurs_traits():
     $ affDate = situation_.AffichageDate()
     $ strMetier = situation_.AffichageMetier()
     $ strReligion = situation_.AffichageReligion()
+    $ strFideliteGaule = situation_.AffichageFideliteGaule()
     # $ strQuartier = situation_.AffichageQuartier()
     $ patronyme = situation_.AffichagePatronyme()
     $ strRichesse = situation_.AffichageRichesse()
@@ -1577,7 +1578,8 @@ screen valeurs_traits():
                 text _(u"[strRichesse]")
                 text _(u"[strArmee]")
                 text _(u"[strUsurp]")
-                text _(u"[strReligion]\n")
+                text _(u"[strReligion]")
+                text _(u"[strFideliteGaule]\n")
                 text _(u"[affDate]")
             #elif interfaceMode_ == 1: # traits
             #    text _(u"[descriptionTrait]")
