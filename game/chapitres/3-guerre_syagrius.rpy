@@ -47,8 +47,64 @@ init -5 python:
         invasion_armorique.AjouterCondition(syagriusConsolide)
         selecteur_.ajouterDeclencheur(invasion_armorique)
 
+        livraison_syagrius = dec_clo.DecClovisU(proba.Proba(0.4, True), "livraison_syagrius", 487)
+        livraison_syagrius.AjouterCondition(syagriusVaincu)
+        # livraison_syagrius.AjouterCondition() # négociations diplomatiques / accords matrimoniaux ?
+        selecteur_.ajouterDeclencheur(livraison_syagrius)
+
+label livraison_syagrius:
+    "Alaric vous livre Syagrius pieds et poings liés. Vous savez que ce romain a encore des partisans dans vos terres."
+    $ testRuse = testDeCarac.TestDeCarac(trait.Ruse.NOM, 3, situation_)
+    menu:
+        "Le faire exécuter discrètement":
+            "Pas de risques inutiles avec vous. Syagrius finit égorgé et balancé dans une fosse commune. Un problème de réglé."
+            $ situation_.SetValCarac(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.MORT)
+            jump fin_cycle
+        "Le faire enfermer [testRuse.affichage_]":
+            $ reussi = testRuse.TesterDifficulte(situation_)
+            $ situation_.SetValCarac(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.CAPTURE)
+            if reussi:
+                "Syagrius finit au secret dans les geôles de Tournai. Il ne tient qu'à vous qu'il ne revoit jamais le soleil."
+                jump fin_cycle
+            else:
+                "Malheureusement le bruit que Syagrius est vivant et entre vos mains se répand. Ses partisans grondent."
+                $ RetirerACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
+                jump fin_cycle
+        "Le faire exécuter publiquement":
+            "Syagrius affronte la mort bravement face au bourreau qui le décapite devant la foule des parisiens."
+            "Ses partisans sont indignés mais n'osent réagir devant votre puissance. Un problème résolu."
+            $ situation_.SetValCarac(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.MORT)
+            $ RetirerACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
+            jump fin_cycle
+    jump fin_cycle
+
 label invasion_armorique:
-    "youpi armorique"
+    "Une fois la côte ouest atteinte et la Manche sécurisée vous vous heurtez aux romains armoricains."
+    "Ils semblent bien mieux organisés et surtout bien plus déterminés que les troupes de Syagrius."
+    "Maintenant que vous avez atteint vos objectifs de contrôler l'accès à la mer et à la Loire vous vous demandez si il est utile d'entamer une autre campagne."
+    $ testCombat = testDeCarac.TestDeCarac([clovis.Clovis.C_MILITAIRE, metier.Stratege.NOM], 6, situation_)
+    menu:
+        "Qu'allez vous faire aux aromoricains ?"
+        "Attaquer [testCombat.affichage_]":
+            $ situation_.AvanceDeXMois(2)
+            $ reussi = testCombat.TesterDifficulte(situation_)
+            if reussi:
+                "Vous envahissez le territoire et écrasez les poches de résistance sur votre chemin."
+                $ AjouterACarac(trait.Richesse.NOM, 1)
+                $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+                "Mais vous ne pouvez pas occuper ce pays hostile indéfiniment et devez retourner à otre capitale."
+                "Autant les terres de Syagrius vous restent soumises, autant les armoricains se révoltent instantanément dès que votre armée a quitté leur pays."
+                "Vous réalisez alors que leur armée était loin d'être détruite et vous devez renoncer à l'occupation de ces terres pour l'instant."
+                jump fin_cycle
+            else:
+                "Cette guerre n'est qu'une quite d'escarmouches interminables et démoralisante ou après chaque bataille perdue ou gagnée les armoricains retournent à l'abrid de leurs impénétrables forêts."
+                "Vous êtes forcé d'abandonner la conquête pour cette année pour ménager vos hommes."
+                $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
+                $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
+                jump fin_cycle
+        "Renoncer":
+            jump fin_cycle
+
     jump fin_cycle
 
 label consolidation_syagrius:

@@ -9,24 +9,19 @@ init -5 python:
     from abs.humanite import metier
 
     estPaien = condition.Condition(metier.Guerrier.NOM, trait.Trait.SEUIL_A_EXTREME, condition.Condition.INFERIEUR)
-    noyagePourAdulterePasFait = condition.Condition("noyagePourAdultereFait", 1, condition.Condition.DIFFERENT)
-    prieresPaiennesChretiennesPasFait = condition.Condition("prieresPaiennesChretiennes", 1, condition.Condition.DIFFERENT)
 
     def AjouterEvtsPaganisme():
         global selecteur_
         # punition par noyage d'adultère
-        noyagePourAdultere = declencheur.Declencheur(proba.Proba(0.05, True), "noyagePourAdultere")
-        noyagePourAdultere.AjouterCondition(noyagePourAdulterePasFait)
+        noyagePourAdultere = declencheur.DeclencheurU(proba.Proba(0.05, True), "noyagePourAdultere")
         selecteur_.ajouterDeclencheur(noyagePourAdultere)
         # victoire et prières des païens et des chrétiens
-        prieresPaiennesChretiennes = declencheur.Declencheur(proba.Proba(1, True), "prieresPaiennesChretiennes")
-        prieresPaiennesChretiennes.AjouterCondition(prieresPaiennesChretiennesPasFait)
+        prieresPaiennesChretiennes = declencheur.DeclencheurU(proba.Proba(1, True), "prieresPaiennesChretiennes")
         prieresPaiennesChretiennes.AjouterCondition(estPasRoi)
         selecteur_.ajouterDeclencheur(prieresPaiennesChretiennes)
 
 label prieresPaiennesChretiennes:
     # victoire et prières des païens et des chrétiens
-    $ situation_.SetValCarac("prieresPaiennesChretiennes", 1)
     "Aujourd'hui vous avez remporté une grande victoire aux côté de votre père Chilpéric."
     $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
     "Avec vos leudes, vos suivants, vous glorifiez Wotan dieu des batailles et priez pour que les Walkyries mènent vos guerriers tombés au combat jusqu'au Valhalla."
@@ -53,7 +48,6 @@ label prieresPaiennesChretiennes:
 
 label noyagePourAdultere:
     # intervention lors d'une noyade de femme adultère
-    $ situation_.SetValCarac("noyagePourAdultereFait", 1)
     "Alors que vous chassez en bordure des marais vous remarquez un attroupement d'où partent des pleurs et des cris."
     "En vous approchant vous ne voyez nul signe de violence mais une vingtaine de personnes au visage grave."
     "Une partie est en pleur. Parmi eux un homme jeune semble passer successiment de la rage au désespoir."

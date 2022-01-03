@@ -12,6 +12,7 @@ class DecClovis(declencheur.Declencheur):
          - une date minimum de déclenchement
         """
         declencheur.Declencheur.__init__(self, aproba, labelGoTo)
+        self.selecteur_ = None # référence vers le sélecteur qui contient ce déclencheur
 
         conditionDate = condition.Condition(temps.Date.DATE_ANNEES, dateMin, condition.Condition.SUPERIEUR_EGAL)
         self.AjouterCondition(conditionDate)
@@ -29,5 +30,7 @@ class DecClovisU(DecClovis):
 
     def executer(self):
         # cette exécution ne doit plus jamais arriver : on lui met une proba à 0 :
-        self.proba_ = proba.Proba(0)
+        # self.proba_ = proba.Proba(0)
+        if self.selecteur_ is not None:
+            self.selecteur_.declencheurs_.remove(self)
         return self.labelGoTo_
