@@ -250,7 +250,7 @@ label vase_de_soissons:
     "La ville de Soissons est pillée de fond en comble et vous en tirez, vous et vos hommes, de grandes richesses. En particulier du palais de Syagrius et des églises."
     "Une délégation de prêtres catholiques menés par un évèque vient cependant vous demander humblement de leur restituer un grand et magnifique vase sacré."
     "La règle franque veut que la distribution du butin soit tirée au sort. En tant que roi un cinquième doit vous revenir."
-    "Vous n'êtes donc aps sûr de recevoir le vase. Mais il ne s'agit que d'un vase et, en roi victorieux, vous pouvez vous permettre d'exceptionnellement prendre ce vase malgré la règle."
+    "Vous n'êtes donc pas sûr de recevoir le vase. Mais il ne s'agit que d'un vase et, en roi victorieux, vous pouvez vous permettre d'exceptionnellement prendre ce vase malgré la règle."
     menu:
         "Que faites vous ?"
         "Refuser et renvoyer l'évèque":

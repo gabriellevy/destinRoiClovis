@@ -26,13 +26,18 @@ init -5 python:
 
         # selon religion
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
+        valChrist = situation_.GetValCarac(clovis.Clovis.C_CHRISTIANISME)
         if religionActuelle == religion.Christianisme.NOM:
             evtsVides_.append("evtRien_saints")
             evtsVides_.append("evtRien_Christianisme_1")
             scenesParDefaut.append("bg priere")
         if religionActuelle == religion.Paien.NOM:
             evtsVides_.append("evtRien_paien1")
+            evtsVides_.append("evtRien_paien2")
             scenesParDefaut.append("bg chevauchee_paienne")
+            if valChrist >= 8:
+                evtsVides_.append("evtRien_paien_Christianisme_1")
+                scenesParDefaut.append("bg priere")
 
         # si gloire faible et pas marie
         marieAClothilde = situation_.GetValCarac(clovis.Clovis.C_MARIE_CLOTHILDE)
@@ -45,6 +50,7 @@ init -5 python:
         if situation_.GetValCarac(clovis.Clovis.C_ALBOFLEDE) == 1:
             evtsVides_.append("evtRien_alboflede")
 
+        # saison
         saison = situation.GetDateDuJour().GetSaison()
         if saison == temps.Date.PRINTEMPS:
             evtsVides_.append("evtRien1_printemps")
@@ -53,6 +59,12 @@ init -5 python:
             evtsVides_.append("evtRien2_automne")
             evtsVides_.append("evtRien3_automne")
 
+        # alamans
+        if situation_.GetValCarac(germains.Alamans.C_VAINCU) != 1:
+            evtsVides_.append("evtRien_alamans")
+
+
+        # -----------------------------------------------------------------------------
         if len(evtsVides_) == 0:
             evtsVides_ = ["evtRien1", "evtRien2" ]
 
@@ -66,12 +78,30 @@ init -5 python:
         # en lance un au hasard
         renpy.jump(random.choice(evtsVides_))
 
+label evtRien_paien_Christianisme_1:
+    scene bg crucifixion
+    "Vous êtes de plus en plus intéressé par le christianisme mais la crucifixion du christ vous semble toujours aussi innaceptable."
+    "Si vous et vos francs aviez été là vous auriez vengé cette injure. Alors pourquoi son père, un Dieu soit disant tout puissant n'a-t-il rien fait ?"
+    jump fin_cycle
+
+label evtRien_alamans:
+    $ AfficherCarteActuelle()
+    "Vous recevez régulièrement des rapports et des plaintes pour les exactions des alamans à l'est."
+    "Les burgondes et les francs de l'Est les contiennent pour l'instant mais tôt ou tard il faudra les calmer."
+    jump fin_cycle
+
 label evtRien_paien1:
     scene bg chevauchee_paienne
     with dissolve
     "Parfois vous vous demandez pourquoi l'empire romain qui battit autrefois les francs et même tous les peuples germains, subit maintenant tant de défaites."
     "Certains disent que depuis que les romains sont devenus chrétiens et ont supprimé les autels de la déesse de la victoire au sénat, leurs dieux les ont abandonnés."
     "Mais si cela est vrai, pourquoi les goths, qui ont abandonné Wotan et sont devenus chrétiens ariens, sont pourtant aujourd'hui les plus puissants de vos rivaux ?"
+    jump fin_cycle
+
+label evtRien_paien2:
+    scene bg chevauchee_paienne
+    with dissolve
+    "Chez les francs le roi reste seul sur son cheval blanc en première ligne au milieu de ses hommes à pied. Ainsi il inspire ses guerriers et prouve en s'exposant que Wotan le protège des traits ennemis."
     jump fin_cycle
 
 label evtRien1_automne:
