@@ -19,11 +19,16 @@ init -5 python:
         selecteur_.ajouterDeclencheur(usurpation)
 
 label usurpation:
+    play music danger noloop
     # des nobles tentent de prendre le pouvoir du roi
     $ niveauUsurpation = situation_.GetValCaracInt("niveauUsurpation")
     # plus la gloire est élevée plus il y a de chances de surmonter l'usurpation
     $ test = testDeCarac.TestDeCarac(clovis.Clovis.C_GLOIRE, niveauUsurpation, situation_)
     $ reussi = test.TesterDifficulte(situation_)
+    menu:
+        "TMP attention usurpation"
+        "Chances de réussite : [test.affichage_]":
+            pass
     if reussi:
         # usurpation évitée
         jump fin_cycle

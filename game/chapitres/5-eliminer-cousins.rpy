@@ -28,7 +28,7 @@ label ragnacaire:
     $ testRuse = testDeCarac.TestDeCarac([trait.Ruse.NOM, metier.Politique.NOM], 3, situation_)
     menu:
         "Comment l'éliminer : "
-        "Préparer l'invasion":
+        "Préparer l'invasion [testCombat.affichage_]":
             $ situation_.AvanceDeXMois(1)
             $ reussi = testCombat.TesterDifficulte(situation_)
             if reussi:
@@ -43,7 +43,7 @@ label ragnacaire:
                 $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
                 jump fin_cycle
             jump fin_cycle
-        "Provoquer la trahison de ses hommes par ruse":
+        "Provoquer la trahison de ses hommes par ruse [testRuse.affichage_]":
             $ reussi = testRuse.TesterDifficulte(situation_)
             $ situation_.AvanceDeXMois(1)
             if reussi:

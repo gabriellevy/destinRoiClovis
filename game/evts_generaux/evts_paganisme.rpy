@@ -48,6 +48,7 @@ label prieresPaiennesChretiennes:
 
 label noyagePourAdultere:
     # intervention lors d'une noyade de femme adultère
+    play music paien_sombre noloop
     "Alors que vous chassez en bordure des marais vous remarquez un attroupement d'où partent des pleurs et des cris."
     "En vous approchant vous ne voyez nul signe de violence mais une vingtaine de personnes au visage grave."
     "Une partie est en pleur. Parmi eux un homme jeune semble passer successiment de la rage au désespoir."

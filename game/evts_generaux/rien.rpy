@@ -58,6 +58,10 @@ init -5 python:
         if saison == temps.Date.PRINTEMPS:
             evtsVides_.append("evtRien1_printemps")
             musiquesAEnquiller.append("musique/Sea Season.ogg")
+        if saison == temps.Date.HIVER:
+            musiquesAEnquiller.append("musique/Dark Season.ogg")
+        if saison == temps.Date.ETE:
+            musiquesAEnquiller.append("musique/Fire Season.ogg")
         if saison == temps.Date.AUTOMNE:
             evtsVides_.append("evtRien1_automne")
             evtsVides_.append("evtRien2_automne")

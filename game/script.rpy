@@ -17,11 +17,15 @@ define audio.roi_mort = "musique/akingisdead.ogg"
 define audio.turexgloriae = "musique/turexgloriae.ogg" # baptème etc
 define audio.christ1 = "musique/journeytoabsolution.ogg"
 define audio.youpi_paien = "musique/Quite An Adventure.ogg"
+define audio.paien_sombre = "musique/Woe Alas And Alack.ogg"
 define audio.printemps = "musique/Sea Season.ogg"
+define audio.hiver = "musique/Dark Season.ogg"
+define audio.ete = "musique/Fire Season.ogg"
 define audio.guerre1 = "musique/saladinbesiegejerusalem.ogg"
 define audio.guerre2 = "musique/siegeofkerak.ogg"
 define audio.epique_principale = "musique/hornsofhattinandaftermath.ogg"
-define audio.conquetes = "musique/marchtoholyland.ogg" # march vers la terre sainte (crusader king II)
+define audio.conquetes = "musique/marchtoholyland.ogg" # marche vers la terre sainte (crusader king II)
+define audio.danger = "musique/Danger.ogg"
 
 init -10 python:
     from abs import selecteur
