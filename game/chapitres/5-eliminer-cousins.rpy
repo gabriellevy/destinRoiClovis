@@ -14,8 +14,55 @@ init -5 python:
 
     def AjouterEvtThuringie():
         global selecteur_
-        guerre_thuringie491 = dec_clo.DecClovisU(proba.Proba(0.5, True), "guerre_thuringie491", 490)
+        guerre_thuringie491 = dec_clo.DecClovisU(proba.Proba(0.4, True), "guerre_thuringie491", 490)
         selecteur_.ajouterDeclencheur(guerre_thuringie491)
+
+        ragnacaire = dec_clo.DecClovisU(proba.Proba(0.3, True), "ragnacaire", 487)
+        selecteur_.ajouterDeclencheur(ragnacaire)
+
+label ragnacaire:
+    play music guerre1 noloop
+    $ puissanceArmeeRagnacaire = 4
+    "Ragnacaire est un roi faible car ses débauches, qui vont jusqu'à l'inceste, le font détester même par ses propres hommes."
+    $ testCombat = testDeCarac.TestDeCarac([clovis.Clovis.C_MILITAIRE, metier.Stratege.NOM], puissanceArmeeRagnacaire, situation_)
+    $ testRuse = testDeCarac.TestDeCarac([trait.Ruse.NOM, metier.Politique.NOM], 3, situation_)
+    menu:
+        "Comment l'éliminer : "
+        "Préparer l'invasion":
+            $ situation_.AvanceDeXMois(1)
+            $ reussi = testCombat.TesterDifficulte(situation_)
+            if reussi:
+                "Vous écrasez la faible armée de Ragnacaire et l'exécutez promptement de vos propres mains, ainsi que son frère. Devant votre valeur, ses hommes survivants se rallient à vous sans discuter."
+                $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+                $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+                jump fin_cycle
+            else:
+                "Quoiqu'inférieures en nombre les troupes de Ragnacaire vous infligent une grave défaite. Cet échec humiliant affaiblit grandement votre crédibilité."
+                $ RetirerACarac(clovis.Clovis.C_MILITAIRE, 1)
+                $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
+                $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
+                jump fin_cycle
+            jump fin_cycle
+        "Provoquer la trahison de ses hommes par ruse":
+            $ reussi = testRuse.TesterDifficulte(situation_)
+            $ situation_.AvanceDeXMois(1)
+            if reussi:
+                "Ragnacaire est méprisé par ses propres guerriers, vous parvenez à en soudoyer suffisament pour qu'ils vous le livrent. Après quoi vous l'excutez d'un coup de hache ainsi que son frère."
+                "Ses autres hommes se rallient à vous facilement."
+                $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+                jump fin_cycle
+            else:
+                "Ragnacaire se doute de quelque chose et parvient à déjouer les pièges et éliminer vos espions. Vous vous êtes fait un ennemi mortel."
+                $ AjouterACarac(clovis.Clovis.C_USURPATION, 2)
+                jump fin_cycle
+            jump fin_cycle
+
+        "Le laisser en paix":
+            "Vous laissez Ragnacaire à ses débauches et il vous laisse à vos ambitions. Sa cour devient néanmoins un vrai nid de conspirateurs."
+            $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
+            jump fin_cycle
+
+    jump fin_cycle
 
 label guerre_thuringie491:
     play music guerre1 noloop
