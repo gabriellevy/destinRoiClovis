@@ -23,6 +23,7 @@ init -5 python:
         "evtRien1", "evtRien2", "evtRien3", "evtRien4", "evtRien5"
         ]
         scenesParDefaut = []
+        musiquesAEnquiller = []
 
         # selon religion
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
@@ -30,14 +31,16 @@ init -5 python:
         if religionActuelle == religion.Christianisme.NOM:
             evtsVides_.append("evtRien_saints")
             evtsVides_.append("evtRien_Christianisme_1")
-            scenesParDefaut.append("bg priere")
+            scenesParDefaut.append("bg crucifixion")
+            musiquesAEnquiller.append("musique/journeytoabsolution.ogg")
         if religionActuelle == religion.Paien.NOM:
             evtsVides_.append("evtRien_paien1")
             evtsVides_.append("evtRien_paien2")
             scenesParDefaut.append("bg chevauchee_paienne")
+            musiquesAEnquiller.append("musique/Quite An Adventure.ogg")
             if valChrist >= 8:
                 evtsVides_.append("evtRien_paien_Christianisme_1")
-                scenesParDefaut.append("bg priere")
+                scenesParDefaut.append("bg crucifixion")
 
         # si gloire faible et pas marie
         marieAClothilde = situation_.GetValCarac(clovis.Clovis.C_MARIE_CLOTHILDE)
@@ -54,6 +57,7 @@ init -5 python:
         saison = situation.GetDateDuJour().GetSaison()
         if saison == temps.Date.PRINTEMPS:
             evtsVides_.append("evtRien1_printemps")
+            musiquesAEnquiller.append("musique/Sea Season.ogg")
         if saison == temps.Date.AUTOMNE:
             evtsVides_.append("evtRien1_automne")
             evtsVides_.append("evtRien2_automne")
@@ -70,6 +74,10 @@ init -5 python:
 
         if len(scenesParDefaut) == 0:
             sceneParDefaut = "bg cours_merovingienne"
+
+        # ajoute une musique à la file au hasard :
+        if len(musiquesAEnquiller) != 0:
+            renpy.music.queue(random.choice(musiquesAEnquiller), clear_queue=False)
 
         # fond
         if sceneParDefaut != "":

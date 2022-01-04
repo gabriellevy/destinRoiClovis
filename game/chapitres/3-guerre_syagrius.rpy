@@ -84,7 +84,7 @@ label invasion_armorique:
     "Maintenant que vous avez atteint vos objectifs de contrôler l'accès à la mer et à la Loire vous vous demandez si il est utile d'entamer une autre campagne."
     $ testCombat = testDeCarac.TestDeCarac([clovis.Clovis.C_MILITAIRE, metier.Stratege.NOM], 6, situation_)
     menu:
-        "Qu'allez vous faire aux aromoricains ?"
+        "Qu'allez vous faire aux armoricains ?"
         "Attaquer [testCombat.affichage_]":
             $ situation_.AvanceDeXMois(2)
             $ reussi = testCombat.TesterDifficulte(situation_)

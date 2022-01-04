@@ -16,7 +16,7 @@ init -5 python:
     estPasRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.DIFFERENT)
     estRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.EGAL)
     auMoinsAnnee481 = condition.Condition(temps.Date.DATE_ANNEES, 481, condition.Condition.SUPERIEUR_EGAL)
-    
+
     def AjouterEvtAvenement():
         global selecteur_
         avenement = declencheur.Declencheur(proba.Proba(0.6, False), "avenement")
@@ -41,6 +41,7 @@ label visionChilderic:
 label avenement:
     scene bg priere
     with dissolve
+    play music roi_mort noloop
     # A FAIRE : trouver un fond pour le couronnement
     show screen valeurs_traits
     $ childeric = situation_.GetValCarac(pnj.Pnj.C_PERE)

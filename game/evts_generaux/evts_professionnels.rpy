@@ -34,7 +34,7 @@ init -5 python:
         entrainementPretre.AjouterCondition(estPasChretien)
         selecteur_.ajouterDeclencheur(entrainementPretre)
         # entrainement stratège/général
-        entrainementStratege = declencheur.Declencheur(proba.Proba(0.3, True), "entrainementStratege")
+        entrainementStratege = declencheur.Declencheur(proba.Proba(0.1, True), "entrainementStratege")
         entrainementStratege.AjouterCondition(estPasStrategeNivExtreme)
         entrainementStratege.AjouterCondition(estPasRoi) # c'est Childéric qui fait la leçon
         selecteur_.ajouterDeclencheur(entrainementStratege)
@@ -57,8 +57,8 @@ label entrainementStratege:
     # entrainement stratège/général
     scene bg tolbiac
     with dissolve
-    "Votre père vous emmène avec lui chaque fois qu'il part en campagne et ne perd pas une occasion de vous apprendre l'art de la guerre."
-    $ AjouterACarac(metier.Stratege.NOM, 2)
+    "Votre père Childéric vous emmène avec lui chaque fois qu'il part en campagne et ne perd pas une occasion de vous apprendre l'art de la guerre."
+    $ AjouterACarac(metier.Stratege.NOM, 1)
     jump fin_cycle
 
 label entrainementPolitique:
