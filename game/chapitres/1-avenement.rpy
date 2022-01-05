@@ -15,13 +15,11 @@ init -5 python:
 
     estPasRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.DIFFERENT)
     estRoi = condition.Condition(metier.Metier.C_METIER, metier.Roi.NOM, condition.Condition.EGAL)
-    auMoinsAnnee481 = condition.Condition(temps.Date.DATE_ANNEES, 481, condition.Condition.SUPERIEUR_EGAL)
 
     def AjouterEvtAvenement():
         global selecteur_
-        avenement = declencheur.Declencheur(proba.Proba(0.6, False), "avenement")
+        avenement = dec_clo.DecClovisU(proba.Proba(0.6, False), "avenement", 481)
         avenement.AjouterCondition(estPasRoi)
-        avenement.AjouterCondition(auMoinsAnnee481)
         selecteur_.ajouterDeclencheur(avenement)
         # vision de Childéric
         visionChilderic = dec_clo.DecClovisU(proba.Proba(0.4, False), "visionChilderic", 481)

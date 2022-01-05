@@ -45,6 +45,9 @@ class TestDeCarac:
         retourne le pourcentage de change que l'action réussisse étant donné  la valeur de la carac donnée chez le joueur
         et la difficulté de la tâche à accomplir
         """
+        if self.difficulte_ < 1:
+            return 100
+
         valCarac = 0
         if isinstance(self.caracs_, list):
             for carac in self.caracs_:

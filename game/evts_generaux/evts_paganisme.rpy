@@ -12,6 +12,10 @@ init -5 python:
 
     def AjouterEvtsPaganisme():
         global selecteur_
+        # divinité tutélaire
+        diviniteTutelaire = declencheur.DeclencheurU(proba.Proba(0.05, True), "diviniteTutelaire")
+        diviniteTutelaire.AjouterCondition(estPaien)
+        selecteur_.ajouterDeclencheur(diviniteTutelaire)
         # punition par noyage d'adultère
         noyagePourAdultere = declencheur.DeclencheurU(proba.Proba(0.05, True), "noyagePourAdultere")
         selecteur_.ajouterDeclencheur(noyagePourAdultere)
@@ -19,6 +23,28 @@ init -5 python:
         prieresPaiennesChretiennes = declencheur.DeclencheurU(proba.Proba(1, True), "prieresPaiennesChretiennes")
         prieresPaiennesChretiennes.AjouterCondition(estPasRoi)
         selecteur_.ajouterDeclencheur(prieresPaiennesChretiennes)
+
+label diviniteTutelaire:
+    "Vous êtes à la foi prince et prêtre des dieux de votre peuple. Tous demandent des prières et des sacrifices et tous doivent être honorés."
+    $ AjouterACarac(metier.Pretre.NOM, 1)
+    menu:
+        "Mais lequel est votre divinité tutélaire ?"
+        "Wotan le sournois et changeant dieux des batailles":
+            $ AjouterACarac(trait.Ruse.NOM, 1)
+            $ AjouterACarac(metier.Stratege.NOM, 1)
+
+        "Thor le redoutable maître du tonnerre":
+            $ AjouterACarac(trait.Courage.NOM, 1)
+            $ AjouterACarac(trait.Violence.NOM, 1)
+            $ AjouterACarac(metier.Guerrier.NOM, 1)
+            # $ AjouterACarac(metier.Chasseur.NOM, 1)
+
+        "Freya, déesse de la fertilité et du désir charnel":
+            # $ AjouterACarac(trait.Richesse.NOM, 1)
+            $ AjouterACarac(trait.Altruisme.NOM, 1)
+            $ AjouterACarac(metier.Politique.NOM, 1)
+
+    jump fin_cycle
 
 label prieresPaiennesChretiennes:
     # victoire et prières des païens et des chrétiens

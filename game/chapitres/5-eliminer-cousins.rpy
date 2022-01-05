@@ -151,7 +151,7 @@ label guerre_thuringie491:
         $ valAltruisme = situation_.GetValCaracInt(trait.Altruisme.NOM)
         menu:
             "Peut-être qu'il serait plus prudent d'éliminer aussi tous les héritiers mâles de Chararic."
-            "C'est dur mais plus prudent" if valAltruisme <= trait.Trait.SEUIL_A_PAS_EXTREME:
+            "C'est dur mais plus prudent" if valAltruisme <= trait.Trait.SEUIL_A_PAS:
                 "Vous éliminez ses enfants et tous ses neveux dont plusieurs jeunes enfants. Même les féroces francs trouvent que vous êtes allés loin et votre cruauté est connue dans toute la Gaulle."
                 "Il n'empêche que moins il y aura de nobles, surtout dans les familles rivales, plus votre trône sera assuré."
                 $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
