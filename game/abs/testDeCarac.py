@@ -53,6 +53,8 @@ class TestDeCarac:
             valCarac = valCarac / len(carac)
         else:
             valCarac = situation.GetValCaracInt(self.caracs_)
+        print("valCarac {} : ".format(valCarac)) # tmp test
+        print("self.difficulte_ {} : ".format(self.difficulte_)) # tmp test
 
         diff = [
         [ 80,  40,   0,   0,   0,   0,   0,  0,  0,  0], # -20 très handicapé
@@ -93,6 +95,7 @@ class TestDeCarac:
         [100, 100, 100, 100, 100, 100,  94, 75, 70, 45], #15 surhumain
         [100, 100, 100, 100, 100, 100, 100, 85, 80, 50] #16 dieu
         ]
+        print(" diff[valCarac+20][self.difficulte_-1] {} : ".format( diff[valCarac+20][self.difficulte_-1])) # tmp test
         return diff[valCarac+20][self.difficulte_-1]
 
     def TesterDifficulte(self, situation):

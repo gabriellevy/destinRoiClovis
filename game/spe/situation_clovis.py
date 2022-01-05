@@ -57,6 +57,22 @@ class SituationClovis(situation.Situation):
             return u"{} ({})".format(str, val)
         return str
 
+    def AffichageDiplomatie(self):
+        global debug_
+        str = u""
+        val = self.GetValCaracInt(clovis.Clovis.C_DIPLOMATIE)
+        if val < 0:
+            str = u"Roi méprisé par les autres souverains"
+        elif val <= 2:
+            str = u"Roi respecté à l'étranger"
+        elif val <= 4:
+            str = u"Roi reconnu à qui les souverains font confiance"
+        else:
+            str = u"Roi le plus respecté d'Europe"
+        if self.debug_:
+            return u"{} ({})".format(str, val)
+        return str
+
     def AffichageReligion(self):
         if self.GetValCarac(religion.Religion.C_RELIGION) == religion.Paien.NOM:
             valPretre = self.GetValCaracInt(metier.Pretre.NOM)

@@ -12,13 +12,6 @@ init -5 python:
     from chapitres.classes import germains
     from chapitres.classes import clovis
 
-    auMoinsAnnee490 = condition.Condition(temps.Date.DATE_ANNEES, 490, condition.Condition.SUPERIEUR_EGAL)
-    auMoinsAnnee492 = condition.Condition(temps.Date.DATE_ANNEES, 492, condition.Condition.SUPERIEUR_EGAL)
-    auMoinsAnnee493 = condition.Condition(temps.Date.DATE_ANNEES, 493, condition.Condition.SUPERIEUR_EGAL)
-    auMoinsAnnee495 = condition.Condition(temps.Date.DATE_ANNEES, 495, condition.Condition.SUPERIEUR_EGAL)
-    auMoinsAnnee497 = condition.Condition(temps.Date.DATE_ANNEES, 497, condition.Condition.SUPERIEUR_EGAL)
-    auMoinsAnnee498 = condition.Condition(temps.Date.DATE_ANNEES, 498, condition.Condition.SUPERIEUR_EGAL)
-    auMoinsAnnee500 = condition.Condition(temps.Date.DATE_ANNEES, 500, condition.Condition.SUPERIEUR_EGAL)
     # conditions clotilde
     decision_mariage_clotildePasFaite = condition.Condition("decision_mariage_clotilde", 1, condition.Condition.DIFFERENT)
     infos_sur_clotildePasFaite = condition.Condition("infos_sur_clotilde", 1, condition.Condition.DIFFERENT)
@@ -40,21 +33,16 @@ init -5 python:
     def AjouterEvtsClothilde():
         global selecteur_
         # premiers echos sur Clothilde
-        infos_sur_clotilde = declencheur.Declencheur(proba.Proba(0.7, True), "infos_sur_clotilde")
-        infos_sur_clotilde.AjouterCondition(auMoinsAnnee490)
-        infos_sur_clotilde.AjouterCondition(infos_sur_clotildePasFaite)
+        infos_sur_clotilde = dec_clo.DecClovisU(proba.Proba(0.7, True), "infos_sur_clotilde", 490)
         selecteur_.ajouterDeclencheur(infos_sur_clotilde)
         # décision du mariage
-        decision_mariage = declencheur.Declencheur(proba.Proba(0.7, True), "decision_mariage")
-        decision_mariage.AjouterCondition(decision_mariage_clotildePasFaite)
-        decision_mariage.AjouterCondition(auMoinsAnnee492)
+        decision_mariage = dec_clo.DecClovisU(proba.Proba(0.7, True), "decision_mariage", 492)
         decision_mariage.AjouterCondition(gloireAuMoins5)
         decision_mariage.AjouterCondition(infos_sur_clotildeFaite)
         selecteur_.ajouterDeclencheur(decision_mariage)
         # mariage
-        mariage = declencheur.Declencheur(proba.Proba(0.7, True), "mariage")
+        mariage = dec_clo.DecClovisU(proba.Proba(0.7, True), "mariage", 492)
         mariage.AjouterCondition(fiance_a_clotilde)
-        mariage.AjouterCondition(auMoinsAnnee492)
         mariage.AjouterCondition(pas_marie_a_clotilde)
         selecteur_.ajouterDeclencheur(mariage)
         # soutien de Clotilde
@@ -63,34 +51,29 @@ init -5 python:
         soutienDeClotilde.AjouterCondition(estPasChretien)
         selecteur_.ajouterDeclencheur(soutienDeClotilde)
         # 1er enfant
-        enfant1 = declencheur.Declencheur(proba.Proba(0.3, True), "enfant1")
+        enfant1 = dec_clo.DecClovisU(proba.Proba(0.3, True), "enfant1", 493)
         enfant1.AjouterCondition(marie_a_clotilde)
         enfant1.AjouterCondition(a0enfants)
-        enfant1.AjouterCondition(auMoinsAnnee493)
         selecteur_.ajouterDeclencheur(enfant1)
         # 2ème enfant
-        enfant2 = declencheur.Declencheur(proba.Proba(0.3, True), "enfant2")
+        enfant2 = dec_clo.DecClovisU(proba.Proba(0.3, True), "enfant2", 495)
         enfant2.AjouterCondition(marie_a_clotilde)
         enfant2.AjouterCondition(a1enfants)
-        enfant2.AjouterCondition(auMoinsAnnee495)
         selecteur_.ajouterDeclencheur(enfant2)
         # 3ème enfant
-        enfant3 = declencheur.Declencheur(proba.Proba(0.3, True), "enfant3")
+        enfant3 = dec_clo.DecClovisU(proba.Proba(0.3, True), "enfant3", 497)
         enfant3.AjouterCondition(marie_a_clotilde)
         enfant3.AjouterCondition(a2enfants)
-        enfant3.AjouterCondition(auMoinsAnnee497)
         selecteur_.ajouterDeclencheur(enfant3)
         # 4ème enfant
-        enfant4 = declencheur.Declencheur(proba.Proba(0.3, True), "enfant4")
+        enfant4 = dec_clo.DecClovisU(proba.Proba(0.3, True), "enfant4", 498)
         enfant4.AjouterCondition(marie_a_clotilde)
         enfant4.AjouterCondition(a3enfants)
-        enfant4.AjouterCondition(auMoinsAnnee498)
         selecteur_.ajouterDeclencheur(enfant4)
         # 5ème enfant
-        enfant5 = declencheur.Declencheur(proba.Proba(0.3, True), "enfant5")
+        enfant5 = dec_clo.DecClovisU(proba.Proba(0.3, True), "enfant5", 500)
         enfant5.AjouterCondition(marie_a_clotilde)
         enfant5.AjouterCondition(a4enfants)
-        enfant5.AjouterCondition(auMoinsAnnee500)
         selecteur_.ajouterDeclencheur(enfant5)
 
 label enfant1:

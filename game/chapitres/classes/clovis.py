@@ -2,6 +2,7 @@ class Clovis:
     # caracs personnelles spécifiques de Clovis
     C_CHRISTIANISME = u"Foi chrétienne" # (de Clovis)
     C_GLOIRE = u"Gloire" # plus elle est élevée moins il y a de chances d'usurpation. 5 = digne de Clotilde (pour l'instant)
+    C_DIPLOMATIE = u"Diplomatie" # statut et fiabilité de Clovis vis à vis des autres germains et de l'empire d'Orient
 
     # et de son royaume mises en place en début de partie
     C_MILITAIRE = u"Puissance de l'Armée de Clovis"
@@ -21,7 +22,7 @@ class Clovis:
     # Famille
     C_FIANCE_CLOTHILDE = u"Fiancé à CLothilde"
     C_MARIE_CLOTHILDE = u"Marié à CLothilde"
-    C_ALBOFLEDE = u"Alboflède" # 1 => vivante
+    C_ALBOFLEDE = u"Alboflède" # 1 => vivante (ne pas confondre avec Aldoflède marié à Théodoric)
     C_NB_ENFANTS = u"Nombre d'enfants" # nombre d'enfants faits avec Clothilde
 
     # Chararic

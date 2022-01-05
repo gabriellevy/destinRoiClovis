@@ -8,11 +8,10 @@ init -5 python:
     from abs.humanite import metier
     from chapitres.classes import clovis
 
-    # si l'usrpation et à plus de 0 il y a risque de soulèvement contre Clovis
+    # si l'usurpation et à plus de 0 il y a risque de soulèvement contre Clovis
     ilYARisqueDUsurpation = condition.Condition(clovis.Clovis.C_USURPATION, 0, condition.Condition.SUPERIEUR)
     def AjouterEvtsUsurpation():
         global selecteur_
-        # entrainement guerrier
         usurpation = declencheur.Declencheur(proba.Proba(0.07, True), "usurpation")
         usurpation.AjouterCondition(ilYARisqueDUsurpation)
         usurpation.AjouterCondition(estRoi)
