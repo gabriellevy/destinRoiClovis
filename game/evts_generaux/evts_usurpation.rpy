@@ -51,7 +51,7 @@ label usurpation:
             $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
         elif niveauUsurpation == 2:
             $ situation_.SetValCarac("niveauUsurpation", 3)
-            $ usurpateur = "Sigesbert" # A FAIRE : générateur de nom francs
+            $ usurpateur = francs_.CreerPrenom(True)
             "Vous êtes réveillé en pleine nuit par des bruits de combats."
             "Vous sautez hors de votre lit pour décrocher votre francisque mais à peine retourné vers la porte l'arme à la main dix guerriers en armes ont déjà pénétré dans votre chambre."
             "Ils sont menés par le prince [usurpateur], votre pire ennemi dans la nobless franque."

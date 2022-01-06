@@ -39,12 +39,38 @@ class Francs(culture.Culture):
         génère un patronyme correspondant à la coterie en question
         """
         if masculin:
-            return random.choice(Francs.PRENOMS_M)
+            return random.choice(Francs.PRENOMS_M_CLO)
         else:
-            return random.choice(Francs.PRENOMS_F)
+            return random.choice(Francs.PRENOMS_F_CLO)
 
     NOMS = []
 
+    PRENOMS_M_CLO = [
+    u"Aega", u"Amalaric", u"Agilulf", u"Athaulf", u"Ascaric", u"Arbogast", u"Arnulf", u"Adalgisel", u"Ansbert",
+    u"Berchaire", u"Bertrand", u"Bauto", u"Bisin",
+    u"Childebert", u"Childéric", u"Clotaire", u"Childebrand", u"Carloman", u"Clodion", u"Chararic", u"Clovis", u"Clodomir",
+    u"Caribert", u"Cloud", u"Carl", u"Cunipert",
+    u"Dagobert", u"Drogon",
+    u"Erchinald", u"Ébroïn", u"Éginhard", u"Eudes", u"Euric", u"Edobich",
+    u"Frégédaie", u"Flaochaud",
+    u"Grimoald", u"Gislemar", u"Grippan", u"Grégoire", u"Gondemar", u"Gondehaut", u"Gondicaire", u"Genséric", u"Genobaud",
+    u"Godegésile", u"Gundioch", u"Gunthar", u"Gontran", u"Hainmar", u"Hilaire", u"Hugue", u"Ingomer", u"Karl",
+    u"Leudaste", u"Liutpraud", u"Léovigilde", u"Martin", u"Mérovée", u"Marcomir", u"Mallobaude",
+    u"Mérogaise", u"Mérobaude", u"Norbert", u"Nibelung", u"Otton", u"Odoacre", u"Péppin", u"Pharamond",
+    u"Radulf", u"Ragenfeld", u"Rikulf",u"Récarède", u"Richimir", u"Ricimer", u"Ragnachar", u"Richomer",
+    u"Sigebert", u"Sigismond", u"Sunno", u"Sigismer", u"Thierry", u"Théudoald", u"Théodoric", u"Thorismond",
+    u"Théodomir", u"Theudebert", u"Wulfoad", u"Waraton", u"Wallia"
+    ]
+    PRENOMS_F_CLO = [
+    u"Alpaïde", u"Axyla", u"Alboflède", u"Aldoflède", u"Audoflède", u"Arégonde", u"Andagesme",
+    u"Batilde", u"Brunehaut", u"Basine", u"Barthe", u"Bilichilde", u"Begga",
+    u"Clotilde", u"Carétène", u"Chrona", u"Chlodoswinthe", u"Eudoxie", u"Frédégonde",
+    u"Gertrude", u"Geneviève", u"Geroncia", u"Galswinthe", u"Hiltrude", u"Ingonde",
+    u"Lanthilde", u"Lantechilde", u"Marcovège", u"Nantilde", u"Plectrude", u"Radegonde",
+    u"Swanahilde"
+    ]
+
+    # ceux là viennent d'internet, ils sont moins orientés réalistes pour l'époque de Clovis
     PRENOMS_M = [
     u"Abbo",u"Abrahil",u"Abram",u"Adalard",u"Adalbert",u"Adalbertus",u"Adaldag",u"Adalgrimus",u"Adalhaid",u"Adalhard",u"Adalolf",u"Adelard",u"Aega",u"Ageric",u"Agilbert",u"Agilfride",u"Agiulf",u"Agobard",u"Aigulf",u"Alberic",u"Aldedramnus",u"Aldgisl",u"Allowin",u"Amalricus",u"Amand",u"Amator",u"Andica",u"Angegisis",u"Angilbart",u"Angilbert",u"Anno",u"Ansegisel",u"Anskar",u"Ansovald",u"Arbitio",u"Arbogast",u"Arbogastes",u"Arculf",u"Aregisel",u"Arnegisel",u"Arnold",u"Arnoul",u"Arnulf",u"Artaud",u"Asselin",u"Atacinus",u"Audoen",u"Audomar",u"Audoneus",u"Audovald",u"Audramnus",u"Austregisel",u"Avremarus",u"Badegisel",u"Balderic",u"Baldrick",u"Baudry",u"Baugulf",u"Bauto",u"Bavo",u"Benild",u"Berchar",u"Berengar",u"Berenger",u"Bernard",u"Bernardus",u"Bernhard",u"Berno",u"Bero",u"Bertelis",u"Berthaire",u"Berthefried",u"Bertin",u"Bertlinus",u"Bertram",u"Bertramnus",u"Bertulf",u"Besso",u"Birinus",u"Blutmund",u"Boso",u"Bovo",u"Brice",u"Britius",u"Brocard",u"Bruno",u"Burchard",u"Butilin",u"Carloman",u"Cassyon",u"Ceslinus",u"Ceufroy",u"Chararic",u"Charibert",u"Charles",u"Cheldric",u"Childebert",u"Childebrand",u"Childeric",u"Chilperic",u"Chlodion",u"Chlodmer",u"Chlodomer",u"Chlodowig",u"Chlodwig",u"Chlotar",u"Chramnesind",u"Chrodegang",u"Clodio",u"Clodomir",u"Clotaire",u"Clothair",u"Cloud",u"Clovis",u"Conrad",u"Corbinian",u"Corbus",u"Creatus",u"Cyr",u"Cyricus",u"Dado",u"Dagaric",u"Dagobert",u"Dalfin",u"Dietrich",u"Dodo",u"Dreux",u"Drogo",u"Drogon",u"Dudon",u"Durand",u"Ebbo",u"Eberhard",u"Eberulf",u"Ebregisel",u"Ebroin",u"Ebrulf",u"Egide",u"Einhard",u"Electeus",u"Electus",u"Emme",u"Emmeran",u"Emmon",u"Engelbert",u"Engilbert",u"Enguerrand",u"Enurchus",u"Eracle",u"Erard",u"Erchinoald",u"Erenfried",u"Eudes",u"Euric",u"Evrard",u"Evroul",u"Evroult",u"Farabert",u"Fardulf",u"Faro",u"Faroardus",u"Faroinus",u"Feremundus",u"Feroardus",u"Flodoard",u"Floribert",u"Folcard",u"Folmar",u"Foroenus",u"Fredegar",u"Fridolin",u"Fridugis",u"Frobertus",u"Frothardus",u"Frotlaicus",u"Fulbert",u"Fulcaire",u"Fulk",u"Fulrad",u"Gararic",u"Garivald",u"Gaudulfus",u"Gaujoinus",u"Gausbertus",u"Gausboldus",u"Gautmarus",u"Gedalbertus",u"Gedalcaus",u"Gerbert",u"Gereon",u"Gerold",u"Gifemund",u"Gilbert",u"Giselbert",u"Giseler",u"Gislevertus",u"Giso",u"Godalbertus",u"Godobald",u"Godomar",u"Godun",u"Goisfrid",u"Gondulph",u"Goscelin",u"Gouzlim",u"Gozbert",u"Gozolon",u"Griffon",u"Grifo",u"Grimald",u"Grimbald",u"Grimoald",u"Guadulfus",u"Guido",u"Gundobad",u"Gundovald",u"Gunthar",u"Guntram",u"Guntramn",u"Hagen",u"Haldemarus",u"Halinard",u"Hartgard",u"Hartmut",u"Hartnid",u"Helinand",u"Helisachar",u"Heribert",u"Hildebald",u"Hildebold",u"Hildeboldus",u"Hildegaudus",u"Hildeprand",u"Hildevoldus",u"Hildoinus",u"Hilduin",u"Hincmar",u"Hlodver",u"Hrodbert",u"Hubert",u"Huebald",u"Humbert",u"Hunald",u"Imbert",u"Imnachar",u"Imninon",u"Ingalbertus",u"Ingelram",u"Ingomer",u"Ingund",u"Jocelin",u"Karlmann",u"Lambert",u"Lanfranc",u"Lantbertus",u"Laudus",u"Lebuin",u"Ledger",u"Leger",u"Leodegar",u"Letard",u"Leudast",u"Leufred",u"Leufroy",u"Leutfrid",u"Leuthard",u"Leuthere",u"Liudger",u"Liudhard",u"Liudolf",u"Lo",u"Lothar",u"Ludger",u"Lul",u"Lull",u"Magnachar",u"Magneric",u"Maiuel",u"Maixent",u"Majorian",u"Malaric",u"Mallobaudes",u"Mansuetus",u"Marachar",u"Maraulf",u"Marcomir",u"Marcoul",u"Marellus",u"Martinus",u"Matfrid",u"Mauger",u"Maurifius",u"Medard",u"Meginhard",u"Merobaudes",u"Merovech",u"Monulph",u"Munderic",u"Nevelung",u"Nibelung",u"Nithard",u"Norbert",u"Nordbert",u"Notger",u"Notker",u"Odger",u"Odilo",u"Odilon",u"Odo",u"Odulf",u"Omer",u"Orderic",u"Otbert",u"Otker",u"Otto",u"Otton",u"Ouen",u"Ouus",u"Pacatian",u"Pair",u"Pancras",u"Panteleon",u"Paschal",u"Pepin",u"Philibert",u"Piligrim",u"Pippin",u"Poppo",u"Priarios",u"Puvis",u"Radbod",u"Radigis",u"Ragenard",u"Ragenardus",u"Ragenaus",u"Ragnachar",u"Ragnfred",u"Ragno",u"Ramnulf",u"Rathar",u"Rathier",u"Ratold",u"Razo",u"Reginald",u"Reginar",u"Reginard",u"Remacle",u"Remi",u"Reolus",u"Ricbodo",u"Ricchar",u"Ricfried",u"Richer",u"Richomer",u"Richomeres",u"Rigunth",u"Riquier",u"Rothad",u"Samo",u"Samson",u"Sergius",u"Sichar",u"Sicho",u"Siclandus",u"Sicleardus",u"Siclevoldus",u"Siegfried",u"Sigebert",u"Sigefroy",u"Sigeric",u"Sigibert",u"Sigismund",u"Sinopus",u"Suger",u"Suidbert",u"Suidger",u"Sunnegisil",u"Sunno",u"Syagrius",u"Tassilo",u"Taurin",u"Tescelin",u"Thankmar",u"Thegan",u"Theodard",u"Theodebert",u"Theodemir",u"Theodon",u"Theodore",u"Theodoric",u"Theodulf",u"Theodulph",u"Theodwin",u"Theoto",u"Theudebald",u"Theudebert",u"Theuderic",u"Theutgaud",u"Thierry",u"Thietmar",u"Trutgaudus",u"Turpin",u"Unroch",u"Vedast",u"Vicelin",u"Vigor",u"Vulmar",u"Waiofar",u"Wala",u"Walaric",u"Walcaud",u"Waldolanus",u"Waleran",u"Waltgaud",u"Wandregisel",u"Wandregisilus",u"Wandrille",u"Warmann",u"Wazo",u"Welf",u"Werinbert",u"Wibert",u"Wichmann",u"Wido",u"Willehad",u"Willibald",u"Willibrord",u"Willichar",u"Wolbodo",u"Wulfhard",u"Wulfram",u"Zwentibold",
     u"Alphonse", u"Amédée", u"Arnaud", u"Arthur", u"udoin", u"Baudoin", u"Baudouin",
