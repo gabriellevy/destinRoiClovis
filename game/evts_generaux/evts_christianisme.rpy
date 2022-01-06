@@ -16,6 +16,31 @@ init -5 python:
         vaast.AjouterCondition(estPaien)
         vaast.AjouterCondition(alamansVaincus)
         selecteur_.ajouterDeclencheur(vaast)
+        global selecteur_
+        # rencontre de Saint Rémi
+        remi = dec_clo.DecClovisU(proba.Proba(0.3, True), "remi", 496)
+        remi.AjouterCondition(estPaien)
+        selecteur_.ajouterDeclencheur(remi)
+
+label remi:
+    "Le plus cher voeu de Clothilde est votre conversion au catholicisme. Mais ses arguments ne vous ont jamais vraiment convaincu."
+    "Elle a donc fait venir l'évèque Rémi de Reims. En secret car elle craint les réactions de vos guerriers francs païens."
+    "Ce Rémi est un brave homme avec qui vous avez souvent correspondu. Il est de bon conseil et vous aide grandement à stabiliser sa région."
+    menu:
+        "Il est néanmoins dangereux de laisser se répandre le bruit que les gaulois tentent de vous convertir."
+        "Accepter de lui parler en secret":
+            "Rémi vous parle avec patience et douceur des heures durant. Imperciptiblement il vous énonce le Credo puis vous commencer le catéchuménat."
+            $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 4)
+        "Le prendre comme conseiller":
+            "Cette nomination fait beaucoup jaser. Beaucoup de francs, surtout nobles, affirment que vous êtes secrètement devenu chrétien et vivez sous la coupe de votre femme."
+            $ AjouterACarac(clovis.Clovis.C_USURPATION, 2)
+            "Rémi fait néanmoins un excellent conseiller. La gestion s'améliore et la fidélité de la Gaulle aussi."
+            $ AjouterACarac(trait.Richesse.NOM, 1)
+            $ AjouterACarac(clovis.Clovis.C_FIDELITE_GAULE, 2)
+        "Le renvoyer dans son diocèse":
+            "Rémi est dévôt mais raisonnable, il n'insiste pas malgré sa déception et part sur le champs."
+            $ RetirerACarac(clovis.Clovis.C_CHRISTIANISME, 1)
+    jump fin_cycle
 
 label vaast:
     "Alors que vous chevauchez sur vos terres vous passez près d'une petite cabane en bordure de la forêt."
