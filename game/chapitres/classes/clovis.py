@@ -14,6 +14,7 @@ class Clovis:
     # $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
     # $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
     C_FIDELITE_GAULE = u"Fidélité des galloromains" # plus c'est élevé plus les galloromains sont fidèles à Clovis
+    C_LOI_SALIQUE = u"Loi salique" # 1 si la loi salique a été promulguée
 
     # événements spéciaux
     C_VASE_SOISSONS = u"Vase de soissons" # 1 si l'histoire réelle est bien suivie

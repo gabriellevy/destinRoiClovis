@@ -37,6 +37,8 @@ init -5 python:
         if religionActuelle == religion.Paien.NOM:
             evtsVides_.append("evtRien_paien1")
             evtsVides_.append("evtRien_paien2")
+            evtsVides_.append("evtRien_paien3")
+            evtsVides_.append("evtRien_paien4")
             scenesParDefaut.append("bg chevauchee_paienne")
             musiquesAEnquiller.append("musique/Quite An Adventure.ogg")
             if valChrist >= 8:
@@ -51,8 +53,13 @@ init -5 python:
                 evtsVides_.append("evtRien_pasMarie")
 
         # alboflède
-        if situation_.GetValCarac(clovis.Clovis.C_ALBOFLEDE) == 1:
+        if situation_.GetValCaracInt(clovis.Clovis.C_ALBOFLEDE) == 1:
             evtsVides_.append("evtRien_alboflede")
+
+        # loi salique promulguée
+        if situation_.GetValCaracInt(clovis.Clovis.C_LOI_SALIQUE) == 1:
+            evtsVides_.append("evtRien_loi_salique_1")
+            evtsVides_.append("evtRien_loi_salique_2")
 
         # saison
         saison = situation.GetDateDuJour().GetSaison()
@@ -91,6 +98,22 @@ init -5 python:
         # en lance un au hasard
         renpy.jump(random.choice(evtsVides_))
 
+label evtRien_loi_salique_1:
+    $ femme = francs_.CreerPrenom(False)
+    $ homme = francs_.CreerPrenom(True)
+    "[femme] a été reconnue coupable de l'empoisonnement de [homme] par potion magique. Elle voulait apparemment le rendre stérile par vengeance."
+    "Il est en piteux état mais se remet, espérons qu'il pourra encore procréer. La coupable doit lui payer l'énorme somme de 200 sous stipulée dans la loi salique."
+    "Autrement il aura légalement le droit de se venger. Comme elle n'a pas les moyens de payer il inévitable que [homme] ou un membre de son clan se venge tôt ou tard."
+    jump fin_cycle
+
+label evtRien_loi_salique_2:
+    $ perso1 = francs_.CreerPrenom(True)
+    $ perso2 = francs_.CreerPrenom(True)
+    "[perso1] a coupé la main de [perso2] dans une rixe d'ivrognes. [perso2] est grandement diminué et sa famille a le droit d'invoquer la faide (vendetta) pour se venger."
+    "La loi salique stipule tout de même que [perso1] doit payer 100 sous de dédomagement et que si [perso2] accepte la faide est annulée."
+    "Comme [perso2] est diminué et n'a qu'une famille faible et peu nombreuse il préfère accepter le dédomagement."
+    jump fin_cycle
+
 label evtRien_paien_Christianisme_1:
     scene bg crucifixion
     "Vous êtes de plus en plus intéressé par le christianisme mais la crucifixion du christ vous semble toujours aussi innaceptable."
@@ -115,6 +138,19 @@ label evtRien_paien2:
     scene bg chevauchee_paienne
     with dissolve
     "Chez les francs le roi reste seul sur son cheval blanc en première ligne au milieu de ses hommes à pied. Ainsi il inspire ses guerriers et prouve en s'exposant que Wotan le protège des traits ennemis."
+    jump fin_cycle
+
+label evtRien_paien3:
+    scene bg chevauchee_paienne
+    with dissolve
+    "Les chrétiens désapprouvent fermement l'incinération des défunts que vos francs pratiquent régulièrement. Vous ne comprenez guère leurs arguments."
+    jump fin_cycle
+
+label evtRien_paien4:
+    scene bg chevauchee_paienne
+    with dissolve
+    "Vous avez eu récemment une suite de coups du sort préocuppants. Ils pourrait s'agir de malédictions lancées par un de vos ennemis."
+    "Vous faites fabriquer des objets marqués de runes par vos forgerons et vos magiciens."
     jump fin_cycle
 
 label evtRien1_automne:
