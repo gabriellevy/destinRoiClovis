@@ -20,7 +20,7 @@ init -5 python:
         sceneParDefaut = ""
         # régénère les événements compatibles avec la situation
         evtsVides_ = [
-        "evtRien1", "evtRien2", "evtRien3", "evtRien4", "evtRien5"
+        "evtRien1", "evtRien2", "evtRien3", "evtRien4", "evtRien5", "evtRien6", "evtRien7"
         ]
         scenesParDefaut = []
         musiquesAEnquiller = []
@@ -175,6 +175,19 @@ label evtRien4:
 label evtRien5:
     with Dissolve(.5)
     "Aujourd'hui vous avez dû rédiger une importante lettre de votre main. Vous scellez la lettre de votre sceau grâce à votre anneau sigillaire."
+    jump fin_cycle
+
+label evtRien6:
+    with Dissolve(.5)
+    "Les gaulois sont peu combatifs et donc souvent méprisés par votre peuple car soumis et failes à dominer."
+    "Vous devez néanmoins reconnaître qu'en artisanat et architecture ils sont largement supérieurs."
+    "Ce sont des céramistes gaulois que vous chargez de la fabrication des bouteilles, cruches, bols et assiettes de votre palais car leur qualité est nettement supérieure."
+    jump fin_cycle
+
+label evtRien7:
+    scene bg chasse
+    with Dissolve(.5)
+    "Vous vous faites construire un palais secondaire en bordure de forêt. Ainsi vous pourrez facilement aller chasser dès que l'envie vous en prendra."
     jump fin_cycle
 
 label evtRien_pasMarie:
