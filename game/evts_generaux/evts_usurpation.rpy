@@ -10,6 +10,8 @@ init -5 python:
 
     # si l'usurpation et à plus de 0 il y a risque de soulèvement contre Clovis
     ilYARisqueDUsurpation = condition.Condition(clovis.Clovis.C_USURPATION, 0, condition.Condition.SUPERIEUR)
+    usurpationPlusQue2 = condition.Condition(clovis.Clovis.C_USURPATION, 2, condition.Condition.SUPERIEUR)
+    usurpationPlusQue4 = condition.Condition(clovis.Clovis.C_USURPATION, 4, condition.Condition.SUPERIEUR)
     def AjouterEvtsUsurpation():
         global selecteur_
         usurpation = declencheur.Declencheur(proba.Proba(0.07, True), "usurpation")
@@ -20,7 +22,7 @@ init -5 python:
 label usurpation:
     play music danger noloop
     # des nobles tentent de prendre le pouvoir du roi
-    $ niveauUsurpation = situation_.GetValCaracInt("niveauUsurpation")
+    $ niveauUsurpation = situation_.GetValCaracInt("niveauUsurpation") + 3
     # plus la gloire est élevée plus il y a de chances de surmonter l'usurpation
     $ test = testDeCarac.TestDeCarac(clovis.Clovis.C_GLOIRE, niveauUsurpation, situation_)
     $ reussi = test.TesterDifficulte(situation_)

@@ -6,7 +6,11 @@ class Clovis:
 
     # et de son royaume mises en place en début de partie
     C_MILITAIRE = u"Puissance de l'Armée de Clovis"
-    C_USURPATION = u"Risque d'ursupation" # plus c'est élevé plus Clovis risque d'être chassé du pouvoir => cf evts_usurpation.rpy
+    # C_USURPATION plus c'est élevé plus Clovis risque d'être chassé du pouvoir => cf evts_usurpation.rpy
+    # 0 ou moins = aucun danger
+    # 1 à 2 tensions
+    # 5+ très grand danger !
+    C_USURPATION = u"Risque d'ursupation"
     # $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
     # $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
     C_FIDELITE_GAULE = u"Fidélité des galloromains" # plus c'est élevé plus les galloromains sont fidèles à Clovis

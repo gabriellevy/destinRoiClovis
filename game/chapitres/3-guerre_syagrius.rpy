@@ -244,6 +244,9 @@ label bataille_soisson_2:
     $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
     # fin de la guerre (en théorie)
     $ situation_.SetValCarac(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.VAINCU)
+    $ situation_.SetValCarac(clovis.Clovis.CARTE_ACTUELLE, "bg carte486")
+    $ AfficherCarteActuelle()
+    "Vous vous emparez d'une grande partie de son territoire et en particulier de Reims, Soissons et Paris." 
     jump vase_de_soissons
 
 label vase_de_soissons:

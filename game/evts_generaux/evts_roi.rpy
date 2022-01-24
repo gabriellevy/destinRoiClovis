@@ -3,6 +3,7 @@ init -5 python:
     from abs import declencheur
     from abs import selecteur
     from abs import proba
+    from abs import modifProba
     from abs import condition
     from abs.humanite import trait
     from abs.humanite import metier
@@ -22,6 +23,29 @@ init -5 python:
         gestionPillage = declencheur.Declencheur(proba.Proba(0.02, True), "gestionPillage")
         gestionPillage.AjouterCondition(estRoi)
         selecteur_.ajouterDeclencheur(gestionPillage)
+        # antrustions
+        probaAntrustion = proba.Proba(0.03, True)
+        modifProbaAntrustion = modifProba.ModifProba(0.08, usurpationPlusQue4)
+        probaAntrustion.ajouterModifProba(modifProbaAntrustion)
+        antrustions = declencheur.Declencheur(probaAntrustion, "antrustions")
+        antrustions.AjouterCondition(estRoi)
+        antrustions.AjouterCondition(usurpationPlusQue2)
+        selecteur_.ajouterDeclencheur(antrustions)
+
+label antrustions:
+    scene bg cours_merovingienne
+    with dissolve
+    "Les francs sont mécontants, vous vous sentez menacé."
+    "Peut-être est-ce le moment de nommer de nouveaux antrustions. Ces huerriers d'élite de confiance ont des privilèges divers et sont bien payés."
+    "Ils sont surtout si fidèles qu'ils feront barrage de leur corps pour vous protéger."
+    menu:
+        "Engager des antrustions ?"
+        "Oui":
+            $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
+            $ RetirerACarac(trait.Richesse.NOM, 1)
+        "Non":
+            jump fin_cycle
+    jump fin_cycle
 
 label gestionPillage:
     scene bg cours_merovingienne
