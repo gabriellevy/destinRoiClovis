@@ -20,7 +20,8 @@ init -5 python:
         sceneParDefaut = ""
         # régénère les événements compatibles avec la situation
         evtsVides_ = [
-        "evtRien1", "evtRien2", "evtRien3", "evtRien4", "evtRien5", "evtRien6", "evtRien7"
+        "evtRien1", "evtRien2", "evtRien3", "evtRien4", "evtRien5", "evtRien6", "evtRien7",
+        "evtRien8", "evtRien9", "evtRien10", "evtRien11", "evtRien12"
         ]
         scenesParDefaut = []
         musiquesAEnquiller = []
@@ -188,6 +189,32 @@ label evtRien7:
     scene bg chasse
     with Dissolve(.5)
     "Vous vous faites construire un palais secondaire en bordure de forêt. Ainsi vous pourrez facilement aller chasser dès que l'envie vous en prendra."
+    jump fin_cycle
+
+label evtRien8:
+    with Dissolve(.5)
+    "Parmi les coutumes romaines les jeux de cirque sont toujours aussi populaires, même chez les francs."
+    "Certes ceux qui se donnent en Gaule de nos jours sont loin d'être somptueux comme à Rome. Mais vous avez les moyens d'organiser des courses de char et même des combats de gladiateurs."
+    jump fin_cycle
+
+label evtRien9:
+    with Dissolve(.5)
+    "Les marchands du sud amènent dans vos marchés des machandises exotiques prisées : huile d'olives, soieries, épices..."
+    jump fin_cycle
+
+label evtRien10:
+    with Dissolve(.5)
+    "Les marchands du nord, de plus en plus nombreux, amènent sur vos marchés du bois, des tissus, des esclaves..."
+    jump fin_cycle
+
+label evtRien11:
+    with Dissolve(.5)
+    "Sur le modèle de l'empire romain vos serviteurs tiennent des comptes écris détaillés des opérations financières du royaume."
+    jump fin_cycle
+
+label evtRien12:
+    with Dissolve(.5)
+    "Les pirates esclavagistes ont du avoir de beaux succès en ratissant les côtes de la manche. Il y a une énorme quantité d'esclaves angles et saxons sur les marchés cette année."
     jump fin_cycle
 
 label evtRien_pasMarie:
