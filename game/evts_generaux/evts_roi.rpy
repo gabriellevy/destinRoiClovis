@@ -9,6 +9,7 @@ init -5 python:
     from abs.humanite import metier
     from chapitres.classes import clovis
 
+    fideliteGaulePlusQue2 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 2, condition.Condition.SUPERIEUR)
     def AjouterEvtsRoi():
         global selecteur_
         # remplacement de comte
@@ -31,11 +32,23 @@ init -5 python:
         antrustions.AjouterCondition(estRoi)
         antrustions.AjouterCondition(usurpationPlusQue2)
         selecteur_.ajouterDeclencheur(antrustions)
+        # impôts
+        impots = declencheur.Declencheur(proba.Proba(0.04, True), "impots")
+        impots.AjouterCondition(estRoi)
+        impots.AjouterCondition(fideliteGaulePlusQue2)
+        selecteur_.ajouterDeclencheur(impots)
+
+label impots:
+    scene bg cours_merovingienne
+    with dissolve
+    "Grâce à vos efforts en leur faveur els galloromains vous sont favorables et suivent vos lois. Les impôts rentrent."
+    $ AjouterACarac(trait.Richesse.NOM, 1)
+    jump fin_cycle
 
 label antrustions:
     scene bg cours_merovingienne
     with dissolve
-    "Les francs sont mécontants, vous vous sentez menacé."
+    "Les francs sont mécontents, vous vous sentez menacé."
     "Peut-être est-ce le moment de nommer de nouveaux antrustions. Ces huerriers d'élite de confiance ont des privilèges divers et sont bien payés."
     "Ils sont surtout si fidèles qu'ils feront barrage de leur corps pour vous protéger."
     menu:
