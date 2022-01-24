@@ -10,6 +10,7 @@ init -5 python:
     from chapitres.classes import clovis
 
     fideliteGaulePlusQue2 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 2, condition.Condition.SUPERIEUR)
+    fideliteGaulePlusQue3 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 3, condition.Condition.SUPERIEUR)
     def AjouterEvtsRoi():
         global selecteur_
         # remplacement de comte

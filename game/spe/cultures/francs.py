@@ -46,28 +46,28 @@ class Francs(culture.Culture):
     NOMS = []
 
     PRENOMS_M_CLO = [
-    u"Aega", u"Amalaric", u"Agilulf", u"Athaulf", u"Ascaric", u"Arbogast", u"Arnulf", u"Adalgisel", u"Ansbert",
+    u"Aega", u"Amalaric", u"Agilulf", u"Athaulf", u"Ascaric", u"Arbogast", u"Arnulf", u"Adalgisel", u"Ansbert", u"Arigius",
     u"Berchaire", u"Bertrand", u"Bauto", u"Bisin",
     u"Childebert", u"Childéric", u"Clotaire", u"Childebrand", u"Carloman", u"Clodion", u"Chararic", u"Clovis", u"Clodomir",
-    u"Caribert", u"Cloud", u"Carl", u"Cunipert",
-    u"Dagobert", u"Drogon",
+    u"Caribert", u"Cloud", u"Carl", u"Cunipert", u"Chramme", u"Conomer", u"Clodoald",
+    u"Dagobert", u"Drogon", u"Didier",
     u"Erchinald", u"Ébroïn", u"Éginhard", u"Eudes", u"Euric", u"Edobich",
     u"Frégédaie", u"Flaochaud",
     u"Grimoald", u"Gislemar", u"Grippan", u"Grégoire", u"Gondemar", u"Gondehaut", u"Gondicaire", u"Genséric", u"Genobaud",
     u"Godegésile", u"Gundioch", u"Gunthar", u"Gontran", u"Hainmar", u"Hilaire", u"Hugue", u"Ingomer", u"Karl",
     u"Leudaste", u"Liutpraud", u"Léovigilde", u"Martin", u"Mérovée", u"Marcomir", u"Mallobaude",
-    u"Mérogaise", u"Mérobaude", u"Norbert", u"Nibelung", u"Otton", u"Odoacre", u"Péppin", u"Pharamond",
-    u"Radulf", u"Ragenfeld", u"Rikulf",u"Récarède", u"Richimir", u"Ricimer", u"Ragnachar", u"Richomer",
-    u"Sigebert", u"Sigismond", u"Sunno", u"Sigismer", u"Thierry", u"Théudoald", u"Théodoric", u"Thorismond",
-    u"Théodomir", u"Theudebert", u"Wulfoad", u"Waraton", u"Wallia"
+    u"Mérogaise", u"Mérobaude", u"Norbert", u"Nibelung", u"Otton", u"Odoacre", u"Péppin", u"Pharamond", u"Magnoald",
+    u"Radulf", u"Ragenfeld", u"Rikulf",u"Récarède", u"Richimir", u"Ricimer", u"Ragnachar", u"Richomer", u"Rigibert",
+    u"Sigebert", u"Sigismond", u"Sunno", u"Sigismer", u"Thierry", u"Théudoald", u"Théodoric", u"Thorismond", u"Salegast",
+    u"Théodomir", u"Theudebert", u"Wulfoad", u"Waraton", u"Wallia", u"Willichaur", u"Wisogast", u"Widogast"
     ]
     PRENOMS_F_CLO = [
-    u"Alpaïde", u"Axyla", u"Alboflède", u"Aldoflède", u"Audoflède", u"Arégonde", u"Andagesme",
-    u"Batilde", u"Brunehaut", u"Basine", u"Barthe", u"Bilichilde", u"Begga",
-    u"Clotilde", u"Carétène", u"Chrona", u"Chlodoswinthe", u"Eudoxie", u"Frédégonde",
-    u"Gertrude", u"Geneviève", u"Geroncia", u"Galswinthe", u"Hiltrude", u"Ingonde",
-    u"Lanthilde", u"Lantechilde", u"Marcovège", u"Nantilde", u"Plectrude", u"Radegonde",
-    u"Swanahilde"
+    u"Alpaïde", u"Axyla", u"Alboflède", u"Aldoflède", u"Audoflède", u"Arégonde",  u"Arnegonde", u"Andagesme", u"Bilichilde",
+    u"Batilde", u"Brunehaut", u"Basine", u"Barthe", u"Bilichilde", u"Begga", u"Chunsina", u"Chunsine",
+    u"Clotilde", u"Carétène", u"Chrona", u"Chlodoswinthe", u"Eudoxie", u"Frédégonde", u"Erminethrude",
+    u"Gontheuque", u"Gertrude", u"Geneviève", u"Geroncia", u"Galswinthe", u"Hiltrude", u"Ingonde",
+    u"Lanthilde", u"Lantechilde", u"Marcovège", u"Nantilde", u"Plectrude", u"Radegonde", u"Tétravia",
+    u"Swanahilde",  u"Waldrade"
     ]
 
     # ceux là viennent d'internet, ils sont moins orientés réalistes pour l'époque de Clovis

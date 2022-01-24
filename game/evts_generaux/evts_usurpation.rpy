@@ -18,6 +18,19 @@ init -5 python:
         usurpation.AjouterCondition(ilYARisqueDUsurpation)
         usurpation.AjouterCondition(estRoi)
         selecteur_.ajouterDeclencheur(usurpation)
+        # jalousie des francs
+        jalousieFrancs = declencheur.Declencheur(proba.Proba(0.04, True), "jalousieFrancs")
+        jalousieFrancs.AjouterCondition(estRoi)
+        jalousieFrancs.AjouterCondition(fideliteGaulePlusQue3)
+        selecteur_.ajouterDeclencheur(jalousieFrancs)
+
+label jalousieFrancs:
+    scene bg cours_merovingienne
+    with dissolve
+    "Vos très bons rapports avec les gaulois exaspèrent les membres de l'aristocratie franque."
+    "Ils vous accusent de favoriser des étrangers vaincus qui ne méritent que l'esclavage."
+    $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
+    jump fin_cycle
 
 label usurpation:
     play music danger noloop
