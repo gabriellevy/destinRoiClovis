@@ -97,10 +97,14 @@ label entrainementPolitique:
         "Votre père a toujours su contrôler les chefs de clans par un mélange de force et de diplomatie? Il vous a montré toutes ses astuces et manoeuvres. Vous suivez son exemple."
     elif niveauExpertise == 1:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 2)
-        "Vous entretenez de bons rapports avec les sénateurs romains. Malgré leur molesse ils sont plein de bon sens et leur système de loi romaine devrait faciliter votre domination et la rentrée des impôts."
+        "Vous entretenez de bons rapports avec les sénateurs romains. Malgré leur mollesse ils sont plein de bon sens et leur système de loi romaine devrait faciliter votre domination et la rentrée des impôts."
     elif niveauExpertise == 2:
         $ situation_.SetValCarac("entrainementPolitiqueNiv", 3)
         "Les évèques sont très respectés par le peuple, leurs avis sont révérés. En écoutant leurs conseils vous gagnez en compréhnsion sur la Gaulle et donc en influence."
+    elif niveauExpertise == 3:
+        $ situation_.SetValCarac("entrainementPolitiqueNiv", 4)
+        "Encouragé par les sénateurs romains et les fonctionnaires vous adaptez progressivement les formulaires pour enregistrer les actes administratifs."
+        "Vente de terre, achat et affranchissement d'esclave, divorce, nomination de fonctionnaire... mieux vaut garder une trace de tout cela."
     else:
         "Vous perfectionnez vos talents politiques."
     $ AjouterACarac(metier.Politique.NOM, 1)
