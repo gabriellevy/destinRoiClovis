@@ -121,5 +121,26 @@ label comtCritique:
 
 
 label nommageComte:
-    "PAS FAIT : nommageComte"
-jump fin_cycle
+    scene bg cours_merovingienne
+    with dissolve
+    $ nomComte1 = francs_.CreerPrenom(True)
+    $ nomComte2 = gaulois_.CreerPrenom(True)
+    $ nomComte3 = gaulois_.CreerPrenom(True)
+    $ nomComte4 = francs_.CreerPrenom(True)
+    "Le comte est un fonctionnaire de haut rang responsable entre autres de la collecte des impôts."
+    menu:
+        "[nomComte1], un franc juste et intransigeant":
+            $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
+            jump fin_cycle
+        "[nomComte2], un gaulois aimé du peuple":
+            $ AjouterACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
+            jump fin_cycle
+        "[nomComte3], un affranchi malin et dévoué qui sura faire rentrer les impôts":
+            $ RetirerACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
+            $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
+            $ AjouterACarac(trait.Richesse.NOM, 1)
+            jump fin_cycle
+        "[nomComte4], un ancien officier, spécialiste du recrutement":
+            $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+            jump fin_cycle
+    jump fin_cycle

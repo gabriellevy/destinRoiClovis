@@ -5,7 +5,7 @@ class Clovis:
     C_DIPLOMATIE = u"Diplomatie" # statut et fiabilité de Clovis vis à vis des autres germains et de l'empire d'Orient
 
     # et de son royaume mises en place en début de partie
-    C_MILITAIRE = u"Puissance de l'Armée de Clovis"
+    C_MILITAIRE = u"Puissance de l'Armée"
     # C_USURPATION plus c'est élevé plus Clovis risque d'être chassé du pouvoir => cf evts_usurpation.rpy
     # 0 ou moins = aucun danger
     # 1 à 2 tensions
@@ -14,10 +14,10 @@ class Clovis:
     # $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
     # $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
     C_FIDELITE_GAULE = u"Fidélité des galloromains" # plus c'est élevé plus les galloromains sont fidèles à Clovis
-    C_LOI_SALIQUE = u"Loi salique" # 1 si la loi salique a été promulguée
 
     # événements spéciaux
     C_VASE_SOISSONS = u"Vase de soissons" # 1 si l'histoire réelle est bien suivie
+    C_LOI_SALIQUE = u"Loi salique" # 1 si la loi salique a été promulguée
 
     # personnages
     C_NOM_CLOVIS = u"Clovis"
