@@ -16,7 +16,6 @@ init -5 python:
         vaast.AjouterCondition(estPaien)
         vaast.AjouterCondition(alamansVaincus)
         selecteur_.ajouterDeclencheur(vaast)
-        global selecteur_
         # rencontre de Saint Rémi
         remi = dec_clo.DecClovisU(proba.Proba(0.3, True), "remi", 496)
         remi.AjouterCondition(estPaien)

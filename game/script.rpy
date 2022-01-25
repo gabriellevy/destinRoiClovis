@@ -58,6 +58,7 @@ init -1 python:
     AjouterEvtsChristianisme()
     AjouterEvtsSalique()
     AjouterEvtsHistoire()
+    AjouterEvtsFamille()
     # mise en place des caracs de bases
     MiseEnPlaceCaracsSyagrius()
 
