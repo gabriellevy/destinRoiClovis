@@ -34,16 +34,32 @@ init -5 python:
         antrustions.AjouterCondition(usurpationPlusQue2)
         selecteur_.ajouterDeclencheur(antrustions)
         # impôts
-        impots = declencheur.Declencheur(proba.Proba(0.04, True), "impots")
+        impots = declencheur.Declencheur(proba.Proba(0.08, True), "impots")
         impots.AjouterCondition(estRoi)
-        impots.AjouterCondition(fideliteGaulePlusQue2)
         selecteur_.ajouterDeclencheur(impots)
 
 label impots:
     scene bg cours_merovingienne
     with dissolve
-    "Grâce à vos efforts en leur faveur els galloromains vous sont favorables et suivent vos lois. Les impôts rentrent."
-    $ AjouterACarac(trait.Richesse.NOM, 1)
+    $ testImpots = testDeCarac.TestDeCarac([metier.Politique.NOM, clovis.Clovis.C_FIDELITE_GAULE], 5, situation_)
+    menu:
+        "Allez vous réussir à pousser les gaulois à vous payer des impôts ?"
+        "[testImpots.affichage_]":
+            $ reussi = testImpots.TesterDifficulte(situation_)
+            if reussi:
+                "Grâce à vos efforts en leur faveur les galloromains vous sont favorables et suivent vos lois. Les impôts rentrent."
+                $ AjouterACarac(trait.Richesse.NOM, 1)
+            else:
+                "Les gaulois sont sournois et désobéissants. Malgré vos efforts les rendements des impôts sont médiocres."
+                menu:
+                    "Voulez vous autoriser vos soldats à piller quelques villes pour leur apprendre à obéir ?"
+                    "Oui":
+                        "Les pillages vous rapportent et défoulent vos soldats mais les gaulois vous détestent encore plus."
+                        $ AjouterACarac(trait.Richesse.NOM, 1)
+                        $ RetirerACarac(clovis.Clovis.C_FIDELITE_GAULE, 2)
+                        $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
+                    "Non":
+                        pass
     jump fin_cycle
 
 label antrustions:

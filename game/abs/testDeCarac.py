@@ -33,7 +33,10 @@ class TestDeCarac:
         if isinstance(self.caracs_, list):
             affichageCarac = ""
             for carac in self.caracs_:
-                affichageCarac = "{}, {}".format(affichageCarac, carac)
+                if affichageCarac == "":
+                    affichageCarac = "{}".format(carac)
+                else:
+                    affichageCarac = "{}, {}".format(affichageCarac, carac)
 
         pourcentageReussite = self.CalculerPourcentageReussite(situation)
         if pourcentageReussite <= 0:
