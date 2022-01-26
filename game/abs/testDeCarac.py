@@ -102,7 +102,7 @@ class TestDeCarac:
         [100, 100, 100, 100, 100, 100, 100, 85, 80, 50] #16 dieu
         ]
         print(" diff[valCarac+20][self.difficulte_-1] {} : ".format( diff[valCarac+20][self.difficulte_-1])) # tmp test
-        return diff[valCarac+21][self.difficulte_-1]
+        return diff[valCarac+20][self.difficulte_-1]
 
     def TesterDifficulte(self, situation):
         """

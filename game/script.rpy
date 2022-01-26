@@ -12,6 +12,9 @@ define clot = Character('Clotilde', color="#800000")
 image alboflede = "perso/alboflede.png"
 define albo = Character('Alboflède', color="#33cc33")
 
+image gondebaud = "perso/gondebaud.png"
+define gond = Character('Gondebaud', color="#006600")
+
 # Musiques
 define audio.roi_mort = "musique/akingisdead.ogg"
 define audio.turexgloriae = "musique/turexgloriae.ogg" # baptème etc
@@ -76,7 +79,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    # jump guerre_burgonde490 # tmp test
+    # jump loi_gombette # tmp test
 
     $ situation_.TourSuivant()
 

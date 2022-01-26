@@ -60,7 +60,7 @@ label corruption:
     with dissolve
     $ testImpots = testDeCarac.TestDeCarac([metier.Politique.NOM, clovis.Clovis.C_FIDELITE_GAULE], 5, situation_)
     menu:
-        ""
+        " "
         "Administrer les Gaules [testImpots.affichage_]":
             $ reussi = testImpots.TesterDifficulte(situation_)
             if reussi:
