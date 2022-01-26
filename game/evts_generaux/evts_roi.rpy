@@ -50,6 +50,25 @@ init -5 python:
         impots = declencheur.Declencheur(proba.Proba(0.05, True), "impots")
         impots.AjouterCondition(estRoi)
         selecteur_.ajouterDeclencheur(impots)
+        # corruption
+        corruption = declencheur.Declencheur(proba.Proba(0.05, True), "corruption")
+        corruption.AjouterCondition(estRoi)
+        selecteur_.ajouterDeclencheur(corruption)
+
+label corruption:
+    scene bg cours_merovingienne
+    with dissolve
+    $ testImpots = testDeCarac.TestDeCarac([metier.Politique.NOM, clovis.Clovis.C_FIDELITE_GAULE], 5, situation_)
+    menu:
+        ""
+        "Administrer les Gaules [testImpots.affichage_]":
+            $ reussi = testImpots.TesterDifficulte(situation_)
+            if reussi:
+                "Votre administration est fiable et la corruption très faible."
+            else:
+                "Vos fonctionnaires vous volent vous en êtes sûr. Il va falloir sévir."
+                $ RetirerACarac(trait.Richesse.NOM, 1)
+    jump fin_cycle
 
 label recrutement:
     scene bg cours_merovingienne
