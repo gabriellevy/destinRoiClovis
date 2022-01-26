@@ -11,6 +11,10 @@ init -5 python:
 
     fideliteGaulePlusQue2 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 2, condition.Condition.SUPERIEUR)
     fideliteGaulePlusQue3 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 3, condition.Condition.SUPERIEUR)
+    richessePlusQue0 = condition.Condition(trait.Richesse.NOM, 0, condition.Condition.SUPERIEUR)
+    armeeMoinsQue2 = condition.Condition(clovis.Clovis.C_MILITAIRE, 2, condition.Condition.INFERIEUR)
+    armeeMoinsQue5 = condition.Condition(clovis.Clovis.C_MILITAIRE, 2, condition.Condition.INFERIEUR)
+
     def AjouterEvtsRoi():
         global selecteur_
         # remplacement de comte
@@ -33,10 +37,32 @@ init -5 python:
         antrustions.AjouterCondition(estRoi)
         antrustions.AjouterCondition(usurpationPlusQue2)
         selecteur_.ajouterDeclencheur(antrustions)
+        # recrutement
+        probarecrutement = proba.Proba(0.02, True)
+        modifProbarecrutement = modifProba.ModifProba(0.06, armeeMoinsQue2)
+        probarecrutement.ajouterModifProba(modifProbarecrutement)
+        recrutement = declencheur.Declencheur(probarecrutement, "recrutement")
+        recrutement.AjouterCondition(richessePlusQue0)
+        recrutement.AjouterCondition(armeeMoinsQue5)
+        recrutement.AjouterCondition(estRoi)
+        selecteur_.ajouterDeclencheur(recrutement)
         # impôts
-        impots = declencheur.Declencheur(proba.Proba(0.08, True), "impots")
+        impots = declencheur.Declencheur(proba.Proba(0.05, True), "impots")
         impots.AjouterCondition(estRoi)
         selecteur_.ajouterDeclencheur(impots)
+
+label recrutement:
+    scene bg cours_merovingienne
+    with dissolve
+    menu:
+        "Vous êtes assez riche pour renforcer vos armées avec des mercenaires si vous le souhaitez."
+        "Oui":
+            $ RetirerACarac(trait.Richesse.NOM, 1)
+            $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+        "Non":
+            pass
+
+    jump fin_cycle
 
 label impots:
     scene bg cours_merovingienne
