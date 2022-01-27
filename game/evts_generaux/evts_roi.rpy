@@ -9,7 +9,9 @@ init -5 python:
     from abs.humanite import metier
     from chapitres.classes import clovis
 
+    fideliteGauleMoinsQue0 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 0, condition.Condition.INFERIEUR)
     fideliteGauleMoinsQue2 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 2, condition.Condition.INFERIEUR)
+    fideliteGaulePlusQue0 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 0, condition.Condition.SUPERIEUR)
     fideliteGaulePlusQue2 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 2, condition.Condition.SUPERIEUR)
     fideliteGaulePlusQue3 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 3, condition.Condition.SUPERIEUR)
     richessePlusQue0 = condition.Condition(trait.Richesse.NOM, 0, condition.Condition.SUPERIEUR)
@@ -58,8 +60,27 @@ init -5 python:
         # revolte_impots
         revolte_impots = declencheur.Declencheur(proba.Proba(0.04, True), "revolte_impots")
         revolte_impots.AjouterCondition(estRoi)
-        revolte_impots.AjouterCondition(fideliteGauleMoinsQue2)
+        revolte_impots.AjouterCondition(fideliteGauleMoinsQue0)
         selecteur_.ajouterDeclencheur(revolte_impots)
+        # rentree_dimpots
+        rentree_dimpots = declencheur.Declencheur(proba.Proba(0.04, True), "rentree_dimpots")
+        rentree_dimpots.AjouterCondition(estRoi)
+        rentree_dimpots.AjouterCondition(fideliteGaulePlusQue0)
+        selecteur_.ajouterDeclencheur(rentree_dimpots)
+
+label rentree_dimpots:
+    "Les impôts rentrent bien."
+    menu:
+        "Qu'allez-vous faire de cette rentrée d'argent."
+        "Investir dans l'armée":
+            $ AjouterACarac(clovis.Clovis.C_MILITAIRE, 1)
+        "Garder cela dans vos coffres":
+            $ AjouterACarac(trait.Richesse.NOM, 1)
+        "Corrompre des nobles francs turbulents":
+            $ RetirerACarac(clovis.Clovis.C_USURPATION, 1)
+        "Organiser des jeux de cirque":
+            $ AjouterACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
+    jump fin_cycle
 
 label revolte_impots:
     "En conquérant l'empire romain vous avez bien sûr repris leur intéressant système d'impôts directs et indirects qui alimente vos caisses régulièrement."
@@ -228,7 +249,8 @@ label nommageComte:
         "[nomComte2], un gaulois aimé du peuple":
             $ AjouterACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
             jump fin_cycle
-        "[nomComte3], un affranchi malin et dévoué qui sura faire rentrer les impôts":
+        "[nomComte3], un affranchi malin et dévoué qui saura faire rentrer les impôts":
+            "[nomComte3] est en effet doué et efficace mais il se fait vite détester par tout le royaume."
             $ RetirerACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
             $ AjouterACarac(clovis.Clovis.C_USURPATION, 1)
             $ AjouterACarac(trait.Richesse.NOM, 1)
