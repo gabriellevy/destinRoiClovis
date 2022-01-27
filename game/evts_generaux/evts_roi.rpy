@@ -9,6 +9,7 @@ init -5 python:
     from abs.humanite import metier
     from chapitres.classes import clovis
 
+    fideliteGauleMoinsQue2 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 2, condition.Condition.INFERIEUR)
     fideliteGaulePlusQue2 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 2, condition.Condition.SUPERIEUR)
     fideliteGaulePlusQue3 = condition.Condition(clovis.Clovis.C_FIDELITE_GAULE, 3, condition.Condition.SUPERIEUR)
     richessePlusQue0 = condition.Condition(trait.Richesse.NOM, 0, condition.Condition.SUPERIEUR)
@@ -54,6 +55,37 @@ init -5 python:
         corruption = declencheur.Declencheur(proba.Proba(0.05, True), "corruption")
         corruption.AjouterCondition(estRoi)
         selecteur_.ajouterDeclencheur(corruption)
+        # revolte_impots
+        revolte_impots = declencheur.Declencheur(proba.Proba(0.04, True), "revolte_impots")
+        revolte_impots.AjouterCondition(estRoi)
+        revolte_impots.AjouterCondition(fideliteGauleMoinsQue2)
+        selecteur_.ajouterDeclencheur(revolte_impots)
+
+label revolte_impots:
+    "En conquérant l'empire romain vous avez bien sûr repris leur intéressant système d'impôts directs et indirects qui alimente vos caisses régulièrement."
+    "Mais cette année les gaulois se rebellent et refusent de payer."
+    $ testCombat = testDeCarac.TestDeCarac(clovis.Clovis.C_MILITAIRE, 3, situation_)
+    $ testPolitique = testDeCarac.TestDeCarac(metier.Politique.NOM, 6, situation_)
+    menu:
+        "Comment gérez-vous cette révolte ?"
+        "Leur accorder une dispense exceptionnelle.":
+            $ RetirerACarac(trait.Richesse.NOM, 1)
+            $ AjouterACarac(clovis.Clovis.C_FIDELITE_GAULE, 1)
+        "Envoyer l'armée les réprimer [testCombat.affichage_]":
+            $ reussi = testCombat.TesterDifficulte(situation_)
+            if reussi:
+                "Après quelques exécutions et granges brûlées les gaulois sont vite calmés."
+            else:
+                "Les rebelles sont étonnament coriaces. Non seulement ils ne payent pas mais ils humilient vos soldats durant quelques escarmouches sanglantes."
+                $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
+        "Négocier avec les notables pour calmer les tensions [testPolitique.affichage_]":
+            $ reussi = testPolitique.TesterDifficulte(situation_)
+            if reussi:
+                "Après quelques dures négociations la révolte se calme pacifiquement."
+            else:
+                "Les rebelles pendent un de vos négociateurs et trainent votre nom dans la boue."
+                $ RetirerACarac(clovis.Clovis.C_GLOIRE, 1)
+    jump fin_cycle
 
 label corruption:
     scene bg cours_merovingienne
