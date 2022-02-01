@@ -47,7 +47,7 @@ label vaast:
     "C'est un sage franc converti au catholicisme qui vit retiré et prêche de temps à autre, surtout auprès de ses congénères francs qui le respectent beaucoup."
     $ niveauChrist = situation_.GetValCaracInt(clovis.Clovis.C_CHRISTIANISME)
     menu:
-        "Voilà l'homme idéal pour discuter des troubles religieux. Les vôtres et ceux de vos sujets."
+        "Voilà l'homme idéal pour discuter des troubles religieux. Les vôtres et ceux de vos sujets. De plus contrairement aux religieux gaulois il parle avec maîtrise votre langue germanique, le francique."
         "Vous parlez un peu de religion avec lui":
             "Vaast est un fervent croyant et en tant que franc il sait comment vous faire douter et vous convaincre. Vous sortez de la discussion ébranlé."
             $ AjouterACarac(clovis.Clovis.C_CHRISTIANISME, 1)

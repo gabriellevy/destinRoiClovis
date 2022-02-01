@@ -79,7 +79,7 @@ init -5 python:
 label enfant1:
     show clotilde at right
     with moveinright
-    "Joie ! Votre premier fils, Ingomer, est né."
+    "Joie ! Votre premier fils est né. Vous le nommez Ingomer, mer faisant référence à votre glorieux grand père Mérovée."
     "Très peu de temps après, Clothilde organise son baptème à la foi catholique sans vous consulter."
     "Elle décore somptueusement l'église de voilage et de tentures et fait tremper l'enfant dans l'eau selon sa coutume."
     "Vous acceptez que la mère décide de ces choses. Surtout qu'elle avait peur que le petit erre éternellement dans les limbes si il n'était pas baptisé."

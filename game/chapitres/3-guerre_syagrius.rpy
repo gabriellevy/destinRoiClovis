@@ -246,7 +246,7 @@ label bataille_soisson_2:
     $ situation_.SetValCarac(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.VAINCU)
     $ situation_.SetValCarac(clovis.Clovis.CARTE_ACTUELLE, "bg carte486")
     $ AfficherCarteActuelle()
-    "Vous vous emparez d'une grande partie de son territoire et en particulier de Reims, Soissons et Paris." 
+    "Vous vous emparez d'une grande partie de son territoire et en particulier de Reims, Soissons et Paris."
     jump vase_de_soissons
 
 label vase_de_soissons:
@@ -306,7 +306,7 @@ label vase_de_soissons:
     jump fin_cycle
 
 label vase_de_soissons_le_retour:
-    "Vous allez bientôt partir en expédition militaire pour éliminer des rebelles et vous passez en revue vos guerriers."
+    "Vous allez bientôt partir en expédition militaire pour éliminer des rebelles et vous passez en revue vos guerriers sur le champs de Mars."
     "Ils sont responsables de l'achat et de l'entretien de leur équipement et savent qu'en temps de guerre vous avez droit de vie et de mort sur eux, aussi sont-ils d'une discipline à tout épreuve."
     "Lors de l'inspection de la phalange vous reconnaissez le guerrier qui vous avait insulté lors du partage du butin de Soissons."
     $ situation_.SetValCarac(clovis.Clovis.C_VASE_SOISSONS, 0)
