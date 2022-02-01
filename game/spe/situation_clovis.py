@@ -102,11 +102,28 @@ class SituationClovis(situation.Situation):
         return u""
 
     def AffichageRichesse(self):
+        strRichesse = self.collectionTraits[trait.Richesse.NOM].GetDescription(self)
         if ( trait.Richesse.NOM not in self.caracs_):
             if self.debug_:
-                return u"Riche (0)"
-            return u"Riche"
-        strRichesse = self.collectionTraits[trait.Richesse.NOM].GetDescription(self)
+                strRichesse = u"Riche (0)"
+            strRichesse = u"Riche"
+
+        val = self.GetValCarac(trait.Richesse.NOM)
+        if val <= trait.Trait.SEUIL_A_PAS_EXTREME:
+            strRichesse = u"Misérable" # val <= -13
+        elif val <= -8:
+            strRichesse = u"Pauvre" # -8 >= val > -13
+        elif val <= trait.Trait.SEUIL_A_PAS:
+            strRichesse = u"En difficulté financière" # -3 >= val > -8
+        elif val <= trait.Trait.SEUIL_A:
+            strRichesse = u"Riche" # 1 >= val > -3
+        elif val <= 6:
+            strRichesse = u"Très Riche" # 6 >= val > 1
+        elif val <= trait.Trait.SEUIL_A_EXTREME:
+            strRichesse = u"Incroyablement riche" # 11 >= val > 1
+        else:
+            strRichesse = u"Fabuleusement riche" # val > 11
+
         if strRichesse == "":
             strRichesse = u"Riche"
         if self.debug_:

@@ -1,23 +1,25 @@
 init -5 python:
     import random
     from abs.religions import religion
-    from abs import declencheur
+    from spe import dec_clo
     from abs import selecteur
     from abs import proba
     from abs import condition
     from abs.humanite import trait
     from abs.humanite import metier
 
-    histoireTheodoricOdoacrePasFait = condition.Condition("histoireTheodoricOdoacreFait", 1, condition.Condition.DIFFERENT)
-    auMoinsAnnee493 = condition.Condition(temps.Date.DATE_ANNEES, 493, condition.Condition.SUPERIEUR_EGAL)
-
     def AjouterEvtsHistoire():
         global selecteur_
-        # punition par noyage d'adultère
-        histoireTheodoricOdoacre = declencheur.Declencheur(proba.Proba(0.03, True), "histoireTheodoricOdoacre")
-        histoireTheodoricOdoacre.AjouterCondition(histoireTheodoricOdoacrePasFait)
-        histoireTheodoricOdoacre.AjouterCondition(auMoinsAnnee493)
+        # Odoacre
+        histoireTheodoricOdoacre = dec_clo.DecClovisU(proba.Proba(0.03, True), "histoireTheodoricOdoacre", 493)
         selecteur_.ajouterDeclencheur(histoireTheodoricOdoacre)
+        # Concile d'Orléans
+        concileOrleans = declencheur.Declencheur(proba.Proba(0.03, True), "concileOrleans", 511)
+        selecteur_.ajouterDeclencheur(concileOrleans)
+
+label concileOrleans:
+    "Vous organisez le premier concile qui ait eu lieu en Gaule. Il aura lieu à Orléans."
+    jump fin_cycle
 
 label histoireTheodoricOdoacre:
     # victoire et prières des païens et des chrétiens
