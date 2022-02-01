@@ -9,11 +9,24 @@ init -5 python:
     from chapitres.classes import clovis
     from spe import dec_clo
 
+    diplomatieSup0 = condition.Condition(clovis.Clovis.C_DIPLOMATIE, 0, condition.Condition.SUPERIEUR)
     def AjouterEvtsDiplomatie():
         global selecteur_
         mariage_aldoflede = dec_clo.DecClovisU(proba.Proba(0.2, True), "mariage_aldoflede", 483)
         mariage_aldoflede.AjouterCondition(estRoi)
         selecteur_.ajouterDeclencheur(mariage_aldoflede)
+        # joueur de citharède
+        citharede = dec_clo.DecClovisU(proba.Proba(0.08, True), "citharede", 483)
+        citharede.AjouterCondition(estRoi)
+        citharede.AjouterCondition(diplomatieSup0)
+        selecteur_.ajouterDeclencheur(citharede)
+
+label citharede:
+    scene bg citharede
+    "Théodoric vous a envoyé comme présent un joueur de citharède, un instrument à corde très rare en Gaule."
+    "Voilà qui égayera vos repas et réceptions, et augmentera le prestige de votre cour."
+    $ AjouterACarac(clovis.Clovis.C_GLOIRE, 1)
+    jump fin_cycle
 
 label mariage_aldoflede:
     "Théodoric, grand roi des Ostrogoths d'Italie, demande la main de votre soeur Aldoflède."
