@@ -28,21 +28,31 @@ label diviniteTutelaire:
     "Vous êtes à la foi prince et prêtre des dieux de votre peuple. Tous demandent des prières et des sacrifices et tous doivent être honorés."
     $ AjouterACarac(metier.Pretre.NOM, 1)
     menu:
-        "Mais lequel est votre divinité tutélaire ?"
-        "Wotan le sournois et changeant dieux des batailles":
-            $ AjouterACarac(trait.Ruse.NOM, 1)
+        "Mais lequel est votre divinité tutélaire, celle qui entrera dans votre propre personne ?"
+        "Wotan, le sournois et changeant dieux des batailles":
             $ AjouterACarac(metier.Stratege.NOM, 1)
+            $ AjouterACarac(trait.Ruse.NOM, 1)
+            $ AjouterACarac(trait.Cupidite.NOM, 1)
+            $ AjouterACarac(trait.Constitution.NOM, 1)
 
-        "Thor le redoutable maître du tonnerre":
+        "Tivez, qui dirige le ciel et patronne les assemblées":
+            $ AjouterACarac(metier.Politique.NOM, 1)
+            $ AjouterACarac(trait.Honorabilite.NOM, 1)
+            $ AjouterACarac(trait.Serenite.NOM, 1)
+            $ AjouterACarac(trait.Intelligence.NOM, 1)
+
+        "Donar, dont les bras lancent la foudre": # le bourrin de service (= thor)
+            $ AjouterACarac(metier.Guerrier.NOM, 1)
             $ AjouterACarac(trait.Courage.NOM, 1)
             $ AjouterACarac(trait.Violence.NOM, 1)
-            $ AjouterACarac(metier.Guerrier.NOM, 1)
-            # $ AjouterACarac(metier.Chasseur.NOM, 1)
+            $ AjouterACarac(trait.Force.NOM, 1)
+            $ RetirerACarac(trait.Ruse.NOM, 1)
 
-        "Freya, déesse de la fertilité et du désir charnel":
-            # $ AjouterACarac(trait.Richesse.NOM, 1)
-            $ AjouterACarac(trait.Altruisme.NOM, 1)
-            $ AjouterACarac(metier.Politique.NOM, 1)
+        "Merthus, déesse de la fertilité et du désir charnel":
+            $ AjouterACarac(metier.Chasseur.NOM, 1)
+            $ AjouterACarac(trait.Sensibilite.NOM, 1)
+            $ AjouterACarac(trait.Sexualite.NOM, 1)
+            $ AjouterACarac(trait.Beaute.NOM, 1)
 
     jump fin_cycle
 
