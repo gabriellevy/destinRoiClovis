@@ -22,7 +22,8 @@ init -5 python:
         evtsVides_ = [
         "evtRien1", "evtRien2", "evtRien3", "evtRien4", "evtRien5", "evtRien6", "evtRien7",
         "evtRien8", "evtRien9", "evtRien10", "evtRien11", "evtRien12",
-        "evtRien13", "evtRien14", "evtRien15", "evtRien16", "evtRien17"
+        "evtRien13", "evtRien14", "evtRien15", "evtRien16", "evtRien17",
+        "evtRien18", "evtRien19", "evtRien20"
         ]
         scenesParDefaut = []
         musiquesAEnquiller = []
@@ -31,15 +32,20 @@ init -5 python:
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
         valChrist = situation_.GetValCarac(clovis.Clovis.C_CHRISTIANISME)
         if religionActuelle == religion.Christianisme.NOM:
+            # evts
             evtsVides_.append("evtRien_saints")
-            evtsVides_.append("evtRien_Christianisme_1")
+            evtsVides_.append("evtRien_ChristianismeMerovingien_1")
+            # images
             scenesParDefaut.append("bg crucifixion")
+            # musiques
             musiquesAEnquiller.append("musique/journeytoabsolution.ogg")
         if religionActuelle == religion.Paien.NOM:
             evtsVides_.append("evtRien_paien1")
             evtsVides_.append("evtRien_paien2")
             evtsVides_.append("evtRien_paien3")
             evtsVides_.append("evtRien_paien4")
+            evtsVides_.append("evtRien_paien5")
+            evtsVides_.append("evtRien_paien6")
             scenesParDefaut.append("bg chevauchee_paienne")
             musiquesAEnquiller.append("musique/Quite An Adventure.ogg")
             if valChrist >= 8:
@@ -99,6 +105,10 @@ init -5 python:
         # en lance un au hasard
         renpy.jump(random.choice(evtsVides_))
 
+label evtRien_ChristianismeMerovingien_1:
+    "Les conciles désapprouvent que les fidèles chantent des chansons d'amour dans les églises. Ils imposent le chant des psaumes."
+    jump fin_cycle
+
 label evtRien_loi_salique_1:
     $ femme = francs_.CreerPrenom(False)
     $ homme = francs_.CreerPrenom(True)
@@ -119,6 +129,11 @@ label evtRien_paien_Christianisme_1:
     scene bg crucifixion
     "Vous êtes de plus en plus intéressé par le christianisme mais la crucifixion du christ vous semble toujours aussi innaceptable."
     "Si vous et vos francs aviez été là vous auriez vengé cette injure. Alors pourquoi son père, un Dieu soit disant tout puissant n'a-t-il rien fait ?"
+    jump fin_cycle
+
+label evtRien_paien_Christianisme_2:
+    scene bg crucifixion
+    "Le tombeau de Saint Martin de Tours est devenu un lieu de pélerinage très populaire chez les chrétiens. Les miracles y sont nombreux."
     jump fin_cycle
 
 label evtRien_alamans:
@@ -152,6 +167,18 @@ label evtRien_paien4:
     with dissolve
     "Vous avez eu récemment une suite de coups du sort préocuppants. Ils pourrait s'agir de malédictions lancées par un de vos ennemis."
     "Vous faites fabriquer des objets marqués de runes par vos forgerons et vos magiciens."
+    jump fin_cycle
+
+label evtRien_paien5:
+    scene bg chevauchee_paienne
+    with dissolve
+    "Les devins annoncent que cette année la fortune vous souriera."
+    jump fin_cycle
+
+label evtRien_paien6:
+    scene bg chevauchee_paienne
+    with dissolve
+    "C'est jeudi. Les dieux exigent que ce soit un jour férié."
     jump fin_cycle
 
 label evtRien1_automne:
@@ -282,6 +309,25 @@ label evtRien16:
 label evtRien17:
     with Dissolve(.5)
     "Les moulins à eau se multiplient dans vos campagnes. Cet édifice ingénieux utilise la force du courant pour actionner la meule."
+    jump fin_cycle
+
+label evtRien18:
+    with Dissolve(.5)
+    $ femmeFranque = francs_.CreerPrenom(False)
+    "[femmeFranque] a été accusée de vol. Elle a accepté de subir l'ordalie."
+    "Elle a plongé sa main dans un chaudron d'eau bouillante. Supportant la souffrance elle a réussi à saisir l'anneau qui s'y trouvait. Les juges ont ensuite attendu 3 jours et constaté que sa cicatrice est belle et bien formée."
+    "[femmeFranque] est donc déclarée innocente du vol."
+    jump fin_cycle
+
+label evtRien19:
+    with Dissolve(.5)
+    "Depuis que les huns ont été repoussés de Gaule par vos ancêtres ils sont devenus bien moins agressifs et bien plus commerçants."
+    "Ils ont introduit dans votre cour des objets d'orphèvrerie que vos propres artisans sont incapables de réaliser. Vous les poussez à apprendre à reproduire ces techniques."
+    jump fin_cycle
+
+label evtRien20:
+    with Dissolve(.5)
+    "La consignation de vos actes royaux et les formulaires de toute sortes nécessitent de fortes importations de papyrus d'Orient."
     jump fin_cycle
 
 label evtRien_pasMarie:
