@@ -18,7 +18,7 @@ init -5 python:
     auMoinsAnnee482 = condition.Condition(temps.Date.DATE_ANNEES, 482, condition.Condition.SUPERIEUR_EGAL)
     # conditions syagrius
     syagriusPasVaincu = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.INDEMNE, condition.Condition.EGAL)
-    syagriusVaincu = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.INDEMNE, condition.Condition.DIFFERENT)
+    syagriusVaincu = condition.Condition(syagrius.Syagrius.C_ETAT, syagrius.Syagrius.VAINCU, condition.Condition.DIFFERENT)
 
     stabiliteSyagriusFaible = condition.Condition(syagrius.Syagrius.C_STABILITE, 0, condition.Condition.INFERIEUR)
     armeeSyagriusFaible = condition.Condition(syagrius.Syagrius.C_MILITAIRE, 3, condition.Condition.INFERIEUR)
