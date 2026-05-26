@@ -8,7 +8,7 @@ init -5 python:
     from abs.humanite import metier
     from chapitres.classes import clovis
 
-    # si l'usurpation et à plus de 0 il y a risque de soulèvement contre Clovis
+    # si l'usurpation est à plus de 0 il y a risque de soulèvement contre Clovis
     ilYARisqueDUsurpation = condition.Condition(clovis.Clovis.C_USURPATION, 0, condition.Condition.SUPERIEUR)
     usurpationPlusQue2 = condition.Condition(clovis.Clovis.C_USURPATION, 2, condition.Condition.SUPERIEUR)
     usurpationPlusQue4 = condition.Condition(clovis.Clovis.C_USURPATION, 4, condition.Condition.SUPERIEUR)

@@ -1,14 +1,14 @@
-from religions import religion
-from humanite.sante import pbsante
-from univers import temps
+from abs.religions import religion
+from abs.humanite.sante import pbsante
+from abs.univers import temps
 # from univers.geographie import quartier
-from humanite import portrait
-from humanite import pnj
-from humanite import trait
-from humanite import identite
+from abs.humanite import portrait
+from abs.humanite import pnj
+from abs.humanite import trait
+from abs.humanite import identite
 from abs.affichage import affichagePortrait
-from humanite.amour import relationAmoureuse
-from humanite import metier
+from abs.humanite.amour import relationAmoureuse
+from abs.humanite import metier
 import random
 import logging
 

@@ -1,4 +1,6 @@
 import random
+from math import floor
+
 
 class Date:
     """
@@ -51,7 +53,7 @@ class Date:
         return u"{}".format(switcheurJour.get(val, u"Jour de semaine introuvable : {} !".format(val)))
 
     def GetNbAnnees(self):
-        return self.nbJours_/365
+        return floor(self.nbJours_/365)
 
     def GetNumMois(self):
         return self.numMoisGregorien
