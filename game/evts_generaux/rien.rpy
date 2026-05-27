@@ -244,7 +244,7 @@ label evtRien5:
 
 label evtRien6:
     with Dissolve(.5)
-    "Les gaulois sont peu combatifs et donc souvent méprisés par votre peuple car soumis et failes à dominer."
+    "Les gaulois sont peu combatifs et donc souvent méprisés par votre peuple car soumis et faciles à dominer."
     "Vous devez néanmoins reconnaître qu'en artisanat et architecture ils sont largement supérieurs."
     "Ce sont des céramistes gaulois que vous chargez de la fabrication des bouteilles, cruches, bols et assiettes de votre palais car leur qualité est nettement supérieure."
     jump fin_cycle

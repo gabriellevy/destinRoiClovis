@@ -27,7 +27,7 @@ class Condition:
             return str(self._m_Valeur) != str(valCarac)
         else:
             # test de valeurs forcément arithmétiques :
-            assert isinstance(valCarac, int), "Test de valeur arithmétique sur une valeur de carac ({}) qui n'est pas arithmétique : '{}'".format(self._m_CaracId, valCarac)
+            assert isinstance(valCarac, int) or isinstance(valCarac, float), "Test de valeur arithmétique sur une valeur de carac ({}) qui n'est pas arithmétique : '{}'".format(self._m_CaracId, valCarac)
             valCarac = situation.GetValCaracInt(self._m_CaracId)
             if (self._m_Comparateur == Condition.INFERIEUR_EGAL):
                 return valCarac <= float(self._m_Valeur)

@@ -1,4 +1,6 @@
 import random
+from math import floor
+
 from abs.humanite import portrait
 from abs.univers import temps
 from abs.humanite.amour import relationAmoureuse
@@ -38,9 +40,9 @@ class Pnj:
         if self.vivant_:
             nbJoursVecus = self.nbJours_
             if isinstance(nbJoursVecus, int):
-                nbAnnees = nbJoursVecus/365
-                nbJoursPasses = nbJoursVecus%365
-                nbMois = nbJoursPasses/30
+                nbAnnees = floor(nbJoursVecus/365)
+                nbJoursPasses = floor(nbJoursVecus%365)
+                nbMois = floor(nbJoursPasses/30)
                 if nbMois > 0:
                     str = u"{}\n{} ans, {} mois".format(str, nbAnnees, nbMois)
                 else:
