@@ -1,3 +1,5 @@
+from math import floor
+
 from abs.humanite import pnj
 from abs.humanite.amour import relationAmoureuse
 
@@ -14,8 +16,8 @@ class AffichagePortrait:
         self.description_ = u""
         nbJoursVecus = pnj.nbJours_
         if isinstance(nbJoursVecus, int):
-            nbAnnees = nbJoursVecus/365
-            nbJoursPasses = nbJoursVecus%365
+            nbAnnees = floor(nbJoursVecus/365)
+            nbJoursPasses = floor(nbJoursVecus%365)
             nbMois = nbJoursPasses/30
             if nbMois > 0:
                 self.description_ = u"{} ans, {} mois".format(nbAnnees, nbMois)

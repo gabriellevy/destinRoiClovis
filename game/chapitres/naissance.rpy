@@ -45,6 +45,7 @@ init -5 python:
 
         # caracs spécifiques
         situation[clovis.Clovis.C_CHRISTIANISME] = 0
+        situation[clovis.Clovis.C_USURPATION] = 0
         situation[clovis.Clovis.C_MILITAIRE] = 0
         situation[clovis.Clovis.C_DIPLOMATIE] = 0
         situation.SetValCarac(religion.Religion.C_RELIGION, religion.Paien.NOM)
