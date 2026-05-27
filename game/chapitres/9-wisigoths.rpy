@@ -15,7 +15,7 @@ init -5 python:
 
 # événements liés aux wisigoths, surtout invasion de 507
 label reconnaissance_par_empereur:
-    # A FAIRE : caser ça après victoire et alliance formelle avec l'empereur
+    # A FAIRE : caser ça après victoire et alliance formelle avec l'empereur ET si converti au christianisme
     "L'empereur Anastase est heureux de votre victoire et vous envoie les prestigieux emblèmes du consul honoraire."
     "Ayant revêtu dans la basilique du bienheureux Martin une tunique de pourpre et une chlamide vous vous coiffez d'un diadème."
     "À partir de ce jour vous serez appelé consul ou Auguste."
